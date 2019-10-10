@@ -7,15 +7,32 @@
   <head>
     <meta charset="UTF-8" />
     <title>THEOplayer Ads Basic</title>
-    <link rel="stylesheet" type="text/css" href="<path-to-theoplayer-css>" />
+
+    <!-- ***** REPLACE THEOPLAYER CSS ***** -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.myth.theoplayer.com/a56fca5b-9fcc-4bdd-b5d6-c556e1caa7a1/ui.css"
+    />
+    <!--  -->
   </head>
   <body>
     <div class="theoplayer-container video-js theoplayer-skin"></div>
-    <script type="text/javascript" src="<path-to-theoplayer-js>"></script>
+
+    <!-- ***** REPLACE THEOPLAYER JS ***** -->
+    <script
+      type="text/javascript"
+      src="https://cdn.myth.theoplayer.com/a56fca5b-9fcc-4bdd-b5d6-c556e1caa7a1/THEOplayer.js"
+    ></script>
+    <!--  -->
+
     <script>
       var element = document.querySelector(".theoplayer-container");
       var player = new THEOplayer.Player(element, {
-        libraryLocation: "<path-to-theoplayer>",
+        // ***** REPLACE THEOPLAYER LOCATION *****
+        libraryLocation:
+          "https://cdn.myth.theoplayer.com/a56fca5b-9fcc-4bdd-b5d6-c556e1caa7a1",
+        // *****
         ui: {
           width: "570px",
           height: "320px"
