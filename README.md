@@ -1,1 +1,1 @@
-samples-web
+# THEOplayer samples for web
