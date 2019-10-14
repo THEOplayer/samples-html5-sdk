@@ -8,8 +8,7 @@ The easiest way to start is checking our live documentation on [Codesandbox](htt
 
 ## Quickstart: on your local machine
 
-1. Install dependencies `npm install`
-2. Run the static server local `npm run serve`
+1. Run the static server local `npx http-server`
 
 > The THEOplayer library provided in this sample is currently targeted to the latest version and is set to run on **localhost only**
 

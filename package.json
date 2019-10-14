@@ -6,8 +6,5 @@
   "scripts": {
     "start": "serve"
   },
-  "author": "Mauricio Coelho",
-  "devDependencies": {
-    "serve": "^11.2.0"
-  }
+  "author": "Mauricio Coelho"
 }
