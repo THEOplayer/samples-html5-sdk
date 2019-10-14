@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>THEOplayer 2.X: Getting Started</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- your THEOplayer CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.myth.theoplayer.com/7aff3fa6-f92e-45f9-a40e-1bce9911b073/ui.css"
+    />
+    <style>
+      /* Remove default THEOplayer image */
+      .theoplayer-skin .theoplayer-ad-skip.theo-ad-remaining-container,
+      .theoplayer-skin
+        .theoplayer-ad-overlay-component.theo-ad-remaining-container {
+        cursor: wait;
+      }
+      .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip-countdown,
+      .theoplayer-skin .theoplayer-ad-skip.theo-ad-remaining-container,
+      .theoplayer-skin
+        .theoplayer-ad-overlay-component.theoplayer-ad-skip-countdown,
+      .theoplayer-skin
+        .theoplayer-ad-overlay-component.theo-ad-remaining-container {
+        cursor: wait;
+      }
+      .theo-ad-playing .theo-settings-control-button,
+      .theo-ad-playing .theo-settings-control-menu {
+        display: block !important;
+      }
+      .theo-ad-countdown {
+        position: absolute;
+        top: 45%;
+        left: 45%;
+        font-size: 4em;
+      }
+      .theo-ad-playing .theo-advert-label {
+        display: block !important;
+      }
+
+      .theo-ad-playing .vjs-fullscreen-control {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="theoplayer-container video-js theoplayer-skin"></div>
+    <!-- your THEOplayer .JS library -->
+    <script
+      type="text/javascript"
+      src="https://cdn.myth.theoplayer.com/7aff3fa6-f92e-45f9-a40e-1bce9911b073/THEOplayer.js"
+    ></script>
+    <script>
+      var element = document.querySelector(".theoplayer-container");
+      // your THEOplayer library
+      var player = new THEOplayer.Player(element, {
+        libraryLocation:
+          "https://cdn.myth.theoplayer.com/7aff3fa6-f92e-45f9-a40e-1bce9911b073",
+        ui: {
+          width: "570px",
+          height: "320px"
+        }
+      });
+
+      player.source = {
+        // this stream already includes French and Chinese subtitles
+        sources: {
+          type: "application/x-mpegurl",
+          src:
+            "https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8"
+        },
+        ads: [
+          {
+            sources: "dfp-preroll-no-skip.xml",
+            timeOffset: "start",
+            skipOffset: 5
+          },
+          {
+            sources: "dfp-midroll-no-skip.xml",
+            timeOffset: 150,
+            skipOffset: 5
+          },
+          {
+            sources: "dfp-midroll-no-skip2.xml",
+            timeOffset: 300,
+            skipOffset: 5
+          },
+          {
+            sources: "dfp-midroll-no-skip3.xml",
+            timeOffset: 450,
+            skipOffset: 5
+          },
+          {
+            sources: "dfp-postroll-no-skip.xml",
+            timeOffset: "end",
+            skipOffset: 5
+          }
+        ],
+        poster:
+          "http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg"
+      };
+
+      function updateTime() {
+        var countdown = document.querySelector(".theo-ad-countdown");
+        if (countdown) {
+          countdown.innerHTML = Math.round(
+            player.duration - player.currentTime
+          );
+        }
+      }
+
+      var button = THEOplayer.videojs.getComponent("Button");
+      var myButton = THEOplayer.videojs.extend(button, {
+        constructor: function() {
+          button.apply(this, arguments);
+          this.el().innerHTML = "Advertisement Playing";
+        },
+        handleClick: function() {
+          elementContainer.classList.toggle("hidden");
+        },
+        buildCSSClass: function() {
+          return "theo-advert-label";
+        }
+      });
+      THEOplayer.videojs.registerComponent("AdvertLabelButton", myButton);
+
+      player.ads.addEventListener("adbegin", function(e) {
+        // displaying big countdown
+        var countdown = document.createElement("div");
+        countdown.className = "theo-ad-countdown";
+        countdown.innerHTML = player.duration;
+        element.appendChild(countdown);
+
+        player.addEventListener("timeupdate", updateTime);
+
+        // displaying label on control bar
+        player.ui.getChild("controlBar").addChild("AdvertLabelButton", {});
+      });
+
+      player.ads.addEventListener("adend", function(e) {
+        // removing big countdown
+        var countdown = document.querySelector(".theo-ad-countdown");
+        if (countdown) {
+          player.removeEventListener("timeupdate", updateTime);
+          element.removeChild(countdown);
+        }
+
+        // removing label from control bar
+        player.ui.getChild("controlBar").removeChild("AdvertLabelButton", {});
+      });
+    </script>
+  </body>
+</html>
