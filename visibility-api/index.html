@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/247dc30e-0826-4f73-b1df-745bf56d352d/ui.css"
+        />
+     
+        
+    </head>
+    <body>
+    This is a Sample for the Visibility application<br>
+    The video will only be playing when visible to the user. Play the video and scroll down: the video will pause automatically.
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- Your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/247dc30e-0826-4f73-b1df-745bf56d352d/THEOplayer.js"
+        ></script>
+
+        <script>
+
+            var element = document.querySelector(".theoplayer-container");
+
+            // You THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/247dc30e-0826-4f73-b1df-745bf56d352d",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+            player.preload = 'auto';
+
+            player.visibility.addObserver(0.001, function() {
+                console.log('visible ratio', player.visibility.ratio);
+                if (player.visibility.ratio > 0.3) {
+                    console.log('player continues playback');
+                    player.play();
+                } else {
+                    console.log('player halts playback');
+                    player.pause();
+                }
+            });
+
+            player.source = {
+                    sources: [{
+                        type : 'application/x-mpegurl',
+                        src: '//cdn.theoplayer.com/video/elephants-dream/playlist-single-audio.m3u8'
+                    }],
+                    poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/800px-ElephantsDreamPoster.jpg'
+            };
+
+          document.querySelector('#scrollDown').addEventListener('click', function () {
+            document.getElementById('scrollTo').scrollIntoView({behavior: "smooth"});
+          })
+          document.querySelector('#scrollUp').addEventListener('click', function () {
+            document.getElementById('scrollToII').scrollIntoView({behavior: "smooth"});
+          })
+
+        </script>
+        <div style="margin: 1200px 0 0  0;"><!--42--></div>
+    </body>
+</html>
