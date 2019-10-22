@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/4444881a-a1d8-4ed8-a862-98dcfeae4ae1/ui.css"
+        />
+        <style>
+        /* Remove default THEOplayer image */
+          .theoplayer-skin .theoplayer-ad-skip.theo-ad-remaining-container,.theoplayer-skin .theoplayer-ad-overlay-component.theo-ad-remaining-container{
+            cursor: wait;
+          }
+        .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-skip.theo-ad-remaining-container,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-overlay-component.theo-ad-remaining-container{
+            cursor:wait;
+        }  
+        .theo-ad-playing .theo-settings-control-button,.theo-ad-playing .theo-settings-control-menu{
+            display:block !important
+        }
+        </style>
+    </head>
+    <body>
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/4444881a-a1d8-4ed8-a862-98dcfeae4ae1/THEOplayer.js"
+        ></script>
+        <script>
+
+            var element = document.querySelector(".theoplayer-container");
+            // your THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/4444881a-a1d8-4ed8-a862-98dcfeae4ae1",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+
+            player.source = {
+                // this stream already includes French and Chinese subtitles
+                sources: {
+                    type : 'application/x-mpegurl',
+                    src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8',
+                },
+                ads: [
+                    {
+                        sources: "single-pre-mid-post-no-skip.xml", // VMAP source!
+                    }
+                ],
+                poster: 'http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg',
+            };
+
+        </script>
+    </body>
+</html>

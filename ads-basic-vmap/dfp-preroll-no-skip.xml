@@ -1,0 +1,28 @@
+<VAST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd" version="3.0">
+<Ad id="709684216">
+<InLine>
+<AdSystem>GDFP</AdSystem>
+<AdTitle>Midroll</AdTitle>
+<Impression/>
+<Creatives>
+<Creative>
+<Linear>
+<Duration>00:00:30</Duration>
+<VideoClicks>
+<ClickThrough>
+<![CDATA[ https://trailers.apple.com/trailers/marvel/avengers-endgame/ ]]>
+</ClickThrough>
+</VideoClicks>
+<MediaFiles>
+<MediaFile id="GDFP" delivery="progressive" width="1280" height="720" type="video/mp4" bitrate="236" scalable="true" maintainAspectRatio="true">
+<![CDATA[
+https://movietrailers.apple.com/movies/marvel/avengers-endgame/avengers-end-game-big-game-spot_i320.m4v
+]]>
+</MediaFile>
+</MediaFiles>
+</Linear>
+</Creative>
+</Creatives>
+</InLine>
+</Ad>
+</VAST>
