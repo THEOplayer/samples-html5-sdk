@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>THEOplayer 2.X: Getting Started</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Your THEOplayer CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.myth.theoplayer.com/27d69cb0-47f4-4e5f-ab06-1ec92479a33c/ui.css"
+    />
+
+    <script src="https://cdn.theoplayer.com/demos/yospace/yo-ad-management.min.js"></script>
+  </head>
+  <body>
+    <div class="theoplayer-container video-js theoplayer-skin"></div>
+    <!-- Your THEOplayer .JS library -->
+    <script
+      type="text/javascript"
+      src="https://cdn.myth.theoplayer.com/27d69cb0-47f4-4e5f-ab06-1ec92479a33c/THEOplayer.js"
+    ></script>
+
+    <script>
+      var element = document.querySelector(".theoplayer-container");
+      var player = new THEOplayer.Player(element, {
+        libraryLocation:
+          "https://cdn.myth.theoplayer.com/27d69cb0-47f4-4e5f-ab06-1ec92479a33c/",
+        ui: {
+          width: "570px",
+          height: "320px"
+        }
+      });
+      player.source = {
+        sources: [
+          {
+            src:
+              "https://csm-e.tls1.yospace.com/csm/extlive/yospace02,samplehttpsdroid.m3u8?yo.br=false&yo.ac=true",
+            ssai: {
+              integration: "yospace"
+            }
+          }
+        ]
+      };
+    </script>
+  </body>
+</html>
