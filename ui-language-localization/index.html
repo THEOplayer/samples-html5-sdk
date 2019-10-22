@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/e1f82f0f-d70b-4711-8489-c587461f2046/ui.css"
+        />
+     
+    </head>
+    <body>
+        Using the Spanish language in our video player settings
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- Your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/e1f82f0f-d70b-4711-8489-c587461f2046/THEOplayer.js"
+        ></script>
+
+        <script>
+
+            var element = document.querySelector(".theoplayer-container");
+            // You THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/e1f82f0f-d70b-4711-8489-c587461f2046",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                    // set language
+                    language: 'langES',
+                    // array of possible languages and translations
+                    languages: { 'langES':
+                        {
+                            "Settings": "Opciones", 
+                            "Play": "Reproducir",
+                            "Pause": "Pausa",
+                            "Current Time": "Tiempo actual",
+                            "Duration Time": "Duración",
+                            "Remaining Time": "Tiempo restante",
+                            "Stream Type": "Tipo de stream",
+                            "LIVE": "EN VIVO",
+                            "Live": "En vivo",
+                            "Loaded": "Cargado",
+                            "Progress": "Progreso",
+                            "Font Family": "Familia Fonte",
+                            "Fullscreen": "Pantalla completa",
+                            "High": "Elevado",
+                            "Normal": "Normale",
+                            "Non-Fullscreen": "Salir de pantalla completa",
+                            "Mute": "Silencio",
+                            "Unmute": "Sonido",
+                            "Playback Rate": "Velocidad de reproducción",
+                            "Subtitles": "Subtítulos",
+                            "Subtitle": "Subtítulo",
+                            "Subtitle Options": "Opciones de Subtítulos",
+                            "subtitles off": "subtítulos off",
+                            "Speed": "Velocidad",
+                            "Start Casting": "Iniciar Casting",
+                            "Quality": "Calidad",
+                            "Options": "Opciones",
+                            "Automatic": "Automático",
+                            "Captions": "Mayúsculas",
+                            "captions off": "Mayúsculas off",
+                            "Chapters": "Capítulos",
+                            "Close Modal Dialog": "Cerrar Modal Dialog",
+                            "Descriptions": "Descripciones",
+                            "descriptions off": "Descripciones off",
+                            "Audio Track": "Pista de audio",
+                            "You aborted the media playback": "Has abortado la reproducción",
+                            "A network error caused the media download to fail part-way.": "Un error de red ha provocado que el archivo no se descargue correctamente."
+                        }
+                    }
+                }
+            });
+     
+            player.source = {
+                    sources: [{
+                        type : 'application/x-mpegurl',
+                        src: '//cdn.theoplayer.com/video/elephants-dream/playlist-single-audio.m3u8'
+                    }],
+                    poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/800px-ElephantsDreamPoster.jpg'
+            };
+        </script>
+    </body>
+</html>
