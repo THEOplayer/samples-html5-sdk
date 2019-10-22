@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/aa18b41b-3926-4649-809a-ec54e3713466/ui.css"
+        />
+        <style>
+        
+        .theoplayer-skin .theoplayer-ad-skip.theo-ad-remaining-container,.theoplayer-skin .theoplayer-ad-overlay-component.theo-ad-remaining-container{
+            /* change cursor type when non-skipable */
+            cursor:wait;
+          }
+        .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-skip.theo-ad-remaining-container,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-overlay-component.theo-ad-remaining-container{
+            cursor:wait;
+        }  
+        .theo-ad-playing .theo-settings-control-button,.theo-ad-playing .theo-settings-control-menu{
+            display:block !important
+        }
+        .theoplayer-skin .theoplayer-ad-skip.theo-ad-remaining-container,.theoplayer-skin .theoplayer-ad-overlay-component.theo-ad-remaining-container{
+            /* Change "Content will play in ..." section (position, look) */
+            top:10px;
+            left:1em;
+            position:absolute;
+            width:50%;
+            text-align:right;
+            padding:0.5em;            
+            background-color: #fcba03;
+        }
+        .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip-button,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip-button{
+            bottom:4.2em
+        }
+        .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip{
+            /*Change position of "Skip ad" section */
+            padding:0;
+            position:absolute;
+            line-height:2em;
+            height:2em;
+            right:10px;
+            top:150px;            
+        }
+        .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip.theo-size-xs .theoplayer-ad-skip-poster,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip.theo-size-xs .theoplayer-ad-skip-poster{
+            display:block
+        }
+        
+        .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip.theo-size-xs.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip.theo-size-xs.theoplayer-ad-skip-countdown{
+            line-height:2em;
+            height:2em;
+            bottom:5em;
+        }
+        .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip span,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip span{
+            /* Change the look of "Skip ad" section */
+            display:table-cell;
+            padding:0 1em;
+            position:relative;
+            background-color: #fcba03;
+        }
+        .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip .theoplayer-ad-skip-poster,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip .theoplayer-ad-skip-poster{
+            /* Shwowing poster after "Skip ad" */
+            width:3em;
+            height:2em;
+            display:table-cell;
+            background-color: #fcba03;
+            background-size:cover;
+            background-position:center
+        }
+
+        .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-touch-clickthrough,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-touch-clickthrough{
+            top:1em;
+            right:0
+        }
+        
+
+        </style>
+    </head>
+    <body>
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/aa18b41b-3926-4649-809a-ec54e3713466/THEOplayer.js"
+        ></script>
+        <script>
+
+            var element = document.querySelector(".theoplayer-container");
+            // your THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/aa18b41b-3926-4649-809a-ec54e3713466",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+
+            player.source = {
+                // this stream already includes French and Chinese subtitles
+                sources: {
+                    type : 'application/x-mpegurl',
+                    src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8',
+                },
+                ads: [
+                    {
+                        sources: "dfp-preroll-no-skip.xml",
+                        timeOffset: "start",
+                        skipOffset: 5
+                    },
+                    {
+                        sources: "dfp-midroll-no-skip.xml",
+                        timeOffset: 150,
+                        skipOffset: 5
+                    },
+                    {
+                        sources: "dfp-midroll-no-skip2.xml",
+                        timeOffset: 300,
+                        skipOffset: 5
+                    },
+                    {
+                        sources: "dfp-midroll-no-skip3.xml",
+                        timeOffset: 450,
+                        skipOffset: 5
+                    },
+                    {
+                        sources: "dfp-postroll-no-skip.xml",
+                        timeOffset: "end",
+                        skipOffset: 5
+                    }
+                ],
+                poster: 'http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg',
+            };
+
+        </script>
+    </body>
+</html>
