@@ -1,0 +1,56 @@
+<VAST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd" version="3.0">
+<Ad id="709684216" sequence="1">
+<InLine>
+<Impression>http://theoplayer.com/impression</Impression>
+<AdSystem>GDFP</AdSystem>
+<AdTitle>Midroll</AdTitle>
+<Description>
+<![CDATA[ Midroll ad ]]>
+</Description>
+<Creatives>
+<Creative id="57861174496" sequence="1">
+<Linear>
+<Duration>00:00:30</Duration>
+<VideoClicks>
+<ClickThrough id="GDFP">
+<![CDATA[ https://trailers.apple.com/trailers/fox/alita-battle-angel/ ]]>
+</ClickThrough>
+</VideoClicks>
+<MediaFiles>
+<MediaFile id="GDFP" delivery="progressive" width="1280" height="720" type="video/mp4" bitrate="236" scalable="true" maintainAspectRatio="true">
+<![CDATA[
+https://movietrailers.apple.com/movies/fox/alita-battle-angel/alita-battle-angel-big-game-spot_i320.m4v
+]]>
+</MediaFile>
+</MediaFiles>
+<TrackingEvents>
+<Tracking event="firstQuartile">https://theoplayer.com</Tracking>
+<Tracking event="start">https://theoplayer.com</Tracking>
+<Tracking event="firstQuartile">https://theoplayer.com</Tracking>
+<Tracking event="midpoint">https://theoplayer.com</Tracking>
+<Tracking event="thirdQuartile">https://theoplayer.com</Tracking>
+<Tracking event="complete">https://theoplayer.com</Tracking>
+<Tracking event="mute">https://theoplayer.com</Tracking>
+<Tracking event="unmute">https://theoplayer.com</Tracking>
+<Tracking event="rewind">https://theoplayer.com</Tracking>
+<Tracking event="pause">https://theoplayer.com</Tracking>
+<Tracking event="resume">https://theoplayer.com</Tracking>
+<Tracking event="fullscreen">https://theoplayer.com</Tracking>
+<Tracking event="creativeView">https://theoplayer.com</Tracking>
+<Tracking event="acceptInvitation">https://theoplayer.com</Tracking>
+<Tracking event="skip">https://theoplayer.com</Tracking>
+</TrackingEvents>
+</Linear>
+</Creative>
+</Creatives>
+<Extensions>
+<Extension type="geo">
+<Country>BE</Country>
+<Bandwidth>4</Bandwidth>
+<BandwidthKbps>5860</BandwidthKbps>
+</Extension>
+<Extension type="waterfall" fallback_index="0"/>
+</Extensions>
+</InLine>
+</Ad>
+</VAST>
