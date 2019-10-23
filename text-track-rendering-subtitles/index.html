@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/b377a33e-4f73-48ca-ac59-0f114227f38b/ui.css"
+        />
+    </head>
+    <body>
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/b377a33e-4f73-48ca-ac59-0f114227f38b/THEOplayer.js"
+        ></script>
+        <script>
+            var element = document.querySelector(".theoplayer-container");
+            // your THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/b377a33e-4f73-48ca-ac59-0f114227f38b",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+            
+            player.source = {
+                // this stream already includes French and Chinese subtitles
+                sources: {
+                    type : 'application/x-mpegurl',
+                    src: '//cdn.theoplayer.com/video/elephants-dream/playlist-single-audio.m3u8'
+                }
+                ,
+                poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/800px-ElephantsDreamPoster.jpg',
+                // adding to the original stream English and German subtitles via VTT files
+                textTracks: [
+                    {
+                        default: true,
+                        kind : 'subtitles', //optional - find other values at https://support.theoplayer.com/hc/en-us/articles/214350425#TextTrackDescription
+                        label: 'English', //optional - this will appear in your UI
+                        srclang : 'en',
+                        src: 'https://raw.githubusercontent.com/gpac/gpac/master/tests/media/webvtt/elephants-dream-subtitles-en.vtt'
+                    },
+                    {
+                        default: false,
+                        kind : 'subtitles', //optional - find other values at https://support.theoplayer.com/hc/en-us/articles/214350425#TextTrackDescription
+                        label: 'Deutsch', //optional - this will appear in your UI
+                        srclang : 'de',
+                        src: 'https://raw.githubusercontent.com/gpac/gpac/master/tests/media/webvtt/elephants-dream-subtitles-de.vtt'
+                    }
+                ],
+            };
+    // pre-chosing English subtitles when the video starts playing
+	function startVideo() {
+    	//player.autoplay = true;
+		if (player.textTracks) {
+            player.textTracks.addEventListener('addtrack', function(event) { 
+                if (event.track.language === 'en') {
+                    event.track.mode = 'showing'                 
+                } else {
+                    event.track.mode = 'disabled'
+                }
+            });	
+		}
+	}
+    
+	startVideo.call();
+
+        </script>
+    </body>
+</html>
