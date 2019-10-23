@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/7b51a101-81e7-4302-9f7d-a7bf3fd3bfcc/ui.css"
+        />
+        <style>
+          /* Increase button size when hovering */
+          .theoplayer-skin .vjs-big-play-button:hover {
+              background: none;
+              -webkit-transition-duration: 0.2s;
+              -moz-transition-duration: 0.2s;
+              transition-duration: 0.2s;
+              transform: translate(-50%, -50%) scale(1.2);
+              transition: transform 0.2s;
+          }
+          /* Set other image */
+          .theoplayer-skin .vjs-big-play-button:before {
+              content: '';
+              background: url('https://cdn.shopify.com/s/files/1/1095/6418/products/Gif-009-T_large.gif?v=1522337960') no-repeat 0 0;
+              background-size: 100%;
+              display: block;
+          }
+          /* Remove default THEOplayer image */
+          .theo-big-play-button-svg-container svg {
+              display: none;
+          }
+          /* Remove default spotlight around button on focus */
+          .theoplayer-skin:hover .vjs-big-play-button:after, .theoplayer-skin .vjs-big-play-button:focus:after {
+              opacity: 10;
+          }
+        </style>
+    </head>
+    <body>
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/7b51a101-81e7-4302-9f7d-a7bf3fd3bfcc/THEOplayer.js"
+        ></script>
+        <script>
+            var element = document.querySelector(".theoplayer-container");
+            // your THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/7b51a101-81e7-4302-9f7d-a7bf3fd3bfcc",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+            
+            player.source = {
+                // this stream already includes French and Chinese subtitles
+                sources: {
+                    type : 'application/x-mpegurl',
+                    src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8'
+                }
+                ,
+                /*poster: 'http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg', */
+            };
+
+
+        </script>
+    </body>
+</html>
