@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- adding Font AweAwesome script for step backward and step forward buttons -->       
+        <script src="https://kit.fontawesome.com/a7f9895e55.js"></script>
+        <!-- your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/ede8c87f-ffef-46b4-900e-bee28c6c9c50/ui.css"
+        />
+        <style>
+            .fa-download {
+                /* show to the left of the options-button */
+                order: 1;  
+                cursor: pointer;
+            }
+            .fa-trash {
+                /* show to the left of the options-button */
+                order: 2; 
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        Use the two icons left to the settings icons (download and remove) to get or remove cache.
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/ede8c87f-ffef-46b4-900e-bee28c6c9c50/THEOplayer.js"
+        ></script>
+        <script>
+            var element = document.querySelector(".theoplayer-container");
+            // your THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/ede8c87f-ffef-46b4-900e-bee28c6c9c50",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+
+           var sourceDescription = {
+                sources: {
+                    type : 'application/x-mpegurl',
+                    src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8'
+                }
+                ,
+                poster: 'http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg',
+            };
+
+            function cacheSource(sourceDescription) {
+                var task = THEOplayer.cache.createTask(sourceDescription, 
+                    {amount: '20'}
+                );
+                // Example of querying information
+                task.addEventListener('statechange', function() {
+                    
+                    if (task.status == 'loading') {
+                        console.log('initiated loading ');
+                    }
+                    if (task.status == 'error') {
+                        console.log('task error');
+                    }
+                    if (task.status == 'done') {
+                        console.log('Caching completed! THEOplayer has ' + task.secondsCached + ' seconds of content cached');
+                    }
+                });
+
+                task.addEventListener('progress', function() {
+                    
+                    if (task.status == 'loading') {
+                        console.log('progress checked. loaded ', task.status, task.secondsCached );
+                    }
+                });
+                task.start();
+            }
+
+            function clearCache() {
+                var task2remove = THEOplayer.cache.tasks[0];
+                task2remove.addEventListener('statechange', function() {
+                    if (task2remove.status == 'evicted') {
+                        console.log('Remove completed!');
+                    }
+                });
+                task2remove.remove();
+            }
+ 
+
+            player.source = sourceDescription;
+
+            // setting up the rewind button by setting up a video-js component
+            var Button = THEOplayer.videojs.getComponent('Button');
+            var DownloadButton = THEOplayer.videojs.extend(Button, {
+                constructor: function() {
+                    Button.apply(this, arguments);
+                    /* initialize your button */
+                    // this.el() = created DOM-element
+            
+                    // add tooltip
+                    var tooltipSpan = document.createElement('span');
+                    tooltipSpan.className = 'theo-button-tooltip vjs-hidden';
+                    tooltipSpan.innerText = 'Cache 20 seconds';
+                    function toggleTooltip() {
+                        tooltipSpan.classList.toggle('vjs-hidden');
+                    }
+                    this.el().addEventListener('mouseover', toggleTooltip);
+                    this.el().addEventListener('mouseout', toggleTooltip);
+                    this.el().appendChild(tooltipSpan);
+                },
+                handleClick: () => {
+                    //player.currentTime -= 10;
+                    //task.start();
+                    console.log('going to cache');
+                    cacheSource(player.source);
+                },
+                buildCSSClass: function () {
+                    return 'fa fa-download vjs-button'; // insert all class names here
+                }
+            });
+            THEOplayer.videojs.registerComponent('DownloadButton', DownloadButton);
+            player.ui.getChild('controlBar').addChild('DownloadButton', {});
+            
+            // setting up the forward button by setting up a video-js component
+            var Button = THEOplayer.videojs.getComponent('Button');
+            var ClearCacheButton = THEOplayer.videojs.extend(Button, {
+                constructor: function() {
+                    Button.apply(this, arguments);
+                    /* initialize your button */
+                    // this.el() = created DOM-element
+            
+                    // add tooltip
+                    var tooltipSpan = document.createElement('span');
+                    tooltipSpan.className = 'theo-button-tooltip vjs-hidden';
+                    tooltipSpan.innerText = 'Clear Cache';
+                    function toggleTooltip() {
+                        tooltipSpan.classList.toggle('vjs-hidden');
+                    }
+                    this.el().addEventListener('mouseover', toggleTooltip);
+                    this.el().addEventListener('mouseout', toggleTooltip);
+                    this.el().appendChild(tooltipSpan);
+                },
+                handleClick: () => {
+                    console.log('going to remove');
+                    clearCache();
+                },
+                buildCSSClass: function () {
+                    return 'fa fa-trash vjs-button'; 
+                }
+            });
+            THEOplayer.videojs.registerComponent('ClearCacheButton', ClearCacheButton);
+            player.ui.getChild('controlBar').addChild('ClearCacheButton', {});
+
+        </script>
+    </body>
+</html>
