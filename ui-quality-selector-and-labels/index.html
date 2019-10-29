@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/c0378a53-43f3-4bfa-af3e-7ef85afdf35f/ui.css"
+        />
+    </head>
+    <body>
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/c0378a53-43f3-4bfa-af3e-7ef85afdf35f/THEOplayer.js"
+        ></script>
+        <script>
+            var element = document.querySelector(".theoplayer-container");
+            // your THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/c0378a53-43f3-4bfa-af3e-7ef85afdf35f",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                    fluid: true
+                }
+            });
+
+            // Video source: make sure to include this domain when building your player! (https://portal.theoplayer.com)
+            // Here, the default quality is set to 720p
+            player.src = "https://myvidplay.s3.wasabisys.com/upload/videos/2019/06/ycSCijkTIvttyGb4BEri_02_63688d3c942433957b5fee14fb324d94_video_720p_converted.mp4";
+
+            // set your custom resolutions and sources
+            var resolutions = [
+                {name: '1080p HD', src: 'https://myvidplay.s3.wasabisys.com/upload/videos/2019/06/ycSCijkTIvttyGb4BEri_02_63688d3c942433957b5fee14fb324d94_video_1080p_converted.mp4'},
+                {name: '720p HD', src: 'https://myvidplay.s3.wasabisys.com/upload/videos/2019/06/ycSCijkTIvttyGb4BEri_02_63688d3c942433957b5fee14fb324d94_video_720p_converted.mp4'},
+                {name: '480p', src: 'https://myvidplay.s3.wasabisys.com/upload/videos/2019/06/ycSCijkTIvttyGb4BEri_02_63688d3c942433957b5fee14fb324d94_video_480p_converted.mp4'},
+                {name: '360p', src: 'https://myvidplay.s3.wasabisys.com/upload/videos/2019/06/ycSCijkTIvttyGb4BEri_02_63688d3c942433957b5fee14fb324d94_video_360p_converted.mp4'}, 
+                {name: '240p', src: 'https://myvidplay.s3.wasabisys.com/upload/videos/2019/06/ycSCijkTIvttyGb4BEri_02_63688d3c942433957b5fee14fb324d94_video_240p_converted.mp4'},
+            ];
+
+            var currentTime, wasPaused;
+            var settingsMenu = player.ui.getChild('ControlBar').getChild('SettingsButton').menu;
+            
+            // Remove built-in quality sub menu
+            settingsMenu.removeMenuItem(settingsMenu.menuItems[0]);
+
+            // Create custom quality sub menu
+            var qualityMenuItem = settingsMenu.addSubMenuItem({
+                index : 0
+            });
+            var qualityMenuTitle = document.createElement('span');
+            qualityMenuTitle.className = 'theo-settings-control-menu-item-title';
+            qualityMenuTitle.innerHTML = 'Quality';
+            var qualityMenuValue = document.createElement('span');
+            qualityMenuValue.className = 'theo-settings-control-menu-item-value';
+            qualityMenuItem.el().appendChild(qualityMenuTitle);
+            qualityMenuItem.el().appendChild(qualityMenuValue);
+            qualityMenuItem.subMenu.menuHeader.el().innerHTML = 'Quality';
+            var qualityItems = resolutions.map(function (resolution) {
+                var qualityItem = qualityMenuItem.subMenu.addMenuItem();
+                qualityItem.el().innerHTML = resolution.name;
+                qualityItem.on('click', function () {
+                    selectQuality(resolution);
+                });
+                return qualityItem;
+            });
+            
+            function selectQuality(resolution) {
+                qualityMenuValue.innerHTML = resolution.name;
+                currentTime = player.currentTime;
+                wasPaused = player.paused;
+                player.src = resolution.src;
+                player.currentTime = currentTime;
+                if (!wasPaused) {
+                    player.play();
+                }
+                var qualityItem = qualityItems[resolutions.indexOf(resolution.name)];
+                qualityItems.forEach(function (item) {
+                    item.selected(item === qualityItem);
+                });
+            }
+
+            // Set default quality to 720p
+            selectQuality(resolutions[1]);
+
+        </script>
+    </body>
+</html>

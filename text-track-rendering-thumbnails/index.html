@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/808e384a-a224-4a15-a96b-80382a46cd6b/ui.css"
+        />
+    </head>
+    <body>
+        Hovering over the timeline will show you thumbnails of the fragment on that time.
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/808e384a-a224-4a15-a96b-80382a46cd6b/THEOplayer.js"
+        ></script>
+        <script>
+            var element = document.querySelector(".theoplayer-container");
+            // your THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/808e384a-a224-4a15-a96b-80382a46cd6b/",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+            
+            player.source = {
+                sources: {
+                    type : 'application/x-mpegurl',
+                    src: 'https://cdnsecakmi.kaltura.com/p/1068292/sp/106829200/playManifest/entryId/0_9fr3goyk/protocol/https/format/applehttp/flavorIds/1_kskirz22,1_gjcmvt9t,1_6r5o32yw,1_6hrcb777,1_u0ybzkak/a.m3u8?uiConfId=41907192&playSessionId=0d23ba43-cba5-4423-b96f-af876241dd75:1678ca85-8efa-f595-70c2-85ed345d224d&referrer=aHR0cHM6Ly93d3cuc3RhcndhcnMuY29tL2ZpbG1zL3N0YXItd2Fycy1lcGlzb2RlLWl4LXRoZS1yaXNlLW9mLXNreXdhbGtlcg==&clientTag=html5:v0.40.15'
+                }
+                ,
+                poster: 'https://lumiere-a.akamaihd.net/v1/images/the-rise-of-skywaker-d23-poster_ec214fd3.jpeg?region=0%2C0%2C1000%2C1481&width=480',
+                textTracks: [
+                    {
+                      default: true,
+                      // thumbnails generated via https://www.videohop.com.au/thumbnail-generator
+                      src: '80p.vtt',
+                      label: 'thumbnails',
+                      kind: 'metadata'
+                    }
+                ],
+            };
+
+
+        </script>
+    </body>
+</html>
