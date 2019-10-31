@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/791ed77e-354f-41ab-8400-feef310fb350/ui.css"
+        />
+        <style>
+            /* Define style for cues */
+            .adCue {
+                width:.5em; 
+                height:100%;
+                background-color: #fcba03;
+                position:absolute;
+                top:0;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/791ed77e-354f-41ab-8400-feef310fb350/THEOplayer.js"
+        ></script>
+        <script>
+
+            var element = document.querySelector(".theoplayer-container");
+            // your THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/791ed77e-354f-41ab-8400-feef310fb350",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+
+            player.source = {
+                sources: {
+                    type : 'application/x-mpegurl',
+                    src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8',
+                },
+                ads: [
+                    {
+                        sources: "dfp-preroll-no-skip.xml",
+                        timeOffset: "start",
+                        skipOffset: 5
+                    },
+                    {
+                        sources: "dfp-midroll-no-skip.xml",
+                        timeOffset: 150,
+                        skipOffset: 5
+                    },
+                    {
+                        sources: "dfp-midroll-no-skip2.xml",
+                        timeOffset: 300,
+                        skipOffset: 5
+                    },
+                    {
+                        sources: "dfp-midroll-no-skip3.xml",
+                        timeOffset: 450,
+                        skipOffset: 5
+                    },
+                    {
+                        sources: "dfp-postroll-no-skip.xml",
+                        timeOffset: "end",
+                        skipOffset: 5
+                    }
+                ],
+                poster: 'http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg',
+            };
+
+            var adsPresent = !!player.source.ads;
+            var contentDuration = 0;
+            var to = [];
+            var playedAds = [];
+
+            function drawCues() {
+                var progressBar = element.querySelector('.vjs-progress-control.vjs-control');
+                for (var i=0; i<to.length; i++){
+                    var timeOffset = to[i];
+                    console.log("drawing cue at ", timeOffset);
+                    if (playedAds.indexOf(timeOffset) === -1) {
+                        var left = to[i] * progressBar.offsetWidth/contentDuration;
+                        var div = document.createElement("div");
+                        div.setAttribute('to', to[i]);
+                        div.classList.add("adCue");
+                        div.style.left = left +"px";
+                        progressBar.children[0].appendChild(div);
+                    }
+                }
+            };
+ 
+            function destroyCues() {
+                console.log("destroyCues");
+                var cues = element.querySelectorAll('.vjs-progress-control.vjs-control .adCue');
+                for (cue of cues){
+                    cue.parentNode.removeChild(cue);
+                }
+            };
+            
+            function detectDuration(adIsPlaying) {
+                if (!adIsPlaying) {
+                    contentDuration = player.duration;
+                }
+                var t = 0;
+                for (var ad of player.source.ads){
+                    to[t] = to[t] == "end" ? contentDuration : to[t];
+                    t++;
+                }
+            };
+            
+            function detectTimeOffset() {
+                if(adsPresent){
+                    var t = 0;
+                    for (var ad of player.source.ads){
+                        to[t]= ad.timeOffset==undefined ? 0: ad.timeOffset=="start"? 0: ad.timeOffset;
+                        t++;
+                    }
+                }
+            };
+
+            player.addEventListener('pause', function (){
+                console.log("pause");
+            });
+
+            player.addEventListener('playing', function (){
+                var adIsPlaying = player.ads.playing;
+                detectTimeOffset();
+                detectDuration(adIsPlaying);
+                !adIsPlaying ? drawCues() : destroyCues();
+            });
+            
+            player.addEventListener('sourcechange', function (){
+                playedAds.length = 0;
+            });
+            
+            player.ads.addEventListener('adend', function (adEvent){
+                playedAds.push(adEvent.ad.adBreak.timeOffset);
+            });
+        </script>
+    </body>
+</html>
