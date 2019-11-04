@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/54ed50b5-a5a8-488f-a069-d5d0b30caa11/ui.css"
+        />
+     
+        
+    </head>
+    <body>
+        Some hotkeys we set up ourselves for you to be able to test: <br/>
+        <code>
+                play: spacebar <br/>
+                rewind: left <br/>
+                increaseVolume: up <br/>
+                forward: right <br/>
+                decreaseVolume: down <br/>
+                toggleFullScreen: f <br/>
+                mute: m <br/>
+        </code>
+        Check the code and define your own hotkeys.
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- Your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/54ed50b5-a5a8-488f-a069-d5d0b30caa11/THEOplayer.js"
+        ></script>
+        <script>
+
+            var element = document.querySelector(".theoplayer-container");
+            // You THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/54ed50b5-a5a8-488f-a069-d5d0b30caa11",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+     
+            player.source = {
+                    sources: [{
+                        type : 'application/x-mpegurl',
+                        src: '//cdn.theoplayer.com/video/elephants-dream/playlist-single-audio.m3u8'
+                    }],
+                    poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/800px-ElephantsDreamPoster.jpg'
+            };
+
+            function THEOplayer_UI_Hotkeys (player) {
+            
+                var togglePlay = function () {
+                        if (player.paused) {
+                            player.play();
+                        } else {
+                            player.pause();
+                        }
+                    },
+                    toggleMute = function () {
+                        player.muted = !player.muted;
+                    },
+                    toggleFullScreen = function () {
+                        if (player.presentationMode = 'fullscreen') {
+                            player.presentationMode = 'inline';
+                        }  else {
+                            player.presentationMode = 'fullscreen';
+                        }
+                    },
+                    rewind = function () {
+                        player.currentTime -= 5;
+                    },
+                    forward = function () {
+                        player.currentTime += 5;
+                    },
+                    increaseVolume = function () {
+                        player.volume = Math.min(player.volume + 0.05, 1);
+                    },
+                    decreaseVolume = function () {
+                        player.volume = Math.max(player.volume - 0.05, 0);
+                    },
+                    preventStandardHotKeyActions = function (event) {
+                        event.stopPropagation();
+                        event.preventDefault();
+                        return false;
+                    },
+                    charCodeMap = {
+                        32: togglePlay,         // spacebar
+                        37: rewind,             // left
+                        38: increaseVolume,     // up
+                        39: forward,            // right
+                        40: decreaseVolume,     // down
+                        70: toggleFullScreen,   // f
+                        77: toggleMute,         // m
+                    },
+                    isTHEOplayerFocused = function () {
+                        var node = document.activeElement;
+                        while (node !== null) {
+                            if (player.element === node) {
+                                return true;
+                            }
+                            node = node.parentNode;
+                        }
+                        return false;
+                    },
+                    processKeyEvent = function (event) {
+                        var action;
+            
+                        if (!event) {
+                            event = window.event;
+                        }
+            
+                        action = charCodeMap[event.keyCode];
+            
+                        if (action && !event.altKey && !event.ctrlKey && !event.shiftKey && isTHEOplayerFocused()) {
+                            action();
+                            return preventStandardHotKeyActions(event);
+                        }
+                    },
+                    load = function () {
+                        player.element.tabIndex = 1;
+                        document.addEventListener('keydown', processKeyEvent);
+                    };
+            
+                load();
+            }
+
+            THEOplayer_UI_Hotkeys(player);
+
+        </script>
+    </body>
+</html>
