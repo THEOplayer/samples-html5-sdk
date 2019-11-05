@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/6799c60e-e0db-406d-b3c4-472d10ad1708/ui.css"
+        />
+        <style>
+          /* Menu option can be hidden using this CSS or Javascript (below).
+            Here, we are removing the element to be able to change the speed of the video */          
+          /* .theoplayer-skin li[aria-label="Open the video speed settings menu"] {
+              display: none !important;
+          } */
+         
+        </style>
+    </head>
+    <body>
+        In this example we remove the element to change the speed of the video.
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/6799c60e-e0db-406d-b3c4-472d10ad1708/THEOplayer.js"
+        ></script>
+        <script>
+            var element = document.querySelector(".theoplayer-container");
+            // your THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/6799c60e-e0db-406d-b3c4-472d10ad1708",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+            
+            player.source = {
+                sources: {
+                    type : 'application/x-mpegurl',
+                    src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8'
+                }
+                ,
+                /*poster: 'http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg', */
+            };
+            /* Menu option to change speed of video can be hidden using Javascript (below) or CSS (top of page) */ 
+            function firstplay(event) {
+                  player.removeEventListener('playing', firstplay);
+                  var speed = document.querySelector('.theoplayer-skin li[aria-label="Open the video speed settings menu"]');
+                  speed.parentNode.removeChild(speed);
+              }
+              player.addEventListener('sourcechange', function() {
+                  player.removeEventListener('playing', firstplay);
+                  player.addEventListener('playing', firstplay);
+              });
+
+        </script>
+    </body>
+</html>
