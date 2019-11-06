@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/155da6a4-168f-4516-b8fc-140bc9f7ab4e/ui.css"
+        />
+        <style>
+          .custom-timeline {
+              display: none;
+              bottom: 0;
+              position: absolute;
+              width: 100%;
+              text-align: center;
+              line-height: 36px;
+              pointer-events: none;
+          }
+          
+          .vjs-has-started .custom-timeline.show {
+              display: block;
+          }
+          
+          .vjs-time-control {
+              display: none !important;
+          }
+          
+          .theo-mobile .custom-timeline {
+              display: none;
+          }
+          
+          .vjs-fullscreen .custom-timeline {
+              margin-bottom: 8px;
+          }
+        </style>
+    </head>
+    <body>
+        <div class="theoplayer-container video-js theoplayer-skin">
+            <div class="custom-timeline">
+            <span class="current-time">00:00:00</span> / <span class="duration"></span>
+            </div>
+        </div>
+        <!-- your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/155da6a4-168f-4516-b8fc-140bc9f7ab4e/THEOplayer.js"
+        ></script>
+        <script>
+            var element = document.querySelector(".theoplayer-container");
+            // your THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/155da6a4-168f-4516-b8fc-140bc9f7ab4e",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+            
+            player.source = {
+                sources: {
+                    type : 'application/x-mpegurl',
+                    src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8'
+                }
+                ,
+                poster: 'http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg', 
+            };
+
+            function secondsToHms(d) {
+                d = Number(d);
+                var h = Math.floor(d / 3600);
+                var m = Math.floor(d % 3600 / 60);
+                var s = Math.floor(d % 3600 % 60);
+            
+                var hDisplay = h > 0 ? h + (h == 1 ? ":" : ":") : "00:";
+                var mDisplay = m > 0 ? (m > 9 ? m : "0"+m )  + (m == 1 ? ":" : ":") : "00:";
+                var sDisplay = s > 9 ? s : "0"+s;
+                return hDisplay + mDisplay + sDisplay;
+            }
+
+            player.addEventListener('timeupdate', function(e) {
+                document.querySelector('.custom-timeline .current-time').innerText = secondsToHms(Math.floor(e.currentTime));
+            })
+            
+            player.addEventListener('durationchange', function(e) {
+                document.querySelector('.custom-timeline .duration').innerText = secondsToHms(Math.floor(e.duration));
+                //console.log(secondsToHms(Math.floor(e.duration)));
+                document.querySelector('.custom-timeline').classList.add('show');
+            })
+
+        </script>
+    </body>
+</html>
