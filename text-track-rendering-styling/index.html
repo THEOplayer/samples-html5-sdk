@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/678809ec-40da-4bda-91b6-eadc248126eb/ui.css"
+        />
+     
+        
+    </head>
+    <body>
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- Your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/678809ec-40da-4bda-91b6-eadc248126eb/THEOplayer.js"
+        ></script>
+        <script>
+
+            var element = document.querySelector(".theoplayer-container");
+            // You THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/678809ec-40da-4bda-91b6-eadc248126eb",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+     
+            player.source = {
+                    sources: [{
+                        type : 'application/x-mpegurl',
+                        src: '//cdn.theoplayer.com/video/elephants-dream/playlist-single-audio.m3u8'
+                    }],
+                    poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/800px-ElephantsDreamPoster.jpg',
+                    textTracks: [
+                    {
+                        default: true,
+                        kind : 'subtitles', //optional - find other values at https://support.theoplayer.com/hc/en-us/articles/214350425#TextTrackDescription
+                        label: 'English', //optional - this will appear in your UI
+                        srclang : 'en',
+                        src: 'https://raw.githubusercontent.com/gpac/gpac/master/tests/media/webvtt/elephants-dream-subtitles-en.vtt'
+                    }]
+            };
+
+            // how to apply a Styling to the stream Text Tracks 
+            player.textTrackStyle.fontFamily = 'Times, Times New Roman, Georgia, serif';
+            player.textTrackStyle.fontColor = '#ffffe0';
+            player.textTrackStyle.fontSize = '150%';
+            player.textTrackStyle.backgroundColor = 'chocolate';
+            player.textTrackStyle.windowColor = 'bisque';
+            player.textTrackStyle.edgeStyle = 'depressed';
+
+        </script>
+    </body>
+</html>
