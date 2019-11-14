@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>THEOplayer 2.X: Getting Started</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- your THEOplayer CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.myth.theoplayer.com/36e62958-1adb-4772-829d-c63bfe4f07d1/ui.css"
+        />
+        <style>
+            /* The color of big play button  */
+            /* The color of the progress bar */
+            /* The color of the menu text */
+            /* you can use color name or hex code */
+            .theo-primary-color,
+            .vjs-selected {
+                color: Crimson !important;
+            }
+
+            /* The color and background color of the header of the menu */
+            .theo-primary-background {
+                color: #771c1c !important;
+                background-color: #1c6fa0 !important;
+            }
+
+            /* The color of the control bar icons (include time and tooltips */
+            .theo-secondary-color {
+                color: #41a12e !important;
+            }
+
+            /* The color of the Social sharing close button */
+            .theo-secondary-background {
+                color: #f1e8e8 !important;
+                background-color: #acc570 !important;
+            }
+
+            /* The background color of the control bar */
+            .theo-tertiary-color {
+                color: #9a9b52 !important;
+            }
+
+            /* The color and background color of the content of the menu */
+            .theo-tertiary-background {
+                color: #aa4466 !important;
+                background-color: #261474 !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="theoplayer-container video-js theoplayer-skin"></div>
+        <!-- your THEOplayer .JS library -->
+        <script
+            type="text/javascript"
+            src="https://cdn.myth.theoplayer.com/36e62958-1adb-4772-829d-c63bfe4f07d1/THEOplayer.js"
+        ></script>
+        <script>
+            var element = document.querySelector(".theoplayer-container");
+            // your THEOplayer library 
+            var player = new THEOplayer.Player(element, {
+                libraryLocation:
+                    "https://cdn.myth.theoplayer.com/36e62958-1adb-4772-829d-c63bfe4f07d1",
+                ui: {
+                    width: "570px",
+                    height: "320px",
+                }
+            });
+            
+            player.source = {
+                // this stream already includes French and Chinese subtitles
+                sources: {
+                    type : 'application/x-mpegurl',
+                    src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8'
+                }
+                ,
+                poster: 'http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg',
+            };
+
+
+        </script>
+    </body>
+</html>
