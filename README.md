@@ -80,10 +80,6 @@ will make sure to get everything needed from our sdk.
 
 10. Profit.
 
-A link to the example project can be found here:
-
-https://s3.eu-west-3.amazonaws.com/theoplayer-angular/THEOAngular.zip
-
 ## Related articles
 
 https://angular.io/guide/quickstart
