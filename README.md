@@ -1,4 +1,4 @@
-THEOplayer Angular Sample
+# THEOplayer Angular Sample
 
 ## License
 
