@@ -1,4 +1,8 @@
-# theoplayer-vuejs-sample
+# THEOplayer Vue.js Sample
+
+## License
+
+This projects falls under the license as defined in https://github.com/THEOplayer/license-and-disclaimer.
 
 ## Project setup
 
