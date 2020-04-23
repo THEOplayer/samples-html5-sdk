@@ -1,8 +1,12 @@
-_A brief guide on how to build a THEOplayer in an Angular environment._
+# THEOplayer Angular Sample
 
-Note that this information is for a basic player in a local testing environment. Additional information may be needed for specific cases.
+## License
+
+This projects falls under the license as defined in https://github.com/THEOplayer/license-and-disclaimer.
 
 ## Step-by-step guide:
+
+Note that this information is for a basic player in a local testing environment. Additional information may be needed for specific cases.
 
 1. Make sure you have the Angular CLI installed
 
