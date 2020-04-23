@@ -1,5 +1,11 @@
 # THEOplayer samples for web
 
+## License
+
+This projects falls under the license as defined in https://github.com/THEOplayer/license-and-disclaimer.
+
+## Introduction
+
 This project will demonstrate how to use THEOplayer for web. if you have any questions please contact support-portal@theoplayer.com
 
 ## Quickstart
