@@ -1,3 +1,11 @@
+# THEOplayer Nuxt.js Sample
+
+## License
+
+This projects falls under the license as defined in https://github.com/THEOplayer/license-and-disclaimer.
+
+## Getting started
+
 1. Open your favorite IDE and then a terminal and install Vue CLI component:
 
 ```
