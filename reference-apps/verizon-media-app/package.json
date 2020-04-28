@@ -1,0 +1,26 @@
+{
+  "name": "verizon-media-app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {},
+  "scripts": {
+    "build-dev": "webpack",
+    "build": "webpack -p",
+    "start": "node node_modules/local-web-server/bin/cli.js -d public"
+  },
+  "homepage": ".",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/THEOplayer/samples-html5-sdk/tree/master/reference-apps/verizon-media"
+  },
+  "devDependencies": {
+    "local-web-server": "^3.0.7",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "http-server": "^0.11.1",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6"
+  }
+}
