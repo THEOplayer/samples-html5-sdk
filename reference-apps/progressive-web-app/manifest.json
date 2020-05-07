@@ -1,0 +1,35 @@
+{
+  "name": "THEOplayer PWA",
+  "short_name": "THEO",
+  "icons": [{
+    "src": "./images/theoplayer_square-128_x_128.png",
+    "sizes": "128x128",
+    "type": "image/png"
+  }, {
+    "src": "./images/theoplayer_square-144_x_144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "./images/theoplayer_square-152_x_152.png",
+    "sizes": "152x152",
+    "type": "image/png"
+  }, {
+    "src": "images/theoplayer_square-192_x_192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }, {
+    "src": "images/theoplayer_square-256_x_256.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }, {
+    "src": "images/theoplayer_square-512_x_512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "lang": "en-US",
+  "start_url": "./index.html",
+  "orientation": "any",
+  "display": "standalone",
+  "background_color": "white",
+  "theme_color": "white"
+}
