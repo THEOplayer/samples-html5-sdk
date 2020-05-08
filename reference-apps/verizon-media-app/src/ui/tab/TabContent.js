@@ -32,7 +32,7 @@ export class TabContent {
         div11.appendChild(div111b);
         const div111c = document.createElement('div');
         div111c.className = 'float-right mt-1';
-        div111c.innerHTML = '<a href="https://github.com/thijsl/samples-html5-sdk/tree/master/reference-apps/verizon-media-app" target="_blank" type="button" class="btn btn-default"><i class="fab fa-github mr-2"></i></a>';
+        div111c.innerHTML = '<a href="https://github.com/THEOplayer/samples-html5-sdk/tree/master/reference-apps/verizon-media-app" target="_blank" type="button" class="btn btn-default"><i class="fab fa-github mr-2"></i></a>';
         div11.appendChild(div111c);
 
         if (this.tab.config && this.tab.config.general) {
