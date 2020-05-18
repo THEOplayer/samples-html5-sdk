@@ -20,6 +20,12 @@ class Player extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+      if (this._player) {
+        this._player.destroy();
+      }
+    }
+
     render() {
         return ( <
             div
