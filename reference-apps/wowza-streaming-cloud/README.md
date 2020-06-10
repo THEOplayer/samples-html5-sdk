@@ -1,5 +1,5 @@
-# THEOplayer Wowza
-Wowza and THEOplayer are partners in the streaming industry. When developers use both products,
+# THEOplayer and Wowza Streaming Cloud
+Wowza (Streaming Cloud) and THEOplayer are partners in the streaming industry. When developers use both products,
 * Wowza Streaming Cloud is used on the back-end to manage live streams.
 * THEOplayer is used on the client-side to playout the live streams.
 
@@ -51,7 +51,7 @@ When you supply a Wowza configuration, the following functionalities are unlocke
 * When your live stream is still offline, then THEOplayer displays a placeholder which overlaps the video player.
 * When your live stream becomes available, then THEOplayer automatically starts playing the stream.
 * When your live stream stops, then THEOplayer displays a placeholder which overlaps the video player.
-* When your live stream restarsm then THEOplayer automatically starts playing the stream.
+* When your live stream restarts then THEOplayer automatically starts playing the stream.
 
 ![Placeholder when a stream is unavailable.](docs/placeholder.png "Placeholder when a stream is unavailable.")
 
