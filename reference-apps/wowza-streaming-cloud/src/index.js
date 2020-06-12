@@ -1,24 +1,29 @@
 var theoplayerWowza = {
     registerPlayer: function(player) {
 
-        var wowzaData = null;
-        var wowzaSource = null;
-        var streamIsUnavailable = false;
-        var wowzaStreamInterval;
-        var countdownTimerInterval;
-        var isWaiting = false;
-        var hasInterval = false;
-        var statechangeCallback = null;
-        var datachangeCallback = null;
+        let wowzaData = null;
+        let wowzaSource = null;
+        let streamIsUnavailable = false;
+        let wowzaStreamInterval;
+        let countdownTimerInterval;
+        let isWaiting = false;
+        let hasInterval = false;
+        let statechangeCallback = null;
+        let datachangeCallback = null;
+        let queryParameter = null;
 
         function handleWowzaOffline() {
             statechangeCallback({state: "unavailable", info: "The configured stream is currently unavailable."});
             streamIsUnavailable = true;
             createStreamStatusDiv();
+            if (!hasInterval) {
+                hasInterval = true;
+                wowzaStreamInterval = setInterval(streamInterval, getRetryTimeout());
+            }
         }
 
         function getRetryTimeout() {
-            return ((wowzaSource && wowzaSource.retryTimeout) || 3000);
+            return ((wowzaSource && wowzaSource.retry) || 3000);
         }
 
         function getOfflineText() {
@@ -28,12 +33,12 @@ var theoplayerWowza = {
         function setupCountdown(countDownDate) {
             var countDownDate = countDownDate.getTime();
             countdownTimerInterval = setInterval(function() {
-                var now = new Date().getTime();
-                var distance = countDownDate - now;
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 getContainer().querySelector('.countdown').innerHTML = days + "d " + hours + "h "
                     + minutes + "m " + seconds + "s ";
                 if (distance < 0) {
@@ -44,30 +49,30 @@ var theoplayerWowza = {
         }
 
         function createStreamStatusDiv() {
-            var streamStatusDiv = getContainer().querySelector('.stream-status');
+            let streamStatusDiv = getContainer().querySelector('.stream-status');
             if (!streamStatusDiv) {
                 streamStatusDiv = document.createElement('div');
                 streamStatusDiv.className = 'stream-status';
-                var poster = getPoster();
+                let poster = getPoster();
                 if (poster) {
                     streamStatusDiv.style.background = 'url("' + poster + '")';
                     streamStatusDiv.style.backgroundSize = 'cover';
                 }
 
                 if (wowzaData) {
-                    var countdown = wowzaData['countdown_timestamp'];
+                    let countdown = wowzaData['countdown_timestamp'];
                     if (countdown) {
                         countdown = new Date((parseInt(countdown)*1000));
                         if (countdown.getTime() > Date.now()) { // in the future
-                            var countdownDiv = document.createElement('div');
+                            let countdownDiv = document.createElement('div');
                             countdownDiv.className = "stream-status-overlay";
-                            var date = countdown.toDateString();
-                            var hhmm = countdown.toISOString().substr(11, 5);
-                            var title = wowzaData['title'] + "<br />" || "";
+                            let date = countdown.toDateString();
+                            let hhmm = countdown.toISOString().substr(11, 5);
+                            let title = wowzaData['title'] + "<br />" || "";
                             countdownDiv.innerHTML = title + "Stream will start on:<br />" + date + " @ " + hhmm;
                             streamStatusDiv.appendChild(countdownDiv);
 
-                            var countdownTimer = document.createElement('div');
+                            let countdownTimer = document.createElement('div');
                             countdownTimer.className = 'countdown';
                             countdownTimer.innerHTML = "&nbsp;";
                             countdownDiv.appendChild(countdownTimer);
@@ -84,7 +89,7 @@ var theoplayerWowza = {
             }
         }
         function removeStreamStatusDiv() {
-            var streamStatusDiv = getContainer().querySelector('.stream-status');
+            const streamStatusDiv = getContainer().querySelector('.stream-status');
             if (streamStatusDiv) {
                 streamStatusDiv.parentNode.removeChild(streamStatusDiv);
             }
@@ -99,22 +104,43 @@ var theoplayerWowza = {
             return player.element.parentNode.parentNode;
         }
 
+        function getSrc(sourceDescription) {
+            return sourceDescription.sources[0].src;
+        }
 
+        // pass along back-ups streams to other sourcedescriptions
+        // function getBackupStreams(sourceDescription) {
+        //     return sourceDescription.metadata.wowza && sourceDescription.metadata.wowza.backupStreams;
+        // }
 
         function streamInterval() {
-            var currentSrc = player.src;
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && (this.status != 200) && isWaiting && !streamIsUnavailable) {
-
-                    handleWowzaOffline();
-                } else if (this.readyState == 4 && (this.status == 200) && streamIsUnavailable) {
-                    reloadCurrentStream();
-                    handleWowzaOnline();
+            const sources = [player.source];
+            // if (wowzaSource.backupStreams && wowzaSource.backupStreams.length > 0) {
+            //     for (var i = 0; i < wowzaSource.backupStreams.length; i++) {
+            //         sources.push(wowzaSource.backupStreams[i]);
+            //     }
+            // }
+            for (var i = 0; i < sources.length; i++) {
+                const currentSrc = getSrc(sources[i]);
+                let testSrc = currentSrc;
+                const rn = Math.round(Math.random() * 1000000000000);
+                if (currentSrc.indexOf("?") > -1) {
+                    testSrc = currentSrc + "&rn=" + rn;
+                } else {
+                    testSrc = currentSrc + "?rn=" + rn;
                 }
-            };
-            xhttp.open("GET", currentSrc, true);
-            xhttp.send();
+                const xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && (this.status != 200) && isWaiting && !streamIsUnavailable) {
+                        handleWowzaOffline();
+                    } else if (this.readyState == 4 && (this.status == 200) && streamIsUnavailable) {
+                        handleWowzaOnline();
+                        reloadCurrentStream(sources[i]);
+                    }
+                };
+                xhttp.open("GET", testSrc, true);
+                xhttp.send();
+            }
         }
 
         function checkStreamStatus() {
@@ -125,6 +151,22 @@ var theoplayerWowza = {
             }
         }
 
+        function requestInterceptor(request) {
+            if (request.url == player.src) { // check master playlist
+                const urlSplit = request.url.split("?");
+                if (urlSplit.length > 1) { // check if master playlist has query params
+                    queryParameter = urlSplit[1];
+                } else {
+                    queryParameter = null; // reset if no query params
+                }
+            } else if (queryParameter) { // if no master playlist and active set of query params
+                const newUrl = request.url + "?" + queryParameter; // append query params
+                request.redirect({
+                    url: newUrl
+                });
+            }
+        }
+
         function setPlaying() {
             isWaiting = false;
         }
@@ -132,9 +174,13 @@ var theoplayerWowza = {
         function registerWowzaEvents() {
             if (player) {
                 player.network.addEventListener('offline', handleWowzaOffline);
+                player.addEventListener('error', handleWowzaOffline);
                 player.network.addEventListener('online', handleWowzaOnline);
                 player.addEventListener('waiting', checkStreamStatus);
-                player.addEventListener('playing', setPlaying)
+                player.addEventListener('playing', setPlaying);
+                if (wowzaSource && wowzaSource.queryParametersPassthrough) {
+                    player.network.addRequestInterceptor(requestInterceptor);
+                }
             }
         }
 
@@ -150,9 +196,11 @@ var theoplayerWowza = {
                 statechangeCallback = null;
                 datachangeCallback = null;
                 player.network.removeEventListener('offline', handleWowzaOffline);
+                player.removeEventListener('error', handleWowzaOffline);
                 player.network.removeEventListener('online', handleWowzaOnline);
                 player.removeEventListener('waiting', checkStreamStatus);
                 player.removeEventListener('playing', setPlaying)
+                player.network.addRequestInterceptor(requestInterceptor);
             }
         }
 
@@ -162,10 +210,11 @@ var theoplayerWowza = {
 
         function sourceHandler(e) {
             unregisterWowzaEvents();
+            removeStreamStatusDiv();
             wowzaSource = e.source.metadata && e.source.metadata.wowza;
             if (wowzaSource) {
                 registerWowzaEvents();
-                var wowzaJson = wowzaSource.jsonUrl;
+                const wowzaJson = wowzaSource.jsonUrl;
                 if (wowzaJson) {
                     registerWowzaData(wowzaJson);
                 }
@@ -175,7 +224,7 @@ var theoplayerWowza = {
         }
 
         function registerWowzaData(url) {
-            var xhttp = new XMLHttpRequest();
+            const xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && (this.status == 200)) {
                     wowzaData = JSON.parse(xhttp.responseText);
@@ -187,9 +236,13 @@ var theoplayerWowza = {
             xhttp.send();
         }
 
-        function reloadCurrentStream() {
+        function reloadCurrentStream(source) {
             player.autoplay = true;
-            player.source = player.source;
+            if (source) {
+                player.source = source;
+            } else {
+                player.source = player.source;
+            }
         }
 
         function getWowzaData() {

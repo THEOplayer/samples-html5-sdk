@@ -61,8 +61,8 @@
 
 <div class="theoplayer-container video-js theoplayer-skin vjs-16-9"></div>
 <div id="config-container">
-    <div class="field"><label>Stream</label><input id="src" type="text" value="https://cdn3.wowza.com/1/N1pvc1pUTVMyc1VI/Y3RSajI5/hls/live/playlist.m3u8" /></div>
-    <div class="field"><label>Wowza JSON</label><input id="wowzaJson" type="text" value="https://player.cloud.wowza.com/hosted/0jgtbpld/wowza.json" /></div>
+    <div class="field"><label>Stream</label><input id="src" type="text" value="https://cdn3.wowza.com/1/WnNtUHZFTkZselB0/bkVqeHY5/hls/live/playlist.m3u8" /></div>
+    <div class="field"><label>Wowza JSON</label><input id="wowzaJson" type="text" value="https://player.cloud.wowza.com/hosted/yhxpg0tx/wowza.json" /></div>
     <div class="field"><label>Retry (in ms)</label><input id="retry" type="text" value="3000" /></div>
     <div class="field"><label>Offline text</label><input id="offlineText" type="text" value="The stream is currently not available. :(" /></div>
     <div class="field"><label>Placeholder image</label><input id="placeholderImg" type="text" value="https://www.wowza.com/vodassets/get_started_wcs/get_started_wcs.jpg" /></div>
@@ -89,6 +89,7 @@
                     retry: document.getElementById('retry').value,
                     offlineText: document.getElementById('offlineText').value,
                     placeholderImageUrl: document.getElementById('placeholderImg').value,
+                    queryParametersPassthrough: true,
                     statechangeCallback: console.log,
                     datachangeCallback: console.log
                 }

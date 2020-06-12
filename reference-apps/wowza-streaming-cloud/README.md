@@ -1,7 +1,7 @@
 # THEOplayer and Wowza Streaming Cloud
 Wowza (Streaming Cloud) and THEOplayer are partners in the streaming industry. When developers use both products,
-* Wowza Streaming Cloud is used on the back-end to manage live streams.
-* THEOplayer is used on the client-side to playout the live streams.
+* [Wowza Streaming Cloud](https://cloud.wowza.com/) is used on the back-end to manage live streams.
+* [THEOplayer](https://portal.theoplayer.com/) is used on the client-side to playout the live streams.
 
 Cross-product documentation resources:
 * https://www.wowza.com/blog/wowza-streaming-cloud-getting-started
@@ -132,6 +132,8 @@ In a `WowzaSourceConfiguration`, you can configure the following flags:
 - `retry`: the amount of milliseconds which the client should wait to check if the stream is back online.
 - `offlineText`: the text which should be shown if the stream is unavailable, and if there's no `jsonUrl`.
 - `placeholderImageUrl`: the image which should be shown in the background when there is no `jsonUrl`.
+- `queryParametersPassthrough`: setting this value to true appends the query parameters of your HLS master playlist to all other requests (e.g. media playlists, segments, ...).
+This feature can be useful when doing [token authentication](https://www.wowza.com/docs/security-features-in-wowza-streaming-cloud#security-features-for-hls-streams-using-wowza-cdn-on-fastly).
 - `datachangeCallback`: the function which should be called when the response from `jsonUrl` is available.
 - `statechangeCallback`: the function which should be called when a stream either becomes available or unavailable.
 
