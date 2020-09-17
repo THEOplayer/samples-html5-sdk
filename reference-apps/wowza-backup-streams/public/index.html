@@ -1,0 +1,148 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Wowza</title>
+    <link rel="stylesheet" type="text/css" href='//cdn.theoplayer.com/dash/theoplayer/ui.css'>
+    <link rel="stylesheet" type="text/css" href='css/theoplayer-wowza.css'>
+    <script type='text/javascript' src='//cdn.theoplayer.com/dash/theoplayer/THEOplayer.js'></script>
+    <script type='text/javascript' src="js/theoplayer-wowza.js"></script>
+    <style>
+        .stream-status {
+            border: 1px dashed #ddd;
+        }
+
+        .stream-status, .stream-status-overlay {
+            background: linear-gradient(12deg, #045292, #000000);
+            background-size: 400% 400%;
+
+            -webkit-animation: AnimationName 6s ease infinite;
+            -moz-animation: AnimationName 6s ease infinite;
+            animation: AnimationName 6s ease infinite;
+        }
+
+        @-webkit-keyframes AnimationName {
+            0%{background-position:54% 0%}
+            50%{background-position:47% 100%}
+            100%{background-position:54% 0%}
+        }
+        @-moz-keyframes AnimationName {
+            0%{background-position:54% 0%}
+            50%{background-position:47% 100%}
+            100%{background-position:54% 0%}
+        }
+        @keyframes AnimationName {
+            0%{background-position:54% 0%}
+            50%{background-position:47% 100%}
+            100%{background-position:54% 0%}
+        }
+
+        #config-container {
+            margin-top: 10px;
+        }
+
+        #config-container .field {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        #config-container .field label {
+            width: 20%;
+            margin-right: 5px;
+        }
+
+        #config-container .field input {
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="theoplayer-container video-js theoplayer-skin vjs-16-9"></div>
+<div id="config-container">
+    <div class="field" id="stream_1"><label>Stream 1</label><input type="text" id="src_1" value="https://cdn3.wowza.com/1/WnNtUHZFTkZselB0/bkVqeHY5/hls/live/playlist.m3u8"></div>
+    <div class="field"><label>Wowza JSON Stream 1</label><input id="wowzaJson_1" type="text" value="https://player.cloud.wowza.com/hosted/yhxpg0tx/wowza.json" /></div>
+
+    <div class="field" id="stream_2"><label>Stream 2</label><input type="text" id="src_2" value="https://cdn3.wowza.com/1/c3kzVVdOVU9DZ1ZK/d3BPcmZS/hls/live/playlist.m3u8"></div>
+    <div class="field"><label>Wowza JSON Stream 2</label><input id="wowzaJson_2" type="text" value="https://player.cloud.wowza.com/hosted/fs2ztrsf/wowza.json" /></div>
+
+    <div class="field" id="stream_3"><label>Stream 3</label><input type="text" id="src_3" value="https://cdn3.wowza.com/1/bVIzRFJncWFLcUd2/OG1EeUw4/hls/live/playlist.m3u8"></div>
+    <div class="field"><label>Wowza JSON Stream 3</label><input id="wowzaJson_3" type="text" value="https://player.cloud.wowza.com/hosted/z753ttwg/wowza.json" /></div>
+
+    <div class="field"><label>Retry (in ms)</label><input id="retry" type="text" value="3000" /></div>
+    <div class="field"><label>Offline text</label><input id="offlineText" type="text" value="The stream is currently not available. :(" /></div>
+    <div class="field"><label>Placeholder image</label><input id="placeholderImg" type="text" value="https://www.wowza.com/vodassets/get_started_wcs/get_started_wcs.jpg" /></div>
+    <button id="update">Update Stream</button>
+</div>
+
+<script>
+    var element = document.querySelector('.theoplayer-container');
+    var player = new THEOplayer.Player(element, {
+        libraryLocation : '//cdn.theoplayer.com/dash/theoplayer/'
+    });
+
+    var wowzaSession = theoplayerWowza.registerPlayer(player);
+
+    function getSourceDescription() {
+        //var jsonUrl = document.getElementById('wowzaJson_1').value;
+        return {
+            sources : [{
+                src : document.getElementById('src_1').value,
+                type : 'application/x-mpegurl'
+            }],
+            metadata: {
+                wowza: {
+                    jsonUrl: document.getElementById('wowzaJson_1').value,
+                    retry: document.getElementById('retry').value,
+                    offlineText: document.getElementById('offlineText').value,
+                    placeholderImageUrl: document.getElementById('placeholderImg').value,
+                    queryParametersPassthrough: true,
+                    statechangeCallback: console.log,
+                    datachangeCallback: console.log,
+                    backupStreams: [
+                            { sources : [{
+                                src : document.getElementById('src_2').value,
+                                type : 'application/x-mpegurl'
+                                }],
+                                metadata: {
+                                    wowza: {
+                                        jsonUrl: document.getElementById('wowzaJson_2').value,
+                                        retry: document.getElementById('retry').value,
+                                        offlineText: document.getElementById('offlineText').value,
+                                        placeholderImageUrl: document.getElementById('placeholderImg').value,
+                                        queryParametersPassthrough: true,
+                                        statechangeCallback: console.log,
+                                        datachangeCallback: console.log
+                                    }
+                                }
+                            },
+                            { sources : [{
+                                src : document.getElementById('src_3').value,
+                                type : 'application/x-mpegurl'
+                                }],
+                                metadata: {
+                                    wowza: {
+                                        jsonUrl: document.getElementById('wowzaJson_3').value,
+                                        retry: document.getElementById('retry').value,
+                                        offlineText: document.getElementById('offlineText').value,
+                                        placeholderImageUrl: document.getElementById('placeholderImg').value,
+                                        queryParametersPassthrough: true,
+                                        statechangeCallback: console.log,
+                                        datachangeCallback: console.log
+                                    }
+                                }
+                            },
+                        ]
+                    }
+                }
+        };
+    }
+
+    player.source = getSourceDescription();
+
+    document.getElementById('update').addEventListener('click', function() {
+        player.source = getSourceDescription();
+    })
+
+</script>
+</body>
+</html>
