@@ -88,7 +88,7 @@ Then, you want to configure your Wowza stream and Wowza configuration in `public
 Go through the API for more information on the Wowza configuration.
 
 # Live Demo
-A live demo is available at https://cdn.theoplayer.com/demos/wowza/backup-streams-demo/index.html.
+A live demo is available at https://cdn.theoplayer.com/demos/wowza/backup-streams-demo/index.html
 
 # API of `theoplayer-wowza.js`
 
