@@ -1,0 +1,14 @@
+{
+  "id": "webos.theo",
+  "title": "WebOS",
+  "main": "index.html",
+  "icon": "small-icon.png",
+  "largeIcon": "large-icon.png",
+  "type": "web",
+  "vendor": "THEO Technologies",
+  "version": "1.0.0",
+  "appDescription": "WebOS App",
+  "iconColor": "white",
+  "splashBackground": "splash-screen.png",
+  "requiredMemory": 250
+}
