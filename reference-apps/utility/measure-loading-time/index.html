@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>THEOplayer 101</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.myth.theoplayer.com/16c5342f-21bf-4c54-8d41-2e03e7d23ef2/ui.css" />
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .theoplayer-container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="theoplayer-container video-js theoplayer-skin"></div>
+<script>
+    const LIBRARY_LOCATION = "https://cdn.myth.theoplayer.com/16c5342f-21bf-4c54-8d41-2e03e7d23ef2/";
+
+    function loadJsFile(url, callback) {
+        var startLoadTime;
+        var script = document.createElement("script");
+
+        window.addEventListener("theoplayerready", function () {
+            console.log(
+                "It took",
+                Date.now() - startLoadTime,
+                "milliseconds from loading the THEOplayer library to dispatching the theoplayerready event."
+            );
+        });
+
+        script.onload = function () {
+            console.log(url, "has been loaded.");
+            console.log(
+                "It took",
+                Date.now() - startLoadTime,
+                "milliseconds to download THEOplayer",
+                THEOplayer.version + "."
+            );
+            console.log(
+                "The following THEOplayer features are enabled:",
+                THEOplayer.features
+            );
+            console.log();
+            callback();
+        };
+        script.src = url;
+        startLoadTime = Date.now();
+        document.head.appendChild(script); //or something of the likes
+    }
+
+    function initializeTHEOplayer() {
+        var element = document.querySelector(".theoplayer-container");
+        var player = new THEOplayer.Player(element, {
+            libraryLocation: LIBRARY_LOCATION,
+            ui: {
+                width: "100%",
+                height: "100%"
+            }
+        });
+        player.abr.strategy = { type: "performance" }; // optimize for time-to-first-frame
+
+        let requestPlayTime;
+        function requestPlayTimeHandler() {
+            player.removeEventListener("play", requestPlayTimeHandler);
+            requestPlayTime = Date.now();
+        }
+        player.addEventListener("play", requestPlayTimeHandler);
+        function playingHandler() {
+            console.log(
+                "The time-to-first-frame is",
+                Date.now() - requestPlayTime,
+                "milliseconds."
+            );
+            player.removeEventListener("playing", playingHandler);
+        }
+        player.addEventListener("playing", playingHandler);
+
+        player.src = "//cdn.theoplayer.com/video/elephants-dream/playlist.m3u8";
+    }
+
+    loadJsFile(LIBRARY_LOCATION + "THEOplayer.js", initializeTHEOplayer);
+
+</script>
+</body>
+</html>
