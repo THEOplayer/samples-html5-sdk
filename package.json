@@ -6,5 +6,6 @@
   "scripts": {
     "start": "serve"
   },
-  "author": "Mauricio Coelho"
+  "author": "Mauricio Coelho",
+  "dependencies": {}
 }

@@ -22,4 +22,6 @@
 * [up-next](up-next)
 * [verizon-media-app](verizon-media-app): this (NPM) project produces an app which is uploaded to https://cdn.theoplayer.com/demos/verizon-media/index.html. This app implements THEOplayer's pre-integration of the Verizon Media Platform, and uses APIs like [VerizonMediaSource](https://docs.portal.theoplayer.com/docs/api-reference/theoplayer-verizonmediasource) and [VerizonMediaConfiguration](https://docs.portal.theoplayer.com/docs/api-reference/theoplayer-verizonmediaconfiguration).
 * [visibility-api](visibility-api)
+* [wowza-streaming-cloud](wowza-streaming-cloud)
 * [yospace](yospace)
+* [wowza-backup-streams](wowza-backup-streams)
