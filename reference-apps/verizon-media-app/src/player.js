@@ -286,10 +286,7 @@ export class PlayerUtil {
         const htmlToAdd = `<div class="theoplayer-info hidden">
                         <div class="card">
                             <div class="card-header" style="color: #212529">
-                                <div id="card-title-spacer">
-                                    <span id="currentAssetDescription"></span> &nbsp; <i class="fa fa-video"></i> <span id="currentVideoQuality">
-                                </div>
-                                <i class="far fa-window-close"> </span>
+                                <span id="currentAssetDescription"></span> &nbsp; <i class="fa fa-video"></i> <span id="currentVideoQuality"></span>
                             </div>
                             <div class="card-body" id="theoplayer-events">
                                 <h5 class="card-title">Events</h5>
@@ -303,10 +300,6 @@ export class PlayerUtil {
                         </div>
                     </div>`;
         element.innerHTML = htmlToAdd;
-        var closeButton = document.querySelector('.fa-window-close');
-        closeButton.addEventListener('click', function() {
-            document.querySelector('.theoplayer-info').classList.toggle('hidden');
-        })
     }
 
 }
