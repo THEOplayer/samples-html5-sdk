@@ -287,9 +287,9 @@ export class PlayerUtil {
                         <div class="card">
                             <div class="card-header" style="color: #212529">
                                 <div id="card-title-spacer">
-                                    <span id="currentAssetDescription"></span> &nbsp; <i class="fa fa-video"></i> <span id="currentVideoQuality">
+                                    <span id="currentAssetDescription"></span> &nbsp; <i class="fa fa-video"></i> <span id="currentVideoQuality"></span>
                                 </div>
-                                <i class="far fa-window-close"> </span>
+                                <i class="far fa-window-close"></i>
                             </div>
                             <div class="card-body" id="theoplayer-events">
                                 <h5 class="card-title">Events</h5>
