@@ -1,0 +1,19 @@
+{
+  "name": "theoplayersample",
+  "version": "0.0.1",
+  "scripts": {
+    "build-dev": "webpack",
+    "build": "webpack -p",
+    "serve": "http-server"
+  },
+  "dependencies": {
+    "theoplayer": "^2.82.0-alpha"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1",
+    "ts-loader": "^8.0.17",
+    "typescript": "^4.2.2",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6"
+  }
+}

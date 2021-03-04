@@ -1,0 +1,21 @@
+{
+  "name": "theoplayersample",
+  "version": "0.0.1",
+  "scripts": {
+    "build-dev": "webpack",
+    "build": "webpack -p",
+    "serve": "http-server"
+  },
+  "dependencies": {
+    "theoplayer": "^2.82.0-alpha"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "http-server": "^0.11.1",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6"
+  }
+}
