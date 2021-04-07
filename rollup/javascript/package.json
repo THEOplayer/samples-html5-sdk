@@ -1,0 +1,15 @@
+{
+  "name": "theoplayer-rollup-javascript",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "rollup --config",
+    "serve": "http-server"
+  },
+  "dependencies": {
+    "theoplayer": "^2.82.0"
+  },
+  "devDependencies": {
+    "rollup": "^2.44.0",
+    "http-server": "^0.11.1"
+  }
+}
