@@ -1,5 +1,5 @@
 {
-  "name": "theoplayersample",
+  "name": "theoplayer-webpack-javascript",
   "version": "0.0.1",
   "scripts": {
     "build-dev": "webpack",
@@ -7,7 +7,7 @@
     "serve": "http-server"
   },
   "dependencies": {
-    "theoplayer": "^2.82.0-alpha"
+    "theoplayer": "^2.82.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
