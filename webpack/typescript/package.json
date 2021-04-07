@@ -7,7 +7,7 @@
     "serve": "http-server"
   },
   "dependencies": {
-    "theoplayer": "^2.82.0-alpha"
+    "theoplayer": "^2.82.0"
   },
   "devDependencies": {
     "http-server": "^0.11.1",

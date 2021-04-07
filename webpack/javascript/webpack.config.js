@@ -14,10 +14,10 @@ module.exports = {
     mode: "development",
     devtool: "inline-source-map",
     entry: {
-        extension: './src/index.js',
+        extension: '../../src/index.js',
     },
     output: {
-        filename: 'app.js',
+        filename: 'bundle.js',
         path: __dirname + '/dist'
     },
     externals: {

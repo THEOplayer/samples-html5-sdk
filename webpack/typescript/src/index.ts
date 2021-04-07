@@ -6,4 +6,5 @@ let configuration = {
     libraryLocation: '/node_modules/theoplayer/'
 };
 let player = new THEOplayer.Player(element, configuration);
+
 player.src = "//cdn.theoplayer.com/video/elephants-dream/playlist.m3u8";
