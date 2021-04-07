@@ -1,0 +1,14 @@
+{
+  "name": "theoplayer-parcel-javascript",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "theoplayer": "^2.82.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
