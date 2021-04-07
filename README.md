@@ -36,3 +36,19 @@ The video below demonstrates how to use the `webpack/javascript/` sample project
     * You can acquire a license at https://portal.theoplayer.com/getting-started.
     Log in, build a Web SDK (or navigate to an existing one), and copy the license string to your clipboard.
     Then, paste this value in `src/index.js`. The green rectangle in the screenshot below points out where you can find this string on your SDK page.
+
+## Todos
+
+* Parcel
+    * Fix THEOplayer playback not starting.
+    * Refer to `/src/index.js` instead of the one in the parcel folder.
+    * Check if PArcel is used according to best practices.
+    * Check if THEOplayer is included & setup according to best practices.
+* Rollup
+    * Add a more dev-friendly rollup configuration.
+    * Add a more production-friendly rollup configuration.
+    * Check if THEOplayer is included & setup according to best practices.
+* Webpack
+    * Improve the dev-friendly webpack configuration.
+    * Improve the production-friendly (minimized, obfuscated) webpack configuration.
+    * Check if THEOplayer is included & setup according to best practices.
