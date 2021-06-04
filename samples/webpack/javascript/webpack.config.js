@@ -3,9 +3,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
     mode: "development",
     devtool: "inline-source-map",
-    entry: {
-        extension: '../../src/index.js',
-    },
+    entry: './index.js',
     output: {
         filename: 'bundle.js',
         path: __dirname + '/dist'
