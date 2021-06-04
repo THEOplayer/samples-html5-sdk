@@ -1,5 +1,5 @@
 import * as THEOplayer from 'theoplayer';
-import {LICENSE} from '../../src/constants';
+import {LICENSE} from '../../../src/constants';
 
 let element = document.querySelector('.theoplayer-container');
 let configuration = {

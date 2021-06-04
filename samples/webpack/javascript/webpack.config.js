@@ -1,9 +1,10 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     mode: "development",
     devtool: "inline-source-map",
-    entry: './index.js',
+    entry: './src/index.js',
     output: {
         filename: 'bundle.js',
         path: __dirname + '/dist'
@@ -27,6 +28,10 @@ module.exports = {
         }]
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'src/index.html'
+        }),
         new CopyPlugin({
             patterns: [{
                 context: "node_modules/theoplayer/",
