@@ -1,3 +1,5 @@
+const CopyPlugin = require('copy-webpack-plugin');
+
 module.exports = {
     mode: "development",
     devtool: "inline-source-map",
@@ -25,5 +27,14 @@ module.exports = {
                 }
             }
         }]
-    }
+    },
+    plugins: [
+        new CopyPlugin({
+            patterns: [{
+                context: "node_modules/theoplayer/",
+                from: "*.(js|css)",
+                to: "vendor/theoplayer/"
+            }],
+        })
+    ]
 };
