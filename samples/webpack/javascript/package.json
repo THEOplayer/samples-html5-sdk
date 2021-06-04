@@ -15,7 +15,6 @@
     "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^6.4.1",
     "html-webpack-plugin": "^4.5.2",
-    "http-server": "^0.11.1",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.11.2"
