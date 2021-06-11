@@ -3,20 +3,17 @@
   "version": "0.0.1",
   "scripts": {
     "build-dev": "webpack",
-    "build": "webpack -p",
-    "serve": "webpack-dev-server"
+    "build": "webpack --mode production",
+    "serve": "webpack serve"
   },
   "dependencies": {
-    "theoplayer": "^2.82.0"
+    "theoplayer": "^2.85.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^6.4.1",
     "html-webpack-plugin": "^4.5.2",
-    "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.6",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
   }
 }

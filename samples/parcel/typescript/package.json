@@ -1,0 +1,15 @@
+{
+  "name": "theoplayer-parcel-typescript",
+  "version": "0.0.1",
+  "scripts": {
+    "build-dev": "parcel index.html",
+    "build": "parcel build index.html",
+    "serve": "parcel serve index.html"
+  },
+  "dependencies": {
+    "theoplayer": "^2.85.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.2"
+  }
+}

@@ -3,17 +3,19 @@
   "version": "0.0.1",
   "scripts": {
     "build-dev": "webpack",
-    "build": "webpack -p",
-    "serve": "http-server"
+    "build": "webpack --mode production",
+    "serve": "webpack serve"
   },
   "dependencies": {
-    "theoplayer": "^2.82.0"
+    "theoplayer": "^2.85.2"
   },
   "devDependencies": {
-    "http-server": "^0.11.1",
     "ts-loader": "^8.0.17",
     "typescript": "^4.2.2",
-    "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.6"
+    "copy-webpack-plugin": "^6.4.1",
+    "html-webpack-plugin": "^4.5.2",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
   }
 }

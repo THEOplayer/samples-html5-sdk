@@ -2,13 +2,23 @@
   "name": "theoplayer-parcel-javascript",
   "version": "0.0.1",
   "scripts": {
-    "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "build-dev": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "serve": "parcel serve src/index.html"
+  },
+  "staticFiles": {
+    "staticPath": [
+      {
+        "staticPath": "blah/blahblah/blahindex.js",
+        "staticOutDir": "dist/"
+      }
+    ]
   },
   "dependencies": {
-    "theoplayer": "^2.82.0"
+    "theoplayer": "^2.85.1"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.5"
+    "parcel": "^2.0.0-beta.2",
+    "parcel-plugin-static-files-copy": "^2.6.0"
   }
 }
