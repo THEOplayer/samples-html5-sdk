@@ -4,7 +4,7 @@
   "scripts": {
     "build-dev": "rollup --config --environment INCLUDE_DEPS,BUILD:production",
     "build": "rollup --config",
-    "serve": "http-server"
+    "serve": "cd dist && http-server"
   },
   "dependencies": {
     "theoplayer": "^2.85.1"

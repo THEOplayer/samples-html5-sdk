@@ -1,7 +1,8 @@
 import copy from 'rollup-plugin-copy'
+import typescript from '@rollup/plugin-typescript';
 
 export default {
-    input: './index.ts',
+    input: './src/index.ts',
     output: {
         file: './dist/bundle.js',
         format: 'iife',
@@ -13,8 +14,10 @@ export default {
     plugins: [
         copy({
             targets: [
-                { src: ['node_modules/theoplayer/*', '/*.js'] , dest: './dist/vendor/theoplayer' }
+                { src: './node_modules/theoplayer/*.(js|css)' , dest: './dist/vendor/theoplayer' },
+                { src: './src/index.html' , dest: './dist' }
             ]
-        })
+        }),
+        typescript()
     ]
 };
