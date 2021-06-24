@@ -1,3 +1,6 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
 module.exports = {
     mode: "development",
     devtool: "inline-source-map",
@@ -7,6 +10,12 @@ module.exports = {
     output: {
         filename: "bundle.js",
         path: __dirname + "/dist"
+    },
+    devServer: {
+        contentBase: './dist',
+    },
+    externals: {
+        'theoplayer': 'THEOplayer'
     },
     module: {
         rules: [
@@ -20,7 +29,17 @@ module.exports = {
     resolve: {
         extensions: [".tsx", ".ts", ".js"],
     },
-    externals: {
-        "theoplayer": "THEOplayer"
-    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'src/index.html'
+        }),
+        new CopyPlugin({
+            patterns: [{
+                context: "node_modules/theoplayer/",
+                from: "./*.(css|js)",
+                to: "vendor/theoplayer/"
+            }]
+        })
+    ]
 };

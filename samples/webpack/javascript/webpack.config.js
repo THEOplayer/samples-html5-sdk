@@ -26,9 +26,9 @@ module.exports = {
         new CopyPlugin({
             patterns: [{
                 context: "node_modules/theoplayer/",
-                from: "*.(js|css)",
+                from: "./*.(css|js)",
                 to: "vendor/theoplayer/"
-            }],
+            }]
         })
     ]
 };
