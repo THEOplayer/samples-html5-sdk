@@ -1,6 +1,6 @@
-# rollup-javascript
+# rollup-typescript
 
-This sample project demonstrates the usage of the THEOplayer HTML5 Video Player SDK in Rollup using NPM and JavaScript.
+This sample project demonstrates the usage of the THEOplayer HTML5 Video Player SDK in Rollup using NPM and TypeScript.
 
 ## Usage
 

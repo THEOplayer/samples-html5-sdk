@@ -1,6 +1,6 @@
-# parcel-javascript
+# parcel-typescript
 
-This sample project demonstrates the usage of the THEOplayer HTML5 Video Player SDK in Parcel using NPM and JavaScript.
+This sample project demonstrates the usage of the THEOplayer HTML5 Video Player SDK in Parcel using NPM and TypeScript.
 
 ## Usage
 
