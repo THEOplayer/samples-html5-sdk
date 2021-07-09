@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     mode: "development",
@@ -18,6 +19,11 @@ module.exports = {
     resolve: {
         extensions: [".js"]
     },
+    optimization: {
+        minimizer: [new TerserPlugin({
+            extractComments: false,
+        })],
+    },
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -26,7 +32,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [{
                 context: "node_modules/theoplayer/",
-                from: "./*.(css|js)",
+                from: "./*.(css|js|html)",
                 to: "vendor/theoplayer/"
             }]
         })
