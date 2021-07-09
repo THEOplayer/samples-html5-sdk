@@ -8,7 +8,7 @@
   },
   "staticFiles": {
     "staticPath": "node_modules/theoplayer/",
-    "staticOutPath": "vendor/theoplayer/"
+    "distDir": "dist/vendor/theoplayer/"
   },
   "dependencies": {
     "theoplayer": "^2.85.1"
