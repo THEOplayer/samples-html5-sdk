@@ -2,8 +2,8 @@
   "name": "theoplayer-parcel-javascript",
   "version": "0.0.1",
   "scripts": {
-    "build-dev": "parcel src/index.html",
-    "build": "parcel build src/index.html",
+    "build-dev": "NODE_ENV=development parcel build src/index.html --no-optimize",
+    "build": "NODE_ENV=production parcel build src/index.html",
     "serve": "cd dist && http-server"
   },
   "staticFiles": {
