@@ -44,6 +44,7 @@ module.exports = {
             patterns: [{
                 context: "node_modules/theoplayer/",
                 from: "./*.(css|js|html)",
+                info: { minimized: true },
                 to: "vendor/theoplayer/"
             }]
         })
