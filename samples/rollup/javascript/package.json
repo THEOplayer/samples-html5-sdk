@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "http-server": "^0.11.1",
-    "rollup": "^2.44.0",
+    "rollup": "^2.58.0",
     "rollup-plugin-copy": "^3.4.0"
   }
 }
