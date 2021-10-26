@@ -25,8 +25,6 @@ Refer to the Frequently Asked Questions below if you're unsure on how to proceed
 5. Run `npm run serve` to start a local web server.
 6. Open http://localhost:8080 in your browser, or the server address suggested after executing the `npm run serve` command.
 
-The video below demonstrates how to use the `webpack/javascript/` sample project.
-
 ## Frequently Asked Questions
 
 * Are there any prerequisites to using this repository and its sample projects?
