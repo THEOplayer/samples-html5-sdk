@@ -7,7 +7,7 @@
     "serve": "webpack serve"
   },
   "dependencies": {
-    "theoplayer": "^2.85.1"
+    "theoplayer": "latest"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.4.1",

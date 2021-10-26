@@ -11,7 +11,7 @@
     "distDir": "dist/vendor/theoplayer/"
   },
   "dependencies": {
-    "theoplayer": "^2.85.1"
+    "theoplayer": "latest"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

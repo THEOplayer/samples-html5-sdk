@@ -7,7 +7,7 @@
     "serve": "cd dist && http-server"
   },
   "dependencies": {
-    "theoplayer": "^2.85.1"
+    "theoplayer": "latest"
   },
   "devDependencies": {
     "http-server": "^0.11.1",
