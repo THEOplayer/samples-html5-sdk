@@ -8,7 +8,7 @@ The available sample projects:
 * Webpack
     * [JavaScript](webpack/javascript/)
     * [TypeScript](webpack/typescript/)
-* Parcel
+* Parcel (currently incompatible with `v2.0.0`)
     * [JavaScript](parcel/javascript/)
     * [TypeScript](parcel/typescript/)
 * Rollup
@@ -28,11 +28,15 @@ Refer to the Frequently Asked Questions below if you're unsure on how to proceed
 ## Frequently Asked Questions
 
 * Are there any prerequisites to using this repository and its sample projects?
-    * Yes, there are prerequisites.
-    You must have a valid THEOplayer license to successfully use the sample projects.
-    Refer to the "Create an SDK" and "Configure license" sections in our [getting started guide](http://localhost:8000/getting-started/01-sdks/01-web/00-getting-started-extended.md#create-an-sdk) for more information.
+  * Yes, there are prerequisites.
+  You must have a valid THEOplayer license to successfully use the sample projects.
+  Refer to the "Create an SDK" and "Configure license" sections in our [getting started guide](http://localhost:8000/getting-started/01-sdks/01-web/00-getting-started-extended.md#create-an-sdk) for more information.
 
 * Where do I find my value for the `license` string in `util/constants.js`?
-    * You can acquire a license at https://portal.theoplayer.com/getting-started.
-    Log in, build a Web SDK (or navigate to an existing one), and copy the license string to your clipboard.
-    Then, paste this value in `util/constants.js`. The green rectangle in the screenshot below points out where you can find this string on your SDK page.
+  * You can acquire a license at https://portal.theoplayer.com/getting-started.
+  Log in, build a Web SDK (or navigate to an existing one), and copy the license string to your clipboard.
+  Then, paste this value in `util/constants.js`. The green rectangle in the screenshot below points out where you can find this string on your SDK page.
+
+* Are there other examples where THEOplayer is used through NPM?
+  * The project at [https://github.com/THEOplayer/samples-nextjs/tree/master/typescript-npm](https://github.com/THEOplayer/samples-nextjs/tree/master/typescript-npm) combines THEOplayer (through NPM), TypeScript and Next.js.
+  * The project at [https://replit.com/@THEOplayer/THEOplayer-NPM-Webpack](https://replit.com/@THEOplayer/THEOplayer-NPM-Webpack) is a replit project that can be used as an in-browser playground.
