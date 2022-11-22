@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import dynamic from "next/dynamic";
-const THEOplayerWrapper = dynamic(() => import('../pages/THEOplayerWrapper'), { ssr: false });
+const THEOplayerWrapper = dynamic(() => import('../components/THEOplayerWrapper'), { ssr: false });
 
 export default function Home() {
   const theoplayerData = {

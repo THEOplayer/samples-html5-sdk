@@ -15,7 +15,7 @@ Then, we
     * to load `copyfiles` as a `devDependency`, so we could add a `create-static-theo` script that
     copies the THEOplayer library files from `node_modules/theoplayer/` to `public/vendor/theoplayer/`,
     allowing us to refer the `libraryLocation`.
- * Created `/pages/THEOplayerWrapper.tsx` to represent a custom THEOplayer component.
+ * Created `/components/THEOplayerWrapper.tsx` to represent a custom THEOplayer component.
  * Modified `/pages/index.tsx` to use `<THEOplayerWrapper>` through [dynamic loading](https://nextjs.org/docs/advanced-features/dynamic-import#with-no-ssr).
  THEOplayer should be rendered on the client-side, because it requires client-side browser APIs.
  
