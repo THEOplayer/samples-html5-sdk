@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import './THEOplayerWrapper.css';
 
 class Player extends React.Component {
@@ -12,28 +12,31 @@ class Player extends React.Component {
 
         if (this._el.current) {
             this._player = new window.THEOplayer.Player(this._el.current, {
-                libraryLocation: "https://cdn.myth.theoplayer.com/7aff3fa6-f92e-45f9-a40e-1bce9911b073/"
+                libraryLocation:
+                    'https://cdn.myth.theoplayer.com/7aff3fa6-f92e-45f9-a40e-1bce9911b073/',
             });
 
             this._player.source = source;
-            this._player.addEventListener('play', onPlay)
+            this._player.addEventListener('play', onPlay);
         }
     }
 
     componentWillUnmount() {
-      if (this._player) {
-        this._player.destroy();
-      }
+        if (this._player) {
+            this._player.destroy();
+        }
     }
 
     render() {
-        return ( <
-            div
-            // vjs-16-9 THEOplayer are not necessary, but just added for demo purposes
-            className = { "theoplayer-container video-js theoplayer-skin vjs-16-9 THEOplayer" }
-            // The ref prop here is key it returns the actual dom element and not the virtual react dom elements
-            // Which is need by the player
-            ref = { this._el }
+        return (
+            <div
+                // vjs-16-9 THEOplayer are not necessary, but just added for demo purposes
+                className={
+                    'theoplayer-container video-js theoplayer-skin vjs-16-9 THEOplayer'
+                }
+                // The ref prop here is key it returns the actual dom element and not the virtual react dom elements
+                // Which is need by the player
+                ref={this._el}
             />
         );
     }
