@@ -10,16 +10,17 @@
     "create-static-theo": "copyfiles --flat node_modules/theoplayer/* public/vendor/theoplayer"
   },
   "dependencies": {
-    "next": "11.0.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "next": "^13.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "theoplayer": "latest"
   },
   "devDependencies": {
-    "@types/react": "17.0.14",
-    "eslint": "7.30.0",
-    "eslint-config-next": "11.0.1",
-    "typescript": "4.3.5",
-    "copyfiles": "latest"
+    "@types/node": "18.11.9",
+    "@types/react": "^18.0.25",
+    "copyfiles": "^2.4.1",
+    "eslint": "^8.28.0",
+    "eslint-config-next": "^13.0.4",
+    "typescript": "4.3.5"
   }
 }
