@@ -1,4 +1,6 @@
 import React from 'react';
+import * as THEOplayer from 'theoplayer';
+import 'theoplayer/ui.css';
 import './THEOplayerWrapper.css';
 
 class Player extends React.Component {
@@ -11,9 +13,10 @@ class Player extends React.Component {
         const { source, onPlay } = this.props;
 
         if (this._el.current) {
-            this._player = new window.THEOplayer.Player(this._el.current, {
-                libraryLocation:
-                    'https://cdn.myth.theoplayer.com/7aff3fa6-f92e-45f9-a40e-1bce9911b073/',
+            this._player = new THEOplayer.Player(this._el.current, {
+                libraryLocation: `${process.env.PUBLIC_URL}/vendor/theoplayer`,
+                // TODO Uncomment the line below, and set its value to your THEOplayer license
+                // license: 'your_license_string'
             });
 
             this._player.source = source;

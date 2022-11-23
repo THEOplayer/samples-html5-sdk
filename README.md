@@ -30,15 +30,18 @@ is an example implementation of a React Component that wraps the THEOplayer.js m
 uses the `Player` component exported by `THEOplayerWrapper.js` and specifies a source for the player to play.
 
 ## Going to Production
+The THEOplayer library in this sample is installed from [the `theoplayer` package on npm](https://www.npmjs.com/package/theoplayer). It does not yet have a license configured, so initially it works on **localhost only**.
 
- The THEOplayer library provided in this sample is currently targeted to the latest version and is set to run on **localhost only**
-
-### Getting  a license
-To run THEOplayer in production you will need a valid THEOplayer HTML5 SDK set up to run on your domain. You can use your existing license or get one for free on [THEOportal](http://portal.theoplayer.com).
+### Getting a license
+To use this sample in your production app, you will need a valid license for the THEOplayer HTML5 SDK. You can use your existing license or get one on [THEOportal](http://portal.theoplayer.com).
 
 ### Updating the project
-You will need to update some files that reference the THEOplayer.js and THEOplayer.css files:
+After acquiring a license, you can use it in the project.
 
-- `src/THEOplayerWrapper.js`, -- Please replace the URL of the libraryLocation to the url or folder where your THEOplayer files (THEOplayer.js, THEOplayer.d.js, etc.) are residing.
-- `src/App.js`
-- `public/index.html` -- Please replace the links to the THEOplayer assets with your own URLs.
+In `src/THEOplayerWrapper.js`, add a `license` option to the player configuration, and set its value to your THEOplayer license. It should look something like this:
+```js
+this._player = new THEOplayer.Player(this._el.current, {
+    libraryLocation: `${process.env.PUBLIC_URL}/vendor/theoplayer`,
+    license: 'sZPlUY...gya' // replace this with your license
+});
+```
