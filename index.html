@@ -5,63 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Static Template</title>
+    <style>
+      body {font-size: 16px;font-family:Verdana, sans-serif}
+      h1 {font-size: 2em;}
+      h3 {font-size: 1.25em;margin-bottom: 0;}
+      ul {list-style:none;margin-top:.5em;padding-left:1.5em}
+      li {line-height:130%}
+      a {text-decoration: none;color:#00C}
+      b {line-height: 2em;}
+    </style>
   </head>
   <body>
     <h1>THEOplayer samples for web</h1>
-    <div style="display: flex; flex-direction: column;">
-      <a href="./reference-apps/ads-basic/index.html">Ads Basic</a>
-      <a href="./reference-apps/ads-basic-vmap/index.html">Ads Basic VMAP</a>
-      <a href="./reference-apps/ads-customize-overlay/index.html"
-        >Ads Customize Overlay</a
-      >
-      <a href="./reference-apps/ads-customize-ui/index.html"
-        >Ads Customize UI</a
-      >
-      <a href="./reference-apps/cache-simple/index.html">Cache simple</a>
-      <a href="./reference-apps/cache-on-demand-with-button/index.html"
-        >Cache on demand with button</a
-      >
-      <a href="./reference-apps/text-track-rendering-styling/index.html"
-        >Text track rendering - Styling</a
-      >
-      <a href="./reference-apps/text-track-rendering-subtitles/index.html"
-        >Text track rendering - Subtitles</a
-      >
-      <a href="./reference-apps/text-track-rendering-thumbnails/index.html"
-        >Text track rendering - Thumbnails</a
-      >
-      <a href="./reference-apps/ui-adding-buttons/index.html"
-        >UI - Adding buttons</a
-      >
-      <a href="./reference-apps/ui-align-timeline-in-middle/index.html"
-        >UI - Align timeline in the middle</a
-      >
-      <a href="./reference-apps/ui-change-big-play-button/index.html"
-        >UI - Change the big Play button</a
-      >
-      <a href="./reference-apps/ui-control-bar-always-visible/index.html"
-        >UI - Control bar always visible</a
-      >
-      <a href="./reference-apps/ui-keyboard-hotkeys/index.html"
-        >UI - Keyboard hotkeys</a
-      >
-      <a href="./reference-apps/ui-language-localization/index.html"
-        >UI - Language localization</a
-      >
-      <a href="./reference-apps/ui-quality-selector-and-labels/index.html"
-        >UI - Quality selector and labels</a
-      >
-      <a href="./reference-apps/ui-remove-an-element/index.html"
-        >UI - Remove an element</a
-      >
-      <a href="./reference-apps/ui-skinning/index.html">UI - Skinning</a>
-      <a href="./reference-apps/ui-visual-cues-midroll-ads/index.html"
-        >UI - Visual cues midroll ads</a
-      >
-      <a href="./reference-apps/up-next/index.html">Up Next</a>
-      <a href="./reference-apps/utility/index.html">Utility</a>
-      <a href="./reference-apps/visibility-api/index.html">Visibilty API</a>
-      <a href="./reference-apps/yospace/index.html">Yospace</a>
-    </div>
+
+        <h3>Ads</h3>
+        <ul id="csaiAdsSamples"><b>CSAI</b>
+          <li><a href="./reference-apps/ads-basic/index.html">Ads Basic</a></li>
+          <li><a href="./reference-apps/ads-basic-vmap/index.html">Ads Basic VMAP</a></li>
+          <li><a href="./reference-apps/ads-customize-overlay/index.html">Ads Customize Overlay</a></li>
+          <li><a href="./reference-apps/ads-customize-ui/index.html">Ads Customize UI</a></li>
+        </ul>
+        <ul  id="ssaiAdsSamples"><b>SSAI</b>
+          <li><a href="./reference-apps/yospace/index.html">Yospace</a></li>
+        </ul>
+
+        <h3>Cache</h3>
+        <ul id="cacheSamples">
+          <li><a href="./reference-apps/cache-simple/index.html">Cache simple</a></li>
+          <li><a href="./reference-apps/cache-on-demand-with-button/index.html">Cache on demand with button</a></li>
+        </ul>
+
+        <h3>TextTracks</h3>
+        <ul id="textTrackSamples">
+          <li><a href="./reference-apps/text-track-rendering-subtitles/index.html">Text track rendering - Subtitles</a></li>
+          <li><a href="./reference-apps/text-track-rendering-styling/index.html">Text track rendering - Styling</a></li>
+          <li><a href="./reference-apps/text-track-rendering-thumbnails/index.html">Text track rendering - Thumbnails</a></li>
+          <!--<li></li>-->
+        </ul>
+
+        <h3>UI</h3>
+        <ul id="uiSamples">
+          <li><a href="./reference-apps/ui-adding-buttons/index.html">UI - Adding buttons</a></li>
+          <li><a href="./reference-apps/ui-align-timeline-in-middle/index.html">UI - Align timeline in the middle</a></li>
+          <li><a href="./reference-apps/ui-change-big-play-button/index.html">UI - Change the big Play button</a></li>
+          <li><a href="./reference-apps/ui-control-bar-always-visible/index.html">UI - Control bar always visible</a></li>
+          <li><a href="./reference-apps/ui-keyboard-hotkeys/index.html">UI - Keyboard hotkeys</a></li>
+          <li><a href="./reference-apps/ui-language-localization/index.html">UI - Language localization</a></li>
+          <li><a href="./reference-apps/ui-quality-selector-and-labels/index.html">UI - Quality selector and labels</a></li>
+          <li><a href="./reference-apps/ui-remove-an-element/index.html">UI - Remove an element</a></li>
+          <li><a href="./reference-apps/ui-skinning/index.html">UI - Skinning</a></li>
+          <li><a href="./reference-apps/ui-visual-cues-midroll-ads/index.html">UI - Visual cues midroll ads</a></li>
+        </ul>
+
+        <h3>Misc player features</h3>
+        <ul id="miscFeaturesSample">
+          <li><a href="./reference-apps/up-next/index.html">Up Next</a></li>
+
+          <li><a href="./reference-apps/visibility-api/index.html">Visibility API</a></li>
+        </ul>
+
+        <h3>Other</h3>
+        <ul id="otherSamples">
+          <li><a href="./reference-apps/utility/index.html">Utility</a></li>
+        </ul>
+
   </body>
 </html>

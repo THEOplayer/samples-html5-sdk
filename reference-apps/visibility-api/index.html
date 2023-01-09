@@ -1,39 +1,44 @@
+<!-- ************************************************ -->
+<!-- For info on installing your player and procuring the license, see the readme -->
+<!-- ************************************************ -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>THEOplayer 2.X: Getting Started</title>
+        <title>Visibility API - THEOplayer Web SDK samples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Your THEOplayer CSS -->
+        <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
+        <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
         <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.myth.theoplayer.com/247dc30e-0826-4f73-b1df-745bf56d352d/ui.css"
+                rel="stylesheet"
+                type="text/css"
+                href="../../node_modules/theoplayer/ui.css"
         />
-     
-        
     </head>
     <body>
-    This is a Sample for the Visibility application<br>
-    The video will only be playing when visible to the user. Play the video and scroll down: the video will pause automatically.
+        <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
+        <h1>THEOplayer <span></span> - Visibility API</h1>
+        <p>In this example, we show the Visibility functionality: the video will only be playing while visible to the user.</p>
+
         <div class="theoplayer-container video-js theoplayer-skin"></div>
-        <!-- Your THEOplayer .JS library -->
+        <p>Start the video and scroll down: the video will pause automatically, and resume automatically when in sight once more.</p>
+        <p>In the code, you can specify how much of the video needs to be in the viewport before playback is resumed.</p>
+        <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
         <script
-            type="text/javascript"
-            src="https://cdn.myth.theoplayer.com/247dc30e-0826-4f73-b1df-745bf56d352d/THEOplayer.js"
+                type="text/javascript"
+                src="../../node_modules/theoplayer/THEOplayer.js"
         ></script>
-
         <script>
-
-            var element = document.querySelector(".theoplayer-container");
-
-            // You THEOplayer library 
-            var player = new THEOplayer.Player(element, {
-                libraryLocation:
-                    "https://cdn.myth.theoplayer.com/247dc30e-0826-4f73-b1df-745bf56d352d",
+            const element = document.querySelector(".theoplayer-container");
+            let player = new THEOplayer.Player(element, {
+                // ***** REPLACE THEOPLAYER LOCATION *****
+                libraryLocation: "../../node_modules/theoplayer/",
+                // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
+                license:"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj",
                 ui: {
-                    width: "570px",
-                    height: "320px",
+                  //  width: "570px",
+                    height: "320px"
                 }
             });
             player.preload = 'auto';
@@ -66,5 +71,14 @@
 
         </script>
         <div style="margin: 1200px 0 0  0;"><!--42--></div>
+        <script>
+            /*********************************************************************************************/
+            /* The following code adds information to the page, but is not needed for the player to work */
+            /*********************************************************************************************/
+
+            /* Add version in the title */
+            document.querySelector('h1 span').innerHTML = THEOplayer.version;
+
+        </script>
     </body>
 </html>

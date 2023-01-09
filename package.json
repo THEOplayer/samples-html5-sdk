@@ -7,5 +7,7 @@
     "start": "serve"
   },
   "author": "Mauricio Coelho",
-  "dependencies": {}
+  "dependencies": {
+    "theoplayer": "^4.5.1"
+  }
 }

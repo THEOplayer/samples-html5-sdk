@@ -1,62 +1,80 @@
+<!-- ************************************************ -->
+<!-- For info on installing your player and procuring the license, see the readme -->
+<!-- ************************************************ -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>THEOplayer 2.X: Getting Started</title>
+        <title>Styling captions - THEOplayer Web SDK samples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Your THEOplayer CSS -->
+        <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
         <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.myth.theoplayer.com/678809ec-40da-4bda-91b6-eadc248126eb/ui.css"
+                rel="stylesheet"
+                type="text/css"
+                href="../../node_modules/theoplayer/ui.css"
         />
-     
-        
     </head>
     <body>
-        <div class="theoplayer-container video-js theoplayer-skin"></div>
-        <!-- Your THEOplayer .JS library -->
-        <script
+    <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
+    <h1>THEOplayer <span></span> - Styling captions and subtitles</h1>
+    <p>This sample showcases how to style subtitles in THEOplayer.</p>
+
+    <div class="theoplayer-container video-js theoplayer-skin"></div>
+    <p><b>Notes:</b>The user can adjust the styling of their tracks from the control bar: <code style="background-color: #eee;">Settings > Subtitle options</code>.</p>
+
+    <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
+    <script
             type="text/javascript"
-            src="https://cdn.myth.theoplayer.com/678809ec-40da-4bda-91b6-eadc248126eb/THEOplayer.js"
-        ></script>
-        <script>
-
-            var element = document.querySelector(".theoplayer-container");
-            // You THEOplayer library 
-            var player = new THEOplayer.Player(element, {
-                libraryLocation:
-                    "https://cdn.myth.theoplayer.com/678809ec-40da-4bda-91b6-eadc248126eb",
-                ui: {
-                    width: "570px",
-                    height: "320px",
-                }
-            });
+            src="../../node_modules/theoplayer/THEOplayer.js"
+    ></script>
+    <script>
+        const element = document.querySelector(".theoplayer-container");
+        let player = new THEOplayer.Player(element, {
+            // ***** REPLACE THEOPLAYER LOCATION *****
+            libraryLocation: "../../node_modules/theoplayer/",
+            // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
+            license:"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj",
+            ui: {
+              //  width: "570px",
+                height: "320px"
+            }
+        });
      
-            player.source = {
-                    sources: [{
-                        type : 'application/x-mpegurl',
-                        src: '//cdn.theoplayer.com/video/elephants-dream/playlist-single-audio.m3u8'
-                    }],
-                    poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/800px-ElephantsDreamPoster.jpg',
-                    textTracks: [
-                    {
-                        default: true,
-                        kind : 'subtitles', //optional - find other values at https://support.theoplayer.com/hc/en-us/articles/214350425#TextTrackDescription
-                        label: 'English', //optional - this will appear in your UI
-                        srclang : 'en',
-                        src: 'https://raw.githubusercontent.com/gpac/gpac/master/tests/media/webvtt/elephants-dream-subtitles-en.vtt'
-                    }]
-            };
+        player.source = {
+                sources: [{
+                    type : 'application/x-mpegurl',
+                    src: '//cdn.theoplayer.com/video/elephants-dream/playlist-single-audio.m3u8'
+                    //the stream already contains Chinese and French subtitles
+                }],
+                poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/800px-ElephantsDreamPoster.jpg',
+                textTracks: [
+                {
+                    default: true,
+                    kind : 'subtitles', //optional
+                    label: 'English', //optional - this will appear in your UI
+                    srclang : 'en',
+                    src: 'elephants-dream-subtitles-en.vtt'
+                }]
+        };
 
-            // how to apply a Styling to the stream Text Tracks 
-            player.textTrackStyle.fontFamily = 'Times, Times New Roman, Georgia, serif';
-            player.textTrackStyle.fontColor = '#ffffe0';
-            player.textTrackStyle.fontSize = '150%';
-            player.textTrackStyle.backgroundColor = 'chocolate';
-            player.textTrackStyle.windowColor = 'bisque';
-            player.textTrackStyle.edgeStyle = 'depressed';
+        // how to apply styling to the stream textTracks - check the documentation for a full list of the available properties
+        player.textTrackStyle.fontFamily = 'Times, Times New Roman, Georgia, serif';
+        player.textTrackStyle.fontColor = '#ffffe0';
+        player.textTrackStyle.fontSize = '150%';
+        player.textTrackStyle.backgroundColor = 'chocolate';
+        player.textTrackStyle.windowColor = 'bisque';
+        player.textTrackStyle.edgeStyle = 'depressed';
 
-        </script>
+    </script>
+    <script>
+        /*********************************************************************************************/
+        /* The following code adds information to the page, but is not needed for the player to work */
+        /*********************************************************************************************/
+
+        /* Add version in the title */
+        document.querySelector('h1 span').innerHTML = THEOplayer.version;
+
+    </script>
     </body>
 </html>

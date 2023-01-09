@@ -1,46 +1,56 @@
+<!-- ************************************************ -->
+<!-- For info on installing your player and procuring the license, see the readme -->
+<!-- ************************************************ -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>THEOplayer 2.X: Getting Started</title>
+        <title>Keyboard hotkeys - THEOplayer Web SDK samples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Your THEOplayer CSS -->
+        <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
+        <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
         <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.myth.theoplayer.com/54ed50b5-a5a8-488f-a069-d5d0b30caa11/ui.css"
+                rel="stylesheet"
+                type="text/css"
+                href="../../node_modules/theoplayer/ui.css"
         />
-     
-        
     </head>
+    <style>
+        code {background-color: #FFC;}
+    </style>
     <body>
-        Some hotkeys we set up ourselves for you to be able to test: <br/>
-        <code>
-                play: spacebar <br/>
-                rewind: left <br/>
-                increaseVolume: up <br/>
-                forward: right <br/>
-                decreaseVolume: down <br/>
-                toggleFullScreen: f <br/>
-                mute: m <br/>
-        </code>
-        Check the code and define your own hotkeys.
+    <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
+    <h1>THEOplayer <span></span> - Keyboard hotkeys</h1>
+    <p>In this example, we added some sample keyboard hotkeys and associated them with specific functions.</p>
         <div class="theoplayer-container video-js theoplayer-skin"></div>
-        <!-- Your THEOplayer .JS library -->
+    <p><b>Note:</b> for the hotkeys to work, the player must be in focus.</p>
+    <p>Some hotkeys we set up ourselves for you to be able to test:</p>
+    <ul id="listHotkeys" style="list-style:none">
+        <li><code>play/pause: spacebar</code></li>
+        <li><code>rewind: left</code></li>
+        <li><code>increaseVolume: up</code></li>
+        <li><code>forward: right</code></li>
+        <li><code>decreaseVolume: down</code></li>
+        <li><code>toggleFullScreen: f</code></li>
+        <li><code>mute: m</code></li>
+    </ul>
+    <p>Check the code and define your own hotkeys.</p>
+        <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
         <script
-            type="text/javascript"
-            src="https://cdn.myth.theoplayer.com/54ed50b5-a5a8-488f-a069-d5d0b30caa11/THEOplayer.js"
+                type="text/javascript"
+                src="../../node_modules/theoplayer/THEOplayer.js"
         ></script>
         <script>
-
-            var element = document.querySelector(".theoplayer-container");
-            // You THEOplayer library 
-            var player = new THEOplayer.Player(element, {
-                libraryLocation:
-                    "https://cdn.myth.theoplayer.com/54ed50b5-a5a8-488f-a069-d5d0b30caa11",
+            const element = document.querySelector(".theoplayer-container");
+            let player = new THEOplayer.Player(element, {
+                // ***** REPLACE THEOPLAYER LOCATION *****
+                libraryLocation: "../../node_modules/theoplayer/",
+                // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
+                license:"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj",
                 ui: {
-                    width: "570px",
-                    height: "320px",
+                  //  width: "570px",
+                    height: "320px"
                 }
             });
      
@@ -54,7 +64,7 @@
 
             function THEOplayer_UI_Hotkeys (player) {
             
-                var togglePlay = function () {
+                const togglePlay = function () {
                         if (player.paused) {
                             player.play();
                         } else {
@@ -65,7 +75,7 @@
                         player.muted = !player.muted;
                     },
                     toggleFullScreen = function () {
-                        if (player.presentationMode = 'fullscreen') {
+                        if (player.presentationMode == 'fullscreen') {
                             player.presentationMode = 'inline';
                         }  else {
                             player.presentationMode = 'fullscreen';
@@ -98,7 +108,7 @@
                         77: toggleMute,         // m
                     },
                     isTHEOplayerFocused = function () {
-                        var node = document.activeElement;
+                        const node = document.activeElement;
                         while (node !== null) {
                             if (player.element === node) {
                                 return true;
@@ -108,7 +118,7 @@
                         return false;
                     },
                     processKeyEvent = function (event) {
-                        var action;
+                        let action;
             
                         if (!event) {
                             event = window.event;
@@ -130,6 +140,15 @@
             }
 
             THEOplayer_UI_Hotkeys(player);
+
+        </script>
+        <script>
+            /*********************************************************************************************/
+            /* The following code adds information to the page, but is not needed for the player to work */
+            /*********************************************************************************************/
+
+            /* Add version in the title */
+            document.querySelector('h1 span').innerHTML = THEOplayer.version;
 
         </script>
     </body>

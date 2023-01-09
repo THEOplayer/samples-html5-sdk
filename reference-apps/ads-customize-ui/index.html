@@ -1,14 +1,20 @@
+<!-- ************************************************ -->
+<!-- For info on installing your player and procuring the license, see the readme -->
+<!-- ************************************************ -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>THEOplayer 2.X: Getting Started</title>
+    <title>Ads Customize UI - THEOplayer Web SDK samples</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- your THEOplayer CSS -->
+    <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
+
+    <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
     <link
       rel="stylesheet"
       type="text/css"
-      href="https://cdn.myth.theoplayer.com/7aff3fa6-f92e-45f9-a40e-1bce9911b073/ui.css"
+      href="../../node_modules/theoplayer/ui.css"
     />
     <style>
       /* Remove default THEOplayer image */
@@ -29,6 +35,9 @@
       .theo-ad-playing .theo-settings-control-menu {
         display: block !important;
       }
+      .theo-ad-playing .theo-settings-control-menu.vjs-hidden {
+        display: none !important;
+      }
       .theo-ad-countdown {
         position: absolute;
         top: 45%;
@@ -45,26 +54,31 @@
     </style>
   </head>
   <body>
-    <div class="theoplayer-container video-js theoplayer-skin"></div>
-    <!-- your THEOplayer .JS library -->
-    <script
-      type="text/javascript"
-      src="https://cdn.myth.theoplayer.com/7aff3fa6-f92e-45f9-a40e-1bce9911b073/THEOplayer.js"
-    ></script>
+  <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
+  <h1>THEOplayer <span></span> - THEO ads UI customization</h1>
+  <p>This sample showcases how to customize the UI when playing CSAI ads with the THEO ad integration.</p>
+
+  <div class="theoplayer-container video-js theoplayer-skin"></div>
+  <p><b>Note:</b> If you are using an ad blocker plugin, you may need to disable it to play this sample correctly</p>
+  <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
+  <script
+          type="text/javascript"
+          src="../../node_modules/theoplayer/THEOplayer.js"
+  ></script>
     <script>
-      var element = document.querySelector(".theoplayer-container");
-      // your THEOplayer library
-      var player = new THEOplayer.Player(element, {
-        libraryLocation:
-          "https://cdn.myth.theoplayer.com/7aff3fa6-f92e-45f9-a40e-1bce9911b073",
+      const element = document.querySelector(".theoplayer-container");
+      let player = new THEOplayer.Player(element, {
+        // ***** REPLACE THEOPLAYER LOCATION *****
+        libraryLocation: "../../node_modules/theoplayer/",
+        // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
+        license:"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj",
         ui: {
-          width: "570px",
+      //    width: "570px",
           height: "320px"
         }
       });
 
       player.source = {
-        // this stream already includes French and Chinese subtitles
         sources: {
           type: "application/x-mpegurl",
           src:
@@ -97,12 +111,11 @@
             skipOffset: 5
           }
         ],
-        poster:
-          "http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg"
+        poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Big.Buck.Bunny.-.Opening.Screen.png/1200px-Big.Buck.Bunny.-.Opening.Screen.png',
       };
 
       function updateTime() {
-        var countdown = document.querySelector(".theo-ad-countdown");
+        const countdown = document.querySelector(".theo-ad-countdown");
         if (countdown) {
           countdown.innerHTML = Math.round(
             player.duration - player.currentTime
@@ -110,16 +123,13 @@
         }
       }
 
-      var button = THEOplayer.videojs.getComponent("Button");
-      var myButton = THEOplayer.videojs.extend(button, {
+      const button = THEOplayer.videojs.getComponent("Button");
+      const myButton = THEOplayer.videojs.extend(button, {
         constructor: function() {
           button.apply(this, arguments);
           this.el().innerHTML = "Advertisement Playing";
         },
-        handleClick: function() {
-          elementContainer.classList.toggle("hidden");
-        },
-        buildCSSClass: function() {
+       buildCSSClass: function() {
           return "theo-advert-label";
         }
       });
@@ -127,7 +137,7 @@
 
       player.ads.addEventListener("adbegin", function(e) {
         // displaying big countdown
-        var countdown = document.createElement("div");
+        const countdown = document.createElement("div");
         countdown.className = "theo-ad-countdown";
         countdown.innerHTML = player.duration;
         element.appendChild(countdown);
@@ -140,7 +150,7 @@
 
       player.ads.addEventListener("adend", function(e) {
         // removing big countdown
-        var countdown = document.querySelector(".theo-ad-countdown");
+        const countdown = document.querySelector(".theo-ad-countdown");
         if (countdown) {
           player.removeEventListener("timeupdate", updateTime);
           element.removeChild(countdown);
@@ -150,5 +160,14 @@
         player.ui.getChild("controlBar").removeChild("AdvertLabelButton", {});
       });
     </script>
+  <script>
+    /*********************************************************************************************/
+    /* The following code adds information to the page, but is not needed for the player to work */
+    /*********************************************************************************************/
+
+    /* Add version in the title */
+    document.querySelector('h1 span').innerHTML = THEOplayer.version;
+
+  </script>
   </body>
 </html>

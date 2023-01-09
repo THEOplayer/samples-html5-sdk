@@ -1,14 +1,7 @@
-# Progressive web app with THEOplayer
-## Info
-This project demonstrates how THEOplayer could fit in a progressive web app. The repository at https://github.com/jamesjohnson280/hello-pwa is the starting point for this project.
+# Caching content with THEOplayer
+The present sample shows an implementation of THEOplayer where the user can cache the content.
 
-## Notes
-* This application should not be rolled out in production.
-* The `/theoplayer/` folder contains the files of the THEOplayer library. Replace these files with your own THEOplayer files if you clone (or download) this project.
-* Resources: https://developers.google.com/web/tools/workbox, https://developers.google.com/web/tools, https://web.dev/progressive-web-apps/
-* Online demo of this project: https://cdn.theoplayer.com/demos/progressive-web-app/index.html
-* This project passed the Lighthouse audit on the 7th of May, 2020.
-![Lighthouse Audit](lighthouse_audit.png "Lighthouse Audit")
+To keep the page simple, we moved to this readme notes and useful resources.
 
 ## About the player implementation
 The present samples are meant to be used with the NPM-installed player. Get your NPM web player on https://www.npmjs.com/package/theoplayer.
@@ -28,3 +21,21 @@ Once you have installed your player, check whether the following URLs need chang
 The license included in the implementation only allows for playback on _localhost_.
 To play on any other domains, as well as to make sure your license doesn't expire, get your license on  https://portal.theoplayer.com.
 </details>
+
+## Caching content
+In THEOplayer, you can cache content. This can be used for different purposes, including faster seeking, smooth playback on unstable networks or shorter join time for the videos in a playlist.  
+
+The present sample showcases how to provide the user with two simple buttons, respectively to cache a video portion and to remove the cached content.
+
+For more information, you can refer to the linked resources here below.
+
+## Documentation and resources
+### Player
+* [NPM web player](https://www.npmjs.com/package/theoplayer)
+* [THEO Portal](https://portal.theoplayer.com)
+
+### Cache
+* [Cache API reference](https://docs.theoplayer.com/api-reference/web/theoplayer.cache.md)
+* [Demo - Playlist and caching](https://www.theoplayer.com/theoplayer-demo-playlist-and-caching)
+
+
