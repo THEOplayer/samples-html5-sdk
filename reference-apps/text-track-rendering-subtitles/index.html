@@ -1,32 +1,43 @@
+<!-- ************************************************ -->
+<!-- For info on installing your player and procuring the license, see the readme -->
+<!-- ************************************************ -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>THEOplayer 2.X: Getting Started</title>
+        <title>Showing subtitles - THEOplayer Web SDK samples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- your THEOplayer CSS -->
+        <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
         <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.myth.theoplayer.com/b377a33e-4f73-48ca-ac59-0f114227f38b/ui.css"
+                rel="stylesheet"
+                type="text/css"
+                href="../../node_modules/theoplayer/ui.css"
         />
     </head>
     <body>
+        <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
+        <h1>THEOplayer <span></span> - Showing captions and subtitles</h1>
+        <p>This sample showcases how to show subtitles/captions in THEOplayer.</p>
+
         <div class="theoplayer-container video-js theoplayer-skin"></div>
-        <!-- your THEOplayer .JS library -->
+        <!--<p><b>Notes:</b>The user can adjust the styling of their tracks from the control bar: `Settings > Subtitle options`.</p>-->
+
+        <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
         <script
-            type="text/javascript"
-            src="https://cdn.myth.theoplayer.com/b377a33e-4f73-48ca-ac59-0f114227f38b/THEOplayer.js"
+                type="text/javascript"
+                src="../../node_modules/theoplayer/THEOplayer.js"
         ></script>
         <script>
-            var element = document.querySelector(".theoplayer-container");
-            // your THEOplayer library 
-            var player = new THEOplayer.Player(element, {
-                libraryLocation:
-                    "https://cdn.myth.theoplayer.com/b377a33e-4f73-48ca-ac59-0f114227f38b",
+            const element = document.querySelector(".theoplayer-container");
+            let player = new THEOplayer.Player(element, {
+                // ***** REPLACE THEOPLAYER LOCATION *****
+                libraryLocation: "../../node_modules/theoplayer/",
+                // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
+                license:"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj",
                 ui: {
                     width: "570px",
-                    height: "320px",
+                  //  height: "320px"
                 }
             });
             
@@ -35,43 +46,59 @@
                 sources: {
                     type : 'application/x-mpegurl',
                     src: '//cdn.theoplayer.com/video/elephants-dream/playlist-single-audio.m3u8'
-                }
-                ,
+                },
                 poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/800px-ElephantsDreamPoster.jpg',
                 // adding to the original stream English and German subtitles via VTT files
                 textTracks: [
                     {
-                        default: true,
-                        kind : 'subtitles', //optional - find other values at https://support.theoplayer.com/hc/en-us/articles/214350425#TextTrackDescription
+                        default: true, //if no other logic, subtitles with default true will be showed by default
+                        kind : 'subtitles', //optional
                         label: 'English', //optional - this will appear in your UI
                         srclang : 'en',
-                        src: 'https://raw.githubusercontent.com/gpac/gpac/master/tests/media/webvtt/elephants-dream-subtitles-en.vtt'
+                        src: 'elephants-dream-subtitles-en.vtt'
                     },
                     {
                         default: false,
-                        kind : 'subtitles', //optional - find other values at https://support.theoplayer.com/hc/en-us/articles/214350425#TextTrackDescription
+                        kind : 'subtitles', //optional
                         label: 'Deutsch', //optional - this will appear in your UI
                         srclang : 'de',
-                        src: 'https://raw.githubusercontent.com/gpac/gpac/master/tests/media/webvtt/elephants-dream-subtitles-de.vtt'
+                        src: 'elephants-dream-subtitles-de.vtt'
                     }
                 ],
             };
-    // pre-chosing English subtitles when the video starts playing
-	function startVideo() {
-    	//player.autoplay = true;
-		if (player.textTracks) {
-            player.textTracks.addEventListener('addtrack', function(event) { 
-                if (event.track.language === 'en') {
-                    event.track.mode = 'showing'                 
-                } else {
-                    event.track.mode = 'disabled'
+
+            // if the button is clicked, German subtitles are selected when the video starts playing - this overrides the default value
+            selectTextTrackByLanguage('de');
+
+            function selectTextTrackByLanguage(languageCode) {
+                if (player.textTracks) {
+                    player.textTracks.addEventListener('addtrack', function(event) {
+                        if (event.track.language === languageCode) {
+                            event.track.mode = 'showing'
+                        } else {
+                            event.track.mode = 'disabled'
+                        }
+                    });
                 }
-            });	
-		}
-	}
-    
-	startVideo.call();
+            }
+
+            // the following snippet logs in console the involved tracks at each textTracks change event
+            player.textTracks.addEventListener('change', function(event) {
+                const track = event.track;
+                const isEnabled = (track.mode == "showing");
+                console.log(track, track.label, track.kind, track.type, isEnabled);
+            });
 
         </script>
+        <script>
+            /*********************************************************************************************/
+            /* The following code adds information to the page, but is not needed for the player to work */
+            /*********************************************************************************************/
+
+            /* Add version in the title */
+            document.querySelector('h1 span').innerHTML = THEOplayer.version;
+
+        </script>
+
     </body>
 </html>

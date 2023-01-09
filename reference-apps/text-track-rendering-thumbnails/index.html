@@ -1,36 +1,47 @@
+<!-- ************************************************ -->
+<!-- For info on installing your player and procuring the license, see the readme -->
+<!-- ************************************************ -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>THEOplayer 2.X: Getting Started</title>
+        <title>Preview thumbnails - THEOplayer Web SDK samples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- your THEOplayer CSS -->
+        <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
+        <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
         <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.myth.theoplayer.com/808e384a-a224-4a15-a96b-80382a46cd6b/ui.css"
+                rel="stylesheet"
+                type="text/css"
+                href="../../node_modules/theoplayer/ui.css"
         />
     </head>
     <body>
-        Hovering over the timeline will show you thumbnails of the fragment on that time.
+        <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
+        <h1>THEOplayer <span></span> - Showing preview thumbnails</h1>
+        <p>This sample shows how to add preview thumbnails to the timeline in THEOplayer.</p>
+
         <div class="theoplayer-container video-js theoplayer-skin"></div>
-        <!-- your THEOplayer .JS library -->
+        <p>Hovering over the timeline will show you thumbnails of the fragment on that time.</p>
+
+        <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
         <script
-            type="text/javascript"
-            src="https://cdn.myth.theoplayer.com/808e384a-a224-4a15-a96b-80382a46cd6b/THEOplayer.js"
+                type="text/javascript"
+                src="../../node_modules/theoplayer/THEOplayer.js"
         ></script>
         <script>
-            var element = document.querySelector(".theoplayer-container");
-            // your THEOplayer library 
-            var player = new THEOplayer.Player(element, {
-                libraryLocation:
-                    "https://cdn.myth.theoplayer.com/808e384a-a224-4a15-a96b-80382a46cd6b/",
+            const element = document.querySelector(".theoplayer-container");
+            let player = new THEOplayer.Player(element, {
+                // ***** REPLACE THEOPLAYER LOCATION *****
+                libraryLocation: "../../node_modules/theoplayer/",
+                // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
+                license:"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj",
                 ui: {
-                    width: "570px",
-                    height: "320px",
+                  //  width: "570px",
+                    height: "320px"
                 }
             });
-            
+
             player.source = {
                 sources: {
                     type : 'application/x-mpegurl',
@@ -48,7 +59,30 @@
                     }
                 ],
             };
+           /* alternate source
+           player.source = {
+                "sources": {
+                    "type": "application/x-mpegurl",
+                    "src": "https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8"
+                },
+                "textTracks": [
+                    {
+                        "default": true,
+                        "src": "https://cdn.theoplayer.com/dash/theoplayer/thumbnails/big_buck_bunny_thumbnails.vtt",
+                        "label": "thumbnails",
+                        "kind": "metadata"
+                    }
+                ]
+            }*/
 
+        </script>
+        <script>
+            /*********************************************************************************************/
+            /* The following code adds information to the page, but is not needed for the player to work */
+            /*********************************************************************************************/
+
+            /* Add version in the title */
+            document.querySelector('h1 span').innerHTML = THEOplayer.version;
 
         </script>
     </body>

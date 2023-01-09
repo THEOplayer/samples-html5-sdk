@@ -2,27 +2,17 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>THEOplayer 101</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.myth.theoplayer.com/16c5342f-21bf-4c54-8d41-2e03e7d23ef2/ui.css" />
+    <title>Measure Loading time - THEOplayer Web SDK samples</title>
+    <link rel="stylesheet" type="text/css" href="../../../node_modules/theoplayer/ui.css" />
     <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .theoplayer-container {
-            width: 100%;
-            height: 100%;
-        }
+        html, body {margin: 0;padding: 0;width: 100%;height: 100%;}
+        .theoplayer-container {width: 100%;height: 100%;}
     </style>
 </head>
 <body>
 <div class="theoplayer-container video-js theoplayer-skin"></div>
 <script>
-    const LIBRARY_LOCATION = "https://cdn.myth.theoplayer.com/16c5342f-21bf-4c54-8d41-2e03e7d23ef2/";
+    const LIBRARY_LOCATION = "../../../node_modules/theoplayer/";
 
     function loadJsFile(url, callback) {
         var startLoadTime;

@@ -1,78 +1,133 @@
+<!-- ************************************************ -->
+<!-- For info on installing your player and procuring the license, see the readme -->
+<!-- ************************************************ -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>THEOplayer 2.X: Getting Started</title>
+        <title>Language localization - THEOplayer Web SDK samples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Your THEOplayer CSS -->
+        <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
+        <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
         <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.myth.theoplayer.com/e1f82f0f-d70b-4711-8489-c587461f2046/ui.css"
+                rel="stylesheet"
+                type="text/css"
+                href="../../node_modules/theoplayer/ui.css"
         />
      
     </head>
     <body>
-        Using the Spanish language in our video player settings
+        <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
+        <h1>THEOplayer <span></span> - Language localization</h1>
+        <p>In this example, we localize the player texts, translating them to Spanish.</p>
+
         <div class="theoplayer-container video-js theoplayer-skin"></div>
-        <!-- Your THEOplayer .JS library -->
+        <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
         <script
-            type="text/javascript"
-            src="https://cdn.myth.theoplayer.com/e1f82f0f-d70b-4711-8489-c587461f2046/THEOplayer.js"
+                type="text/javascript"
+                src="../../node_modules/theoplayer/THEOplayer.js"
         ></script>
-
         <script>
-
-            var element = document.querySelector(".theoplayer-container");
-            // You THEOplayer library 
-            var player = new THEOplayer.Player(element, {
-                libraryLocation:
-                    "https://cdn.myth.theoplayer.com/e1f82f0f-d70b-4711-8489-c587461f2046",
+            const element = document.querySelector(".theoplayer-container");
+            let player = new THEOplayer.Player(element, {
+                // ***** REPLACE THEOPLAYER LOCATION *****
+                libraryLocation: "../../node_modules/theoplayer/",
+                // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
+                license:"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj",
                 ui: {
-                    width: "570px",
+        //            width: "570px",
                     height: "320px",
                     // set language
                     language: 'langES',
                     // array of possible languages and translations
                     languages: { 'langES':
                         {
-                            "Settings": "Opciones", 
-                            "Play": "Reproducir",
-                            "Pause": "Pausa",
-                            "Current Time": "Tiempo actual",
+                            "0%": "%0",
+                            "100%": "%100",
+                            "150%": "%150",
+                            "200%": "%200",
+                            "25%": "%25",
+                            "50%": "%50",
+                            "75%": "%75",
+                            "A network error caused the media download to fail part-way.": "Un error de red ha interrumpido la descarga del video.",
+                            "Audio Track": "Pista de audio",
+                            "Automatic": "Automático",
+                            "Background color": "Color fondo",
+                            "Background opacity": "Opacidad fondo",
+                            "Black": "Negro",
+                            "Blue": "Azul",
+                            "Captions": "Subtítulos especiales",
+                            "Chapters": "Capítulos",
+                            "Character edge style": "Estilo bordes fuente",
+                            "Close Modal Dialog": "Cerrar Modal Dialog",
+                            "Close Related Content": "Cerrar",
+                            "Close Share": "Cerrar",
+                            "Close": "Cerrar",
+                            "Connecting": "Conectando",
+                            "Current Time": "Tiempo reproducido",
+                            "Cyan": "Cian",
+                            "Default": "Valor base",
+                            "Descriptions": "Descripciones",
+                            "Drop Shadow": "Sombra",
                             "Duration Time": "Duración",
-                            "Remaining Time": "Tiempo restante",
-                            "Stream Type": "Tipo de stream",
-                            "LIVE": "EN VIVO",
+                            "Exit fullscreen": "Salir de pantalla completa",
+                            "Font color": "Color fuente",
+                            "Font family": "Familia fuente",
+                            "Font opacity": "Opacidad fuente",
+                            "Font size": "Tamaño fuente",
+                            "Fullscreen": "Pantalla completa",
+                            "Green": "Verde",
+                            "High": "Elevado",
+                            "LIVE": "DIRECTO",
+                            "Language": "Idioma",
                             "Live": "En vivo",
                             "Loaded": "Cargado",
-                            "Progress": "Progreso",
-                            "Font Family": "Familia Fonte",
-                            "Fullscreen": "Pantalla completa",
-                            "High": "Elevado",
-                            "Normal": "Normale",
-                            "Non-Fullscreen": "Salir de pantalla completa",
-                            "Mute": "Silencio",
-                            "Unmute": "Sonido",
-                            "Playback Rate": "Velocidad de reproducción",
-                            "Subtitles": "Subtítulos",
-                            "Subtitle": "Subtítulo",
-                            "Subtitle Options": "Opciones de Subtítulos",
-                            "subtitles off": "subtítulos off",
-                            "Speed": "Velocidad",
-                            "Start Casting": "Iniciar Casting",
-                            "Quality": "Calidad",
+                            "Magenta": "Magenta",
+                            "Mute": "Silenciar",
+                            "No compatible source was found for this media.": "No se ha encontrado ninguna fuente compatible con este video.",
+                            "Non-Fullscreen": "Pantalla no completa",
+                            "None": "Ninguno",
+                            "Normal": "Normal",
                             "Options": "Opciones",
-                            "Automatic": "Automático",
-                            "Captions": "Mayúsculas",
-                            "captions off": "Mayúsculas off",
-                            "Chapters": "Capítulos",
-                            "Close Modal Dialog": "Cerrar Modal Dialog",
-                            "Descriptions": "Descripciones",
-                            "descriptions off": "Descripciones off",
-                            "Audio Track": "Pista de audio",
-                            "You aborted the media playback": "Has abortado la reproducción",
-                            "A network error caused the media download to fail part-way.": "Un error de red ha provocado que el archivo no se descargue correctamente."
+                            "Pause": "Pausa",
+                            "Play Video": "Reproducir video",
+                            "Play": "Reproducir",
+                            "Playback Rate": "Velocidad de reproducción",
+                            "Progress": "Progreso",
+                            "Quality": "Calidad",
+                            "Raised": "Levantado",
+                            "Red": "Rojo",
+                            "Related content": "Contenido relacionado",
+                            "Remaining Time": "Tiempo restante",
+                            "Replay": "Volver a reproducir",
+                            "Settings": "Ajustes",
+                            "Share Video": "Compartir video",
+                            "Something went wrong during native playback": "Algo no ha funcionado durante la reproducción nativa",
+                            "Speed": "Velocidad",
+                            "Start Casting": "Iniciar casting",
+                            "Stop Casting": "Dejar casting",
+                            "Stop watching in VR": "Dejar de ver en VR",
+                            "Stream Type": "Tipo de stream",
+                            "Subtitle Options": "Opciones de subtítulos",
+                            "Subtitle": "Subtítulo",
+                            "Subtitles": "Subtítulos",
+                            "The media could not be loaded, either because the server or network failed or because the format is not supported.": "No se ha podido cargar el vÃ­deo debido a un fallo de red o del servidor o porque el formato es incompatible.",
+                            "The media playback was aborted due to a corruption problem or because the media used features your browser did not support.": "La reproducción del video se ha interrumpido por un problema de corrupción de datos o porque el video necesita funciones que tu navegador no ofrece.",
+                            "Uniform": "Uniforme",
+                            "Unmute": "Sonido",
+                            "Up Next": "Próximo ideo",
+                            "Video playing in Picture-in-Picture mode": "Reproducir video en modalidad Picture-in-Picture",
+                            "Watch in VR": "Ver en VR",
+                            "White": "Blanco",
+                            "Window color": "Color ventana",
+                            "Window opacity": "opacidad ventana",
+                            "Yellow": "Amarillo",
+                            "You aborted the media playback": "Has interrumpido la reproducción",
+                            "captions off": "subtítulos especiales desactivados",
+                            "default": "Valor base",
+                            "descriptions off": "Apagar descripciones",
+                            "subtitles off": "apagar subtítulos",
                         }
                     }
                 }
@@ -85,6 +140,15 @@
                     }],
                     poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/800px-ElephantsDreamPoster.jpg'
             };
+        </script>
+        <script>
+            /*********************************************************************************************/
+            /* The following code adds information to the page, but is not needed for the player to work */
+            /*********************************************************************************************/
+
+            /* Add version in the title */
+            document.querySelector('h1 span').innerHTML = THEOplayer.version;
+
         </script>
     </body>
 </html>

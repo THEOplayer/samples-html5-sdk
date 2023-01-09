@@ -1,68 +1,72 @@
+<!-- ************************************************ -->
+<!-- For info on installing your player and procuring the license, see the readme -->
+<!-- ************************************************ -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>THEOplayer 2.X: Getting Started</title>
+        <title>Quality selector - THEOplayer Web SDK samples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- your THEOplayer CSS -->
+        <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
+        <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
         <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.myth.theoplayer.com/c0378a53-43f3-4bfa-af3e-7ef85afdf35f/ui.css"
+                rel="stylesheet"
+                type="text/css"
+                href="../../node_modules/theoplayer/ui.css"
         />
     </head>
     <body>
+        <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
+        <h1>THEOplayer <span></span> - Build a custom menu</h1>
+        <p>In this example, we build a custom UI quality selector menu based on mp4 files.</p>
         <div class="theoplayer-container video-js theoplayer-skin"></div>
-        <!-- your THEOplayer .JS library -->
+        <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
         <script
-            type="text/javascript"
-            src="https://cdn.myth.theoplayer.com/c0378a53-43f3-4bfa-af3e-7ef85afdf35f/THEOplayer.js"
+                type="text/javascript"
+                src="../../node_modules/theoplayer/THEOplayer.js"
         ></script>
         <script>
-            var element = document.querySelector(".theoplayer-container");
-            // your THEOplayer library 
-            var player = new THEOplayer.Player(element, {
-                libraryLocation:
-                    "https://cdn.myth.theoplayer.com/c0378a53-43f3-4bfa-af3e-7ef85afdf35f",
+            const element = document.querySelector(".theoplayer-container");
+            let player = new THEOplayer.Player(element, {
+                // ***** REPLACE THEOPLAYER LOCATION *****
+                libraryLocation: "../../node_modules/theoplayer/",
+                // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
+                license:"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj",
                 ui: {
-                    width: "570px",
-                    height: "320px",
-                    fluid: true
+                   // width: "570px",
+                    height: "320px"
                 }
             });
 
-            // Video source: make sure to include this domain when building your player! (https://portal.theoplayer.com)
-            // Here, the default quality is set to 720p
-            player.src = "https://myvidplay.s3.wasabisys.com/upload/videos/2019/06/ycSCijkTIvttyGb4BEri_02_63688d3c942433957b5fee14fb324d94_video_720p_converted.mp4";
+            // Video source: make sure to include this domain when building your license! (https://portal.theoplayer.com)
 
             // set your custom resolutions and sources
-            var resolutions = [
-                {name: '1080p HD', src: 'https://myvidplay.s3.wasabisys.com/upload/videos/2019/06/ycSCijkTIvttyGb4BEri_02_63688d3c942433957b5fee14fb324d94_video_1080p_converted.mp4'},
-                {name: '720p HD', src: 'https://myvidplay.s3.wasabisys.com/upload/videos/2019/06/ycSCijkTIvttyGb4BEri_02_63688d3c942433957b5fee14fb324d94_video_720p_converted.mp4'},
-                {name: '480p', src: 'https://myvidplay.s3.wasabisys.com/upload/videos/2019/06/ycSCijkTIvttyGb4BEri_02_63688d3c942433957b5fee14fb324d94_video_480p_converted.mp4'},
-                {name: '360p', src: 'https://myvidplay.s3.wasabisys.com/upload/videos/2019/06/ycSCijkTIvttyGb4BEri_02_63688d3c942433957b5fee14fb324d94_video_360p_converted.mp4'}, 
-                {name: '240p', src: 'https://myvidplay.s3.wasabisys.com/upload/videos/2019/06/ycSCijkTIvttyGb4BEri_02_63688d3c942433957b5fee14fb324d94_video_240p_converted.mp4'},
+            const resolutions = [
+                {name: '1080p HD', src: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4'},
+                {name: '720p HD', src:  'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4'},
+                {name: '360p', src: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4'},
             ];
 
-            var currentTime, wasPaused;
-            var settingsMenu = player.ui.getChild('ControlBar').getChild('SettingsButton').menu;
+            let currentTime, wasPaused;
+            const settingsMenu = player.ui.getChild('ControlBar').getChild('SettingsButton').menu;
             
             // Remove built-in quality sub menu
             settingsMenu.removeMenuItem(settingsMenu.menuItems[0]);
 
             // Create custom quality sub menu
-            var qualityMenuItem = settingsMenu.addSubMenuItem({
+            let qualityMenuItem = settingsMenu.addSubMenuItem({
                 index : 0
             });
-            var qualityMenuTitle = document.createElement('span');
+            let qualityMenuTitle = document.createElement('span');
             qualityMenuTitle.className = 'theo-settings-control-menu-item-title';
             qualityMenuTitle.innerHTML = 'Quality';
-            var qualityMenuValue = document.createElement('span');
+            let qualityMenuValue = document.createElement('span');
             qualityMenuValue.className = 'theo-settings-control-menu-item-value';
             qualityMenuItem.el().appendChild(qualityMenuTitle);
             qualityMenuItem.el().appendChild(qualityMenuValue);
             qualityMenuItem.subMenu.menuHeader.el().innerHTML = 'Quality';
-            var qualityItems = resolutions.map(function (resolution) {
+            let qualityItems = resolutions.map(function (resolution) {
                 var qualityItem = qualityMenuItem.subMenu.addMenuItem();
                 qualityItem.el().innerHTML = resolution.name;
                 qualityItem.on('click', function () {
@@ -80,7 +84,7 @@
                 if (!wasPaused) {
                     player.play();
                 }
-                var qualityItem = qualityItems[resolutions.indexOf(resolution.name)];
+                const qualityItem = qualityItems[resolutions.indexOf(resolution.name)];
                 qualityItems.forEach(function (item) {
                     item.selected(item === qualityItem);
                 });
@@ -88,6 +92,15 @@
 
             // Set default quality to 720p
             selectQuality(resolutions[1]);
+
+        </script>
+        <script>
+            /*********************************************************************************************/
+            /* The following code adds information to the page, but is not needed for the player to work */
+            /*********************************************************************************************/
+
+            /* Add version in the title */
+            document.querySelector('h1 span').innerHTML = THEOplayer.version;
 
         </script>
     </body>

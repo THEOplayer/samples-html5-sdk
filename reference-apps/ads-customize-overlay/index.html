@@ -1,27 +1,27 @@
+<!-- ************************************************ -->
+<!-- For info on installing your player and procuring the license, see the readme -->
+<!-- ************************************************ -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>THEOplayer 2.X: Getting Started</title>
+        <title>Ads Customize Overlay - THEOplayer Web SDK samples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- your THEOplayer CSS -->
+        <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
+
+        <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
         <link
             rel="stylesheet"
             type="text/css"
-            href="https://cdn.myth.theoplayer.com/aa18b41b-3926-4649-809a-ec54e3713466/ui.css"
+            href="../../node_modules/theoplayer/ui.css"
         />
         <style>
-        
+            /* change cursor type on some elements when ad is non-skippable */
         .theoplayer-skin .theoplayer-ad-skip.theo-ad-remaining-container,.theoplayer-skin .theoplayer-ad-overlay-component.theo-ad-remaining-container{
-            /* change cursor type when non-skipable */
             cursor:wait;
           }
-        .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-skip.theo-ad-remaining-container,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-overlay-component.theo-ad-remaining-container{
-            cursor:wait;
-        }  
-        .theo-ad-playing .theo-settings-control-button,.theo-ad-playing .theo-settings-control-menu{
-            display:block !important
-        }
+
         .theoplayer-skin .theoplayer-ad-skip.theo-ad-remaining-container,.theoplayer-skin .theoplayer-ad-overlay-component.theo-ad-remaining-container{
             /* Change "Content will play in ..." section (position, look) */
             top:10px;
@@ -47,6 +47,9 @@
         .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip.theo-size-xs .theoplayer-ad-skip-poster,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip.theo-size-xs .theoplayer-ad-skip-poster{
             display:block
         }
+            .theo-ad-playing .theo-settings-control-menu.vjs-hidden {
+                display: none !important;
+            }
         
         .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip.theo-size-xs.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip.theo-size-xs.theoplayer-ad-skip-countdown{
             line-height:2em;
@@ -61,9 +64,9 @@
             background-color: #fcba03;
         }
         .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip .theoplayer-ad-skip-poster,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip .theoplayer-ad-skip-poster{
-            /* Shwowing poster after "Skip ad" */
-            width:3em;
-            height:2em;
+            /* Showing poster after "Skip ad" */
+            width:6.4em;
+            height:3.6em;
             display:table-cell;
             background-color: #fcba03;
             background-size:cover;
@@ -79,27 +82,32 @@
         </style>
     </head>
     <body>
-        <div class="theoplayer-container video-js theoplayer-skin"></div>
-        <!-- your THEOplayer .JS library -->
+    <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
+    <h1>THEOplayer <span></span> - THEO ads overlay customization</h1>
+    <p>This sample showcases how to customize the UI overlay when playing CSAI ads with the THEO ad integration.</p>
+
+    <div class="theoplayer-container video-js theoplayer-skin"></div>
+    <p><b>Note:</b> If you are using an ad blocker plugin, you may need to disable it to play this sample correctly</p>
+    <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
         <script
             type="text/javascript"
-            src="https://cdn.myth.theoplayer.com/aa18b41b-3926-4649-809a-ec54e3713466/THEOplayer.js"
+            src="../../node_modules/theoplayer/THEOplayer.js"
         ></script>
         <script>
 
-            var element = document.querySelector(".theoplayer-container");
-            // your THEOplayer library 
-            var player = new THEOplayer.Player(element, {
-                libraryLocation:
-                    "https://cdn.myth.theoplayer.com/aa18b41b-3926-4649-809a-ec54e3713466",
+            const element = document.querySelector(".theoplayer-container");
+            let player = new THEOplayer.Player(element, {
+                // ***** REPLACE THEOPLAYER LOCATION *****
+                libraryLocation: "../../node_modules/theoplayer/",
+                // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
+                license:"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj",
                 ui: {
                     width: "570px",
-                    height: "320px",
+             //       height: "320px",
                 }
             });
 
             player.source = {
-                // this stream already includes French and Chinese subtitles
                 sources: {
                     type : 'application/x-mpegurl',
                     src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8',
@@ -131,8 +139,17 @@
                         skipOffset: 5
                     }
                 ],
-                poster: 'http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg',
+                poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Big.Buck.Bunny.-.Opening.Screen.png/1200px-Big.Buck.Bunny.-.Opening.Screen.png',
             };
+
+        </script>
+        <script>
+            /*********************************************************************************************/
+            /* The following code adds information to the page, but is not needed for the player to work */
+            /*********************************************************************************************/
+
+            /* Add version in the title */
+            document.querySelector('h1 span').innerHTML = THEOplayer.version;
 
         </script>
     </body>

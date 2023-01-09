@@ -1,14 +1,19 @@
+<!-- ************************************************ -->
+<!-- For info on installing your player and procuring the license, see the readme -->
+<!-- ************************************************ -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>THEOplayer 2.X: Getting Started</title>
+        <title>UI cues for ads - THEOplayer Web SDK samples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- your THEOplayer CSS -->
+        <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
+        <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
         <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.myth.theoplayer.com/791ed77e-354f-41ab-8400-feef310fb350/ui.css"
+                rel="stylesheet"
+                type="text/css"
+                href="../../node_modules/theoplayer/ui.css"
         />
         <style>
             /* Define style for cues */
@@ -21,118 +26,171 @@
             }
             
         </style>
+        <!-- ***** Google IMA library, used to play ads with the IMA integration. For testing purposes, it may be useful to use the debug version:  ***** -->
+        <script type="text/javascript" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+
     </head>
     <body>
+        <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
+        <h1>THEOplayer <span></span> - UI cues for ads</h1>
+        <p>In this example, we show a basic implementation of UI cues that appear on the timeline to indicate where the ads will be.</p>
         <div class="theoplayer-container video-js theoplayer-skin"></div>
-        <!-- your THEOplayer .JS library -->
+        <p><b>Note:</b> If you are using an ad blocker plugin, you may need to disable it to play this sample correctly</p>
+        <button onclick="player.source = sourceTHEOads">Play THEO ads</button>
+        <button onclick="player.source = sourceIMAads">Play IMA ads</button>
+        <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
         <script
-            type="text/javascript"
-            src="https://cdn.myth.theoplayer.com/791ed77e-354f-41ab-8400-feef310fb350/THEOplayer.js"
+                type="text/javascript"
+                src="../../node_modules/theoplayer/THEOplayer.js"
         ></script>
         <script>
-
-            var element = document.querySelector(".theoplayer-container");
-            // your THEOplayer library 
-            var player = new THEOplayer.Player(element, {
-                libraryLocation:
-                    "https://cdn.myth.theoplayer.com/791ed77e-354f-41ab-8400-feef310fb350",
+            const element = document.querySelector(".theoplayer-container");
+            let player = new THEOplayer.Player(element, {
+                // ***** REPLACE THEOPLAYER LOCATION *****
+                libraryLocation: "../../node_modules/theoplayer/",
+                // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
+                license:"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj",
                 ui: {
                     width: "570px",
-                    height: "320px",
+                    height: "320px"
                 }
             });
 
-            player.source = {
+            /* 2 sources with alternative ads integrations */
+            const sourceTHEOads = {
                 sources: {
-                    type : 'application/x-mpegurl',
-                    src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8',
+                    type: "application/x-mpegurl",
+                    src: "https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8"
                 },
                 ads: [
                     {
-                        sources: "dfp-preroll-no-skip.xml",
+                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
                         timeOffset: "start",
                         skipOffset: 5
                     },
                     {
-                        sources: "dfp-midroll-no-skip.xml",
+                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
                         timeOffset: 150,
                         skipOffset: 5
                     },
                     {
-                        sources: "dfp-midroll-no-skip2.xml",
+                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
                         timeOffset: 300,
                         skipOffset: 5
                     },
                     {
-                        sources: "dfp-midroll-no-skip3.xml",
+                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
                         timeOffset: 450,
                         skipOffset: 5
                     },
                     {
-                        sources: "dfp-postroll-no-skip.xml",
+                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
                         timeOffset: "end",
                         skipOffset: 5
                     }
                 ],
-                poster: 'http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg',
+                poster: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Big.Buck.Bunny.-.Opening.Screen.png/1200px-Big.Buck.Bunny.-.Opening.Screen.png"
             };
 
-            var adsPresent = !!player.source.ads;
-            var contentDuration = 0;
-            var to = [];
-            var playedAds = [];
+            const sourceIMAads = {
+                sources: {
+                    type: "application/x-mpegurl",
+                    src: "https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8"
+                },
+                ads: [
+                    {
+                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        timeOffset: "start",
+                        skipOffset: 5,
+                        integration: "google-ima"
+                    },
+                    {
+                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        timeOffset: 150,
+                        skipOffset: 5,
+                        integration: "google-ima"
+                    },
+                    {
+                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        timeOffset: 300,
+                        skipOffset: 5,
+                        integration: "google-ima"
+                    },
+                    {
+                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        timeOffset: 450,
+                        skipOffset: 5,
+                        integration: "google-ima"
+                    },
+                    {
+                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        timeOffset: "end",
+                        skipOffset: 5,
+                        integration: "google-ima"
+                    }
+                ],
+                poster: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Big.Buck.Bunny.-.Opening.Screen.png/1200px-Big.Buck.Bunny.-.Opening.Screen.png"
+            };
+
+            // Setting the initial player source
+            player.source = sourceTHEOads;
+
+            let adsPresent = !!player.source.ads;
+            let contentDuration = 0;
+            let to = [];
+            let playedAds = [];
 
             function drawCues() {
-                var progressBar = element.querySelector('.vjs-progress-control.vjs-control');
-                for (var i=0; i<to.length; i++){
-                    var timeOffset = to[i];
+                const progressBar = element.querySelector('.vjs-progress-control.vjs-control');
+                for (let i=0; i<to.length; i++){
+                    let timeOffset = to[i];
                     console.log("drawing cue at ", timeOffset);
                     if (playedAds.indexOf(timeOffset) === -1) {
-                        var left = to[i] * progressBar.offsetWidth/contentDuration;
-                        var div = document.createElement("div");
+                        let left = to[i] * progressBar.offsetWidth/contentDuration;
+                        let div = document.createElement("div");
                         div.setAttribute('to', to[i]);
                         div.classList.add("adCue");
                         div.style.left = left +"px";
                         progressBar.children[0].appendChild(div);
                     }
                 }
-            };
+            }
  
             function destroyCues() {
                 console.log("destroyCues");
-                var cues = element.querySelectorAll('.vjs-progress-control.vjs-control .adCue');
+                const cues = element.querySelectorAll('.vjs-progress-control.vjs-control .adCue');
                 for (cue of cues){
                     cue.parentNode.removeChild(cue);
                 }
-            };
+            }
             
             function detectDuration(adIsPlaying) {
                 if (!adIsPlaying) {
                     contentDuration = player.duration;
                 }
-                var t = 0;
-                for (var ad of player.source.ads){
+                let t = 0;
+                for (let ad of player.source.ads){
                     to[t] = to[t] == "end" ? contentDuration : to[t];
                     t++;
                 }
-            };
+            }
             
             function detectTimeOffset() {
                 if(adsPresent){
-                    var t = 0;
-                    for (var ad of player.source.ads){
+                    let t = 0;
+                    for (let ad of player.source.ads){
                         to[t]= ad.timeOffset==undefined ? 0: ad.timeOffset=="start"? 0: ad.timeOffset;
                         t++;
                     }
                 }
-            };
+            }
 
             player.addEventListener('pause', function (){
                 console.log("pause");
             });
 
             player.addEventListener('playing', function (){
-                var adIsPlaying = player.ads.playing;
+                let adIsPlaying = player.ads.playing;
                 detectTimeOffset();
                 detectDuration(adIsPlaying);
                 !adIsPlaying ? drawCues() : destroyCues();
@@ -145,6 +203,15 @@
             player.ads.addEventListener('adend', function (adEvent){
                 playedAds.push(adEvent.ad.adBreak.timeOffset);
             });
+        </script>
+        <script>
+            /*********************************************************************************************/
+            /* The following code adds information to the page, but is not needed for the player to work */
+            /*********************************************************************************************/
+
+            /* Add version in the title */
+            document.querySelector('h1 span').innerHTML = THEOplayer.version;
+
         </script>
     </body>
 </html>
