@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import dynamic from "next/dynamic";
@@ -10,13 +11,13 @@ const THEOplayerWrapper = dynamic(() => import('../components/THEOplayerWrapper'
 });
 
 export default function Home() {
-  const source: SourceDescription = {
+  const source = useMemo<SourceDescription>(() => ({
       sources: [{
           src: "//cdn.theoplayer.com/video/elephants-dream/playlist.m3u8",
           type: "application/x-mpegurl"
       }],
       poster: "//cdn.theoplayer.com/video/elephants-dream.png"
-  };
+  }), []);
   const autoplay = false;
   const preload: PreloadType = "auto";
 
