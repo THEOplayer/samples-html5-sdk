@@ -2051,10 +2051,10 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-theoplayer@latest:
-  version "2.86.0"
-  resolved "https://registry.yarnpkg.com/theoplayer/-/theoplayer-2.86.0.tgz#b6dd25e5f0f7d56bf11069c5e08183ff21ad5069"
-  integrity sha512-kqiACQzeZfKQW3Ndb4fuzWbSB7b53fQEckEf766bjXVy6YzkjkNzTgktGELaZzEQDvW/9+iI2QPJRV2UM1JO3w==
+theoplayer@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/theoplayer/-/theoplayer-6.0.0.tgz#77cf42b9588f4cd430904687faa222040099715b"
+  integrity sha512-SYKJnS0Lvf8bxhj+k0jhIi9NRVAg9QuYXFWHyiSpFn8QWctA2TYIYWGGdBOw6f/A8qj27KiGyDAMNrTsNHEJWQ==
 
 through2@^2.0.1:
   version "2.0.5"
