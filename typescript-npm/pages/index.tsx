@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import dynamic from "next/dynamic";
@@ -10,6 +10,8 @@ const THEOplayerWrapper = dynamic(() => import('../components/THEOplayerWrapper'
     loading: () => (<div className={"video-js theoplayer-skin vjs-16-9"} />)
 });
 
+const preloadTypes: PreloadType[] = ['none', 'metadata', 'auto'];
+
 export default function Home() {
   const source = useMemo<SourceDescription>(() => ({
       sources: [{
@@ -18,8 +20,11 @@ export default function Home() {
       }],
       poster: "//cdn.theoplayer.com/video/elephants-dream.png"
   }), []);
-  const autoplay = false;
-  const preload: PreloadType = "auto";
+  const [autoplay, setAutoPlay] = useState(false);
+  const [preload, setPreload] = useState<PreloadType>("none");
+  const onPlay = useCallback(() =>  {
+      console.log("The player has started playing.");
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -36,8 +41,16 @@ export default function Home() {
             source={source}
             preload={preload}
             autoplay={autoplay}
-            onPlay={() => {console.log("The player has started playing.")}}
-        ></THEOplayerWrapper>
+            onPlay={onPlay}
+        />
+        <div className={styles.options}>
+          <label><input type="checkbox" checked={autoplay} onChange={() => setAutoPlay(!autoplay)} /> Autoplay</label>
+          <label>Preload:&nbsp;
+            <select value={preload} onChange={(e) => setPreload(e.target.value as PreloadType)}>
+              {preloadTypes.map((preloadOption) => (<option key={preloadOption} value={preloadOption}>{preloadOption}</option>))}
+            </select>
+          </label>
+        </div>
       </main>
     </div>
   )
