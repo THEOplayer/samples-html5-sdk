@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import dynamic from "next/dynamic";
 import type { THEOplayerData } from "../components/THEOplayerWrapper";
+import 'theoplayer/ui.css';
 
 const THEOplayerWrapper = dynamic(() => import('../components/THEOplayerWrapper'), { ssr: false });
 

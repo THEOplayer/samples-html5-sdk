@@ -3,7 +3,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import type { Player, PlayerConfiguration, PreloadType, SourceDescription } from 'theoplayer';
 import * as THEOplayer from 'theoplayer';
-import 'theoplayer/ui.css';
 
 export interface THEOplayerData {
     preload?: PreloadType,
