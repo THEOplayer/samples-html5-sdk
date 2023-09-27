@@ -4,18 +4,14 @@ import React, { useCallback, useEffect, useState } from 'react';
 import type { Player, PlayerConfiguration, PreloadType, SourceDescription } from 'theoplayer';
 import * as THEOplayer from 'theoplayer';
 
-export interface THEOplayerData {
+export interface THEOplayerWrapperProps {
     preload?: PreloadType,
     autoplay?: boolean,
-    source: SourceDescription
-}
-
-export interface THEOplayerWrapperProps {
-    data: THEOplayerData,
+    source: SourceDescription,
     onPlay?: () => void
 }
 
-function THEOplayerWrapper({data, onPlay}: THEOplayerWrapperProps) {
+function THEOplayerWrapper({preload, autoplay, source, onPlay}: THEOplayerWrapperProps) {
     const [player, setPlayerEl] = usePlayer({
         license: process.env.theoplayerLicenseString,
         libraryLocation: process.env.theoplayerLibraryLocation
@@ -23,10 +19,18 @@ function THEOplayerWrapper({data, onPlay}: THEOplayerWrapperProps) {
 
     useEffect(() => {
         if (!player) return;
-        player.preload = data.preload ?? 'none';
-        player.autoplay = data.autoplay ?? false;
-        player.source = data.source;
-    }, [player]);
+        player.preload = preload ?? 'none';
+    }, [player, preload]);
+
+    useEffect(() => {
+        if (!player) return;
+        player.autoplay = autoplay ?? false;
+    }, [player, autoplay]);
+
+    useEffect(() => {
+        if (!player) return;
+        player.source = source;
+    }, [player, source]);
 
     useEffect(() => {
         if (!player || !onPlay) return;
