@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import dynamic from "next/dynamic";
+import type { THEOplayerData } from "../components/THEOplayerWrapper";
+
 const THEOplayerWrapper = dynamic(() => import('../components/THEOplayerWrapper'), { ssr: false });
 
 export default function Home() {
-  const theoplayerData = {
+  const theoplayerData: THEOplayerData = {
       source: {
           "sources": [{
               "src": "//cdn.theoplayer.com/video/elephants-dream/playlist.m3u8",
