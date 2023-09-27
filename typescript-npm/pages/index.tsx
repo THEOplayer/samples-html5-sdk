@@ -4,7 +4,10 @@ import dynamic from "next/dynamic";
 import type { THEOplayerData } from "../components/THEOplayerWrapper";
 import 'theoplayer/ui.css';
 
-const THEOplayerWrapper = dynamic(() => import('../components/THEOplayerWrapper'), { ssr: false });
+const THEOplayerWrapper = dynamic(() => import('../components/THEOplayerWrapper'), {
+    ssr: false,
+    loading: () => (<div className={"video-js theoplayer-skin vjs-16-9"} />)
+});
 
 export default function Home() {
   const theoplayerData: THEOplayerData = {
