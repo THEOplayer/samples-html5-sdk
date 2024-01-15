@@ -8,6 +8,7 @@
   },
   "author": "Mauricio Coelho",
   "dependencies": {
-    "theoplayer": "^4.5.1"
+    "theoplayer": "^4.5.1",
+    "@theoplayer/extended": "^6.7.0"
   }
 }

@@ -1,0 +1,72 @@
+<!-- ************************************************ -->
+<!-- For info on installing your player and procuring the license, see the readme -->
+<!-- ************************************************ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>MultiView Basic - THEOplayer Web SDK samples</title>
+    <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
+
+    <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="../../node_modules/@theoplayer/extended/ui.css"
+    />
+</head>
+<body>
+<button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;"
+        onclick="location.href='../../index.html'">Go back to sample list
+</button>
+<h1>THEOplayer <span></span> - Basic MultiView</h1>
+<p>This sample showcases how to use the THEOplayer MultiView</p>
+
+<div class="theoplayer-container video-js theoplayer-skin"></div>
+<!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
+<script
+        type="text/javascript"
+        src="../../node_modules/@theoplayer/extended/THEOplayer.js"
+></script>
+<script>
+    const element = document.querySelector(".theoplayer-container");
+    let player = new THEOplayer.MultiViewPlayer(element, {
+        // ***** REPLACE THEOPLAYER LOCATION *****
+        libraryLocation: "../../node_modules/@theoplayer/extended/",
+        // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
+        license: 'sZP7IYe6T6foIK0ZIuBL3ZklIlI1FSaZ0Ka-ClbiTmz_0SUlIuBzTuec3Kh6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90SeZ3LhL0LCi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3L5zTu5Z0u0oTS5oFOPeWok1dDrLYtA1Ioh6TgV6CoxpFGxEIDjiWQXrIYfpCoj-f6i6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6CoxpFGxEIDjiWQXrIYfpCoj-f6i6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6box7bZf9DZPEUQkV3mPUFOPLIDreYog-bwPgbt3NWo_6TGxZUDhVfKIgCYxkbK4LflNWfKkkWwxNUKggUZPUya',
+        ui: {
+            //width: "570px",
+            height: "320px"
+        }
+    });
+
+    const views = {
+        0: 'https://cdn.theoplayer.com/demos/multiview/play-media/sources/soccer/feed-0/manifest.mpd',
+        1: 'https://cdn.theoplayer.com/demos/multiview/play-media/sources/soccer/feed-1/manifest.mpd',
+        2: 'https://cdn.theoplayer.com/demos/multiview/play-media/sources/soccer/feed-2/manifest.mpd',
+        3: 'https://cdn.theoplayer.com/demos/multiview/play-media/sources/soccer/feed-3/manifest.mpd'
+    };
+
+    for (const [i, source] of Object.entries(views)) {
+        const label = `View ${i}`;
+        player.load(label, {
+            sources: [
+                {
+                    src: source
+                }
+            ]
+        });
+    }
+</script>
+<script>
+    /*********************************************************************************************/
+    /* The following code adds information to the page, but is not needed for the player to work */
+    /*********************************************************************************************/
+
+    /* Add version in the title */
+    document.querySelector('h1 span').innerHTML = THEOplayer.version;
+</script>
+</body>
+</html>
