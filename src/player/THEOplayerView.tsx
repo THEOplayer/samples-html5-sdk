@@ -19,7 +19,7 @@ export function THEOplayerView({ onPlayer, license }: Props) {
                 const config = {
                     license,
                     // Note: THEOplayer loads workers for transmuxing and other tasks
-                    // these workers need to be located on the same server (see npm run build)
+                    // these workers need to be located on the same server (see npm run copy:theoplayer)
                     libraryLocation: `${process.env.PUBLIC_URL}/vendor/theoplayer`,
                     ui: {
                         fluid: true,
@@ -29,7 +29,7 @@ export function THEOplayerView({ onPlayer, license }: Props) {
                 setPlayer(new Player(node, config));
             }
         },
-        [license]
+        [license],
     );
 
     useEffect(() => {
