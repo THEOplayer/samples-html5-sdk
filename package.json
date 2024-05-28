@@ -34,7 +34,7 @@
     "@types/react-dom": "^18.2.18",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "theoplayer": "^6.8.1",
+    "theoplayer": "^7.4.1",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
