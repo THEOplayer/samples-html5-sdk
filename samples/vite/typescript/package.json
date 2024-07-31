@@ -1,0 +1,19 @@
+{
+  "name": "theoplayer-vite-typescript",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "theoplayer": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.3.4",
+    "vite-plugin-static-copy": "^1.0.6"
+  }
+}
