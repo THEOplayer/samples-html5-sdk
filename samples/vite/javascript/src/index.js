@@ -4,7 +4,7 @@ import {LICENSE} from '../../../util/constants';
 const element = document.getElementById('my-player');
 const configuration = {
     license: LICENSE,
-    libraryLocation: '/vendor/theoplayer/'
+    libraryLocation: `${import.meta.env.BASE_URL}vendor/theoplayer/`
 };
 
 const player = new THEOplayer.Player(element, configuration);
