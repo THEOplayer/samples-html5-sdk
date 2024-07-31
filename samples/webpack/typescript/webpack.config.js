@@ -12,9 +12,6 @@ module.exports = {
         filename: "bundle.js",
         path: __dirname + "/dist"
     },
-    devServer: {
-        contentBase: './dist',
-    },
     externals: {
         'theoplayer': 'THEOplayer'
     },
