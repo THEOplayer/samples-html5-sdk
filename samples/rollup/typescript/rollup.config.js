@@ -14,7 +14,7 @@ export default {
     plugins: [
         copy({
             targets: [
-                { src: './node_modules/theoplayer/*.(js|css|html)' , dest: './dist/vendor/theoplayer' },
+                { src: './node_modules/theoplayer/*.(js|css|html|wasm)' , dest: './dist/vendor/theoplayer' },
                 { src: './src/index.html' , dest: './dist' }
             ]
         }),

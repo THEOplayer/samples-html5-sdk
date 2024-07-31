@@ -32,7 +32,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [{
                 context: "node_modules/theoplayer/",
-                from: "./*.(css|js|html)",
+                from: "./*.(css|js|html|wasm)",
                 info: { minimized: true },
                 to: "vendor/theoplayer/"
             }]
