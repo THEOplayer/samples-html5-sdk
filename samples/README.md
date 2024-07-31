@@ -8,12 +8,15 @@ The available sample projects:
 * Webpack
     * [JavaScript](webpack/javascript/)
     * [TypeScript](webpack/typescript/)
-* Parcel (currently incompatible with `v2.0.0`)
+* Parcel
     * [JavaScript](parcel/javascript/)
     * [TypeScript](parcel/typescript/)
 * Rollup
     * [JavaScript](rollup/javascript/)
     * [TypeScript](rollup/typescript/)
+* Vite
+  * [JavaScript](vite/javascript/)
+  * [TypeScript](vite/typescript/)
     
 ## Usage
 

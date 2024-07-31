@@ -14,8 +14,11 @@
     "theoplayer": "latest"
   },
   "devDependencies": {
+    "buffer": "^6.0.3",
     "cross-env": "^7.0.3",
-    "parcel": "^2.0.0-beta.2",
-    "parcel-reporter-static-files-copy": "^1.3.0"
+    "http-server": "^14.1.1",
+    "parcel": "^2.12.0",
+    "parcel-reporter-static-files-copy": "^1.5.3",
+    "process": "^0.11.10"
   }
 }
