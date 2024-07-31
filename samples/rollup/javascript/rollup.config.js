@@ -1,9 +1,11 @@
 import copy from 'rollup-plugin-copy';
 
 export default {
-    input: './src/index.js',
+    input: {
+        'bundle': './src/index.js'
+    },
     output: {
-        file: './dist/bundle.js',
+        dir: './dist',
         format: 'iife',
         globals: {
             theoplayer: 'THEOplayer'

@@ -2,9 +2,11 @@ import copy from 'rollup-plugin-copy'
 import typescript from '@rollup/plugin-typescript';
 
 export default {
-    input: './src/index.ts',
+    input: {
+        'bundle': './src/index.ts'
+    },
     output: {
-        file: './dist/bundle.js',
+        dir: './dist',
         format: 'iife',
         globals: {
             theoplayer: 'THEOplayer'
