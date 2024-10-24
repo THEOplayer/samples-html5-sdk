@@ -1,0 +1,62 @@
+<!-- ************************************************ -->
+<!-- For info on installing your player and procuring the license, see the readme -->
+<!-- ************************************************ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Millicast with Open Video UI - THEOplayer Web SDK samples</title>
+    <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        theoplayer-default-ui:not(:defined) {
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        theoplayer-default-ui {
+            height: 320px;
+            aspect-ratio: 16 / 9;
+            font-family: 'Noto Sans', sans-serif;
+            background: #000;
+        }
+    </style>
+  </head>
+  <body>
+  <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
+  <h1>THEOplayer <span></span> - Millicast</h1>
+  <p>This sample showcases how to play Millicast streams in THEOplayer using the Open Video UI.</p>
+  <theoplayer-default-ui
+    configuration='{"libraryLocation":"../../node_modules/theoplayer/","license":"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj"}'
+    source='{"sources":{"type":"millicast","streamName":"multiview","streamAccountId":"k9Mwad"}}'
+    fluid
+  ></theoplayer-default-ui>
+    <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
+    <script
+      type="text/javascript"
+      src="../../node_modules/theoplayer/THEOplayer.chromeless.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../node_modules/@theoplayer/web-ui/dist/THEOplayerUI.js"
+    ></script>
+    <script>
+      /*********************************************************************************************/
+      /* The following code adds information to the page, but is not needed for the player to work */
+      /*********************************************************************************************/
+
+      /* Add version in the title */
+      document.querySelector('h1 span').innerHTML = THEOplayer.version;
+
+    </script>
+  </body>
+</html>
