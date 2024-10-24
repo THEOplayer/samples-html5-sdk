@@ -8,7 +8,7 @@
   },
   "author": "THEO Technologies",
   "dependencies": {
-    "theoplayer": "^6",
-    "@theoplayer/extended": "^6"
+    "theoplayer": "^8.3.0",
+    "@theoplayer/extended": "^8.3.0"
   }
 }
