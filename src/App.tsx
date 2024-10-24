@@ -34,7 +34,7 @@ function App() {
 
     return (
         <div className="App">
-            <THEOplayerView onPlayer={onPlayer} license={license} />
+            <THEOplayerView onPlayerCreated={onPlayer} license={license} />
         </div>
     );
 }
