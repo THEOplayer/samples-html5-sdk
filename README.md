@@ -10,7 +10,7 @@ This project will demonstrate how to use THEOplayer for web. if you have any que
 
 ## Quickstart
 
-1. Run the static server local `npx http-server`
+1. Run the static server local `npx http-server -a localhost`
 
 > The THEOplayer library provided in this sample is currently targeted to the latest version and is set to run on **localhost only**
 
