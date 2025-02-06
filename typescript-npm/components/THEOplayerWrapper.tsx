@@ -26,9 +26,14 @@ function THEOplayerWrapper({ preload, autoplay, source, onPlay }: THEOplayerWrap
         playerRef.current = newPlayer;
 
         (window as any).player = newPlayer;
-
         setPlayer(newPlayer);
         console.log('Created new player:', newPlayer);
+
+        return () => {
+            playerRef.current?.destroy();
+            playerRef.current = null;
+            setPlayer(null);
+        }
     }, []);
 
     useEffect(() => {
