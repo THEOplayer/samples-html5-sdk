@@ -26,5 +26,5 @@ Then, we
  1. Run `yarn` (or `npm i`) to install the dependencies.
  2. Run `yarn create-static-theo` (or `npm run create-static-theo`) to copy your THEOplayer files to `/public/vendor/theoplayer/`.
  3. Adjust `next.config.js` and enter your THEOplayer license string. 
- If you don't have a license string, then create a Web SDK at [https://portal.theoplayer.com](portal.theoplayer.com) to acquire one.
+ If you don't have a license string, go to [https://portal.theoplayer.com](portal.theoplayer.com) to create one.
  4. Run `yarn dev` (or `npm run dev`) to start the local development web server.

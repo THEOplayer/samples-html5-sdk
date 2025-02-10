@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import type { Player, PlayerConfiguration, PreloadType, SourceDescription } from 'theoplayer';
 import * as THEOplayer from 'theoplayer';
 
@@ -11,11 +11,30 @@ export interface THEOplayerWrapperProps {
     onPlay?: () => void
 }
 
-function THEOplayerWrapper({preload, autoplay, source, onPlay}: THEOplayerWrapperProps) {
-    const [player, setPlayerEl] = usePlayer({
-        license: process.env.theoplayerLicenseString,
-        libraryLocation: process.env.theoplayerLibraryLocation
-    });
+function THEOplayerWrapper({ preload, autoplay, source, onPlay }: THEOplayerWrapperProps) {
+    const [player, setPlayer] = useState<Player | null>(null);
+    const playerRef = useRef<Player | null>(null);
+
+    const setPlayerEl = useCallback((el: HTMLElement | null) => {
+        if (!el || playerRef.current) return;
+
+        const newPlayer = new THEOplayer.Player(el, {
+            license: process.env.theoplayerLicenseString,
+            libraryLocation: process.env.theoplayerLibraryLocation
+        });
+
+        playerRef.current = newPlayer;
+
+        (window as any).player = newPlayer;
+        setPlayer(newPlayer);
+        console.log('Created new player:', newPlayer);
+
+        return () => {
+            playerRef.current?.destroy();
+            playerRef.current = null;
+            setPlayer(null);
+        }
+    }, []);
 
     useEffect(() => {
         if (!player) return;
@@ -46,21 +65,6 @@ function THEOplayerWrapper({preload, autoplay, source, onPlay}: THEOplayerWrappe
             ref={setPlayerEl}
         />
     );
-}
-
-function usePlayer(configuration: PlayerConfiguration): [Player | null, (el: HTMLElement | null) => void] {
-    const [player, setPlayer] = useState<Player | null>(null);
-    const setPlayerEl = useCallback((el: HTMLElement | null) => {
-        if (player !== null) {
-            player.destroy();
-            setPlayer(null);
-        }
-        if (el !== null) {
-            const player = new THEOplayer.Player(el, configuration);
-            setPlayer(player);
-        }
-    }, []);
-    return [player, setPlayerEl];
 }
 
 export default THEOplayerWrapper;
