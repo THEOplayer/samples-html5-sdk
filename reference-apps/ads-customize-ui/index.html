@@ -55,8 +55,8 @@
   </head>
   <body>
   <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
-  <h1>THEOplayer <span></span> - THEO ads UI customization</h1>
-  <p>This sample showcases how to customize the UI when playing CSAI ads with the THEO ad integration.</p>
+  <h1>THEOplayer <span></span> - CSAI ads UI customization</h1>
+  <p>This sample showcases how to customize the UI when playing CSAI ads with the CSAI ad integration.</p>
 
   <div class="theoplayer-container video-js theoplayer-skin"></div>
   <p><b>Note:</b> If you are using an ad blocker plugin, you may need to disable it to play this sample correctly</p>
@@ -86,32 +86,28 @@
         },
         ads: [
           {
-            sources: "dfp-preroll-no-skip.xml",
+            sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
             timeOffset: "start",
-            skipOffset: 5
+            skipOffset: 5,
           },
           {
-            sources: "dfp-midroll-no-skip.xml",
+            sources: "https://cdn.theoplayer.com/demos/ads/vast/dfp-linear-inline-no-skip.xml",
             timeOffset: 150,
-            skipOffset: 5
           },
           {
-            sources: "dfp-midroll-no-skip2.xml",
+            sources: "https://cdn.theoplayer.com/demos/ads/vast/dfp-midroll-no-skip.xml",
             timeOffset: 300,
-            skipOffset: 5
           },
           {
-            sources: "dfp-midroll-no-skip3.xml",
+            sources: "https://cdn.theoplayer.com/demos/ads/vast/double-preroll-ima-dfp-skip-5s.xml",
             timeOffset: 450,
-            skipOffset: 5
           },
           {
-            sources: "dfp-postroll-no-skip.xml",
+            sources: "https://cdn.theoplayer.com/demos/ads/vast/dfp-postroll-no-skip.xml",
             timeOffset: "end",
-            skipOffset: 5
           }
         ],
-        poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Big.Buck.Bunny.-.Opening.Screen.png/1200px-Big.Buck.Bunny.-.Opening.Screen.png',
+        poster: "https://cdn.theoplayer.com/video/big_buck_bunny/poster.jpg"
       };
 
       function updateTime() {
