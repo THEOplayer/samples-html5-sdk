@@ -14,5 +14,5 @@ To play on any other domains, as well as to make sure your license doesn't expir
 * [THEOportal](https://portal.theoplayer.com)
 
 ### Millicast
-* [How to guides - Getting started with Millicast](https://www.theoplayer.com/docs/theoplayer/how-to-guides/web/millicast/getting-started/)
-* [Millicast API reference](https://www.theoplayer.com/docs/theoplayer/v8/api-reference/web/interfaces/MillicastSource.html)
+* [How to guides - Getting started with Millicast](https://docs.optiview.dolby.com/millicast/getting-started/)
+* [Millicast API reference](https://www.theoplayer.com/docs/theoplayer/v9/api-reference/web/interfaces/MillicastSource.html)
