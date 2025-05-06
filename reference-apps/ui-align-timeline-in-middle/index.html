@@ -25,19 +25,19 @@
               line-height: 36px;
               pointer-events: none;
           }
-          
+
           .vjs-has-started .custom-timeline.show {
               display: block;
           }
-          
+
           .vjs-time-control {
               display: none !important;
           }
-          
+
           .theo-mobile .custom-timeline {
               display: none;
           }
-          
+
           .vjs-fullscreen .custom-timeline {
               margin-bottom: 8px;
           }
@@ -70,14 +70,14 @@
                     height: "320px"
                 }
             });
-            
+
             player.source = {
                 sources: {
                     type : 'application/x-mpegurl',
                     src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8'
                 }
                 ,
-                poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Big.Buck.Bunny.-.Opening.Screen.png/1200px-Big.Buck.Bunny.-.Opening.Screen.png',
+                poster: 'https://cdn.theoplayer.com/video/big_buck_bunny/poster.jpg',
             };
 
             function secondsToHms(d) {
@@ -85,7 +85,7 @@
                 let h = Math.floor(d / 3600);
                 let m = Math.floor(d % 3600 / 60);
                 let s = Math.floor(d % 3600 % 60);
-            
+
                 let hDisplay = h > 0 ? h + (h == 1 ? ":" : ":") : "00:";
                 let mDisplay = m > 0 ? (m > 9 ? m : "0"+m )  + (m == 1 ? ":" : ":") : "00:";
                 let sDisplay = s > 9 ? s : "0"+s;
@@ -95,7 +95,7 @@
             player.addEventListener('timeupdate', function(e) {
                 document.querySelector('.custom-timeline .current-time').innerText = secondsToHms(Math.floor(e.currentTime));
             })
-            
+
             player.addEventListener('durationchange', function(e) {
                 document.querySelector('.custom-timeline .duration').innerText = secondsToHms(Math.floor(e.duration));
                 //console.log(secondsToHms(Math.floor(e.duration)));

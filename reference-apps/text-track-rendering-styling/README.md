@@ -6,7 +6,7 @@ To keep the page simple, we moved to this readme notes and useful resources.
 ## About the player implementation
 The present samples are meant to be used with the NPM-installed player. Get your NPM web player on https://www.npmjs.com/package/theoplayer.
 
-Alternatively, you can also decide to generate a custom player on the THEO portal.
+Alternatively, you can also generate a custom player on THEOportal.
 
 <details style="border:1px solid #ccc;padding:1em; background-color:#f9f9f9">
   <summary>Making sure the player is implemented correctly: <u>URLs and license</u></summary>
@@ -19,11 +19,11 @@ Once you have installed your player, check whether the following URLs need chang
 
 ### License
 The license included in the implementation only allows for playback on _localhost_.
-To play on any other domains, as well as to make sure your license doesn't expire, get your license on  https://portal.theoplayer.com.
+To play on any other domains, as well as to make sure your license doesn't expire, get your license on https://portal.theoplayer.com.
 </details>
 
 ## Styling captions
-In THEOplayer, you can use textTracks for many purposes, including subtitles and closed captions. These appear on the UI, and may be styled.
+In THEOplayer, you can use text tracks for many purposes, including subtitles and closed captions. These appear on the UI, and may be styled.
 The present sample showcases how to add default styling to your subtitles and how the user may also be able to select their preferred styling.
 
 <details style="border:1px solid #ccc;padding:1em; background-color:#f9f9f9">
@@ -45,7 +45,7 @@ Check the other samples for other textTracks functionalities, and the links belo
 ## Documentation and resources
 ### Player
 * [NPM web player](https://www.npmjs.com/package/theoplayer)
-* [THEO Portal](https://portal.theoplayer.com)
+* [THEOportal](https://portal.theoplayer.com)
 
 ### TextTracks
 * [TextTracks how-to guides - Introduction](https://docs.theoplayer.com/how-to-guides/10-texttrack/00-introduction.md)
