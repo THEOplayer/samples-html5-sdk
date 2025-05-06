@@ -29,7 +29,7 @@
             position:absolute;
             width:50%;
             text-align:right;
-            padding:0.5em;            
+            padding:0.5em;
             background-color: #fcba03;
         }
         .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip-button,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip-button{
@@ -42,7 +42,7 @@
             line-height:2em;
             height:2em;
             right:10px;
-            top:150px;            
+            top:150px;
         }
         .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip.theo-size-xs .theoplayer-ad-skip-poster,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip.theo-size-xs .theoplayer-ad-skip-poster{
             display:block
@@ -50,7 +50,7 @@
             .theo-ad-playing .theo-settings-control-menu.vjs-hidden {
                 display: none !important;
             }
-        
+
         .theoplayer-skin .theoplayer-ad-skip.theoplayer-ad-skip.theo-size-xs.theoplayer-ad-skip-countdown,.theoplayer-skin .theoplayer-ad-overlay-component.theoplayer-ad-skip.theo-size-xs.theoplayer-ad-skip-countdown{
             line-height:2em;
             height:2em;
@@ -77,7 +77,7 @@
             top:1em;
             right:0
         }
-        
+
 
         </style>
     </head>
@@ -114,32 +114,28 @@
                 },
                 ads: [
                     {
-                        sources: "dfp-preroll-no-skip.xml",
+                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
                         timeOffset: "start",
-                        skipOffset: 5
+                        skipOffset: 5,
                     },
                     {
-                        sources: "dfp-midroll-no-skip.xml",
+                        sources: "https://cdn.theoplayer.com/demos/ads/vast/dfp-linear-inline-no-skip.xml",
                         timeOffset: 150,
-                        skipOffset: 5
                     },
                     {
-                        sources: "dfp-midroll-no-skip2.xml",
+                        sources: "https://cdn.theoplayer.com/demos/ads/vast/dfp-midroll-no-skip.xml",
                         timeOffset: 300,
-                        skipOffset: 5
                     },
                     {
-                        sources: "dfp-midroll-no-skip3.xml",
+                        sources: "https://cdn.theoplayer.com/demos/ads/vast/double-preroll-ima-dfp-skip-5s.xml",
                         timeOffset: 450,
-                        skipOffset: 5
                     },
                     {
-                        sources: "dfp-postroll-no-skip.xml",
+                        sources: "https://cdn.theoplayer.com/demos/ads/vast/dfp-postroll-no-skip.xml",
                         timeOffset: "end",
-                        skipOffset: 5
                     }
                 ],
-                poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Big.Buck.Bunny.-.Opening.Screen.png/1200px-Big.Buck.Bunny.-.Opening.Screen.png',
+                poster: 'https://cdn.theoplayer.com/video/big_buck_bunny/poster.jpg',
             };
 
         </script>
