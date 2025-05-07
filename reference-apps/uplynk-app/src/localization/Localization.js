@@ -127,7 +127,7 @@ export class Localization {
 
     /**
      * This function adds a language if the 'lang' query parameter is valid.
-     * It falls back the the language configured in the appConfig JSON.
+     * It falls back to the language configured in the appConfig JSON.
      *
      * Returns the language code if a language was added.
      */

@@ -53,7 +53,7 @@ export class AppModal {
                 currentConfig = JSON.stringify(JSON.parse(currentConfig.value), null, "\t");
                 const data = new Blob([currentConfig], {type: 'application/json'});
                 const textFile = window.URL.createObjectURL(data);
-                Util.downloadURI(textFile, "verizonAppConfig.json");
+                Util.downloadURI(textFile, "uplynkAppConfig.json");
             }
         });
     }

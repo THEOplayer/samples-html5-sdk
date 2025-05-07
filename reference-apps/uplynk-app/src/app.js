@@ -13,7 +13,7 @@ export class App {
         this.firstLoad = false;
         this.appConfig = appConfig;
         this.config = {
-            verizon: {
+            uplynk: {
                 contentNotification: true,
                     adNotification: true,
                     assetMarkers: true,
@@ -71,12 +71,12 @@ export class App {
         optionRadios.forEach(function(id) {
             document.getElementById(id).checked = true;
         });
-        this.config.verizon.contentNotification = true;
-        this.config.verizon.adNotification = true;
-        this.config.verizon.assetMarkers = true;
-        this.config.verizon.adBreakMarkers = true;
-        this.config.verizon.seekOverAd = 'play-all';
-        this.config.verizon.defaultSkipOffset = -1;
+        this.config.uplynk.contentNotification = true;
+        this.config.uplynk.adNotification = true;
+        this.config.uplynk.assetMarkers = true;
+        this.config.uplynk.adBreakMarkers = true;
+        this.config.uplynk.seekOverAd = 'play-all';
+        this.config.uplynk.defaultSkipOffset = -1;
     }
 
     bindControls() {
@@ -99,7 +99,7 @@ export class App {
         const radios = document.forms[0].optionsRadios;
         for (let i = 0; i < radios.length; i++) {
             radios[i].addEventListener('change', function (e) {
-                _self.config.verizon.seekOverAd = e.srcElement.value;
+                _self.config.uplynk.seekOverAd = e.srcElement.value;
                 _self.playerUtil.initPlayer(_self.sourceIndex);
             });
         }
@@ -117,18 +117,18 @@ export class App {
                     if (skipValue > skipMax) {
                         e.target.value = skipMax;
                     }
-                    _self.config.verizon.defaultSkipOffset = skipValue || -1;
-                    _self.playerUtil.updateSkipOffset(_self.config.verizon.defaultSkipOffset)
+                    _self.config.uplynk.defaultSkipOffset = skipValue || -1;
+                    _self.playerUtil.updateSkipOffset(_self.config.uplynk.defaultSkipOffset)
                 });
             }
         }
 
         // All Tabs: checkbox input
-        const verizonCheckboxes = document.querySelectorAll('#myTabContent input[type="checkbox"]');
-        for (let i = 0; i < verizonCheckboxes.length; i++) {
-            const box = verizonCheckboxes[i];
+        const uplynkCheckboxes = document.querySelectorAll('#myTabContent input[type="checkbox"]');
+        for (let i = 0; i < uplynkCheckboxes.length; i++) {
+            const box = uplynkCheckboxes[i];
             box.onclick = function (e) {
-                _self.config.verizon[e.target.dataset.verizonconfig] = e.srcElement.checked;
+                _self.config.uplynk[e.target.dataset.uplynkconfig] = e.srcElement.checked;
                 _self.playerUtil.initPlayer(_self.sourceIndex);
             };
         }

@@ -27,15 +27,15 @@ export class PlayerUtil {
 
         this.theoplayerRef = new THEOplayer.Player(element, {
             libraryLocation: '//cdn.theoplayer.com/dash/theoplayer/',
-            verizonMedia: {
-                onSeekOverAd: app.config.verizon.seekOverAd,
+            uplynk: {
+                onSeekOverAd: app.config.uplynk.seekOverAd,
                 ui: {
-                    contentNotification: app.config.verizon.contentNotification,
-                    adNotification: app.config.verizon.adNotification,
-                    assetMarkers: app.config.verizon.assetMarkers,
-                    adBreakMarkers: app.config.verizon.adBreakMarkers,
+                    contentNotification: app.config.uplynk.contentNotification,
+                    adNotification: app.config.uplynk.adNotification,
+                    assetMarkers: app.config.uplynk.assetMarkers,
+                    adBreakMarkers: app.config.uplynk.adBreakMarkers,
                 },
-                defaultSkipOffset: app.config.verizon.defaultSkipOffset
+                defaultSkipOffset: app.config.uplynk.defaultSkipOffset
             },
             ui: {
                 language: Localization.getSelectedLanguage(app,  app.appConfig.language) // this.getSelectedLanguage() // only en, ja, es, nl are supported
@@ -58,7 +58,7 @@ export class PlayerUtil {
                     this.source = this.source;
                 }
             });
-            this.theoplayerRef.verizonMedia.ads.adBreaks.addEventListener('addadbreak', (event) => {
+            this.theoplayerRef.uplynk.ads.adBreaks.addEventListener('addadbreak', (event) => {
                 event.adBreak.addEventListener('adbreakbegin', function(){
                     liveResetCheck = false
                 });
@@ -72,11 +72,11 @@ export class PlayerUtil {
             }
         }
 
-        this.theoplayerRef.verizonMedia.addEventListener('assetinforesponse', function (e) {
+        this.theoplayerRef.uplynk.addEventListener('assetinforesponse', function (e) {
             _self.addMetadataToPlaylist(e.response);
         });
 
-        this.theoplayerRef.verizonMedia.ads.adBreaks.addEventListener('addadbreak', function (event) {
+        this.theoplayerRef.uplynk.ads.adBreaks.addEventListener('addadbreak', function (event) {
             _self.adBreaks.push(event.adBreak);
         });
 
@@ -87,7 +87,7 @@ export class PlayerUtil {
         });
 
         this.updateActiveQuality(this.theoplayerRef);
-        this.subscribeToVerizonEvents(this.theoplayerRef);
+        this.subscribeToUplynkEvents(this.theoplayerRef);
         this.updateFeatures(sourceIndex);
 
         this.theoplayerRef.source = source;
@@ -111,7 +111,7 @@ export class PlayerUtil {
     addMetadataToPlaylist(asset) {
         const _self = this;
         const app = this.app;
-        const assets = this.theoplayerRef.verizonMedia.assets;
+        const assets = this.theoplayerRef.uplynk.assets;
         if (this.playlist.length > 0) {
             asset.startTime = assets[this.playlist.length].startTime;
         } else {
@@ -141,7 +141,7 @@ export class PlayerUtil {
 
     getActiveAsset() {
         const time = this.theoplayerRef.currentTime;
-        const assets = this.theoplayerRef.verizonMedia.assets;
+        const assets = this.theoplayerRef.uplynk.assets;
         let activeAssetOrAdBreak;
         for (let i = 0; i < assets.length; i++) {
             const asset = assets[i];
@@ -210,36 +210,36 @@ export class PlayerUtil {
         // document.querySelector('#theoplayer-events select').innerText = text+ "\n" + document.querySelector('#theoplayer-events select').innerText;
 
     }
-    subscribeToVerizonEvents(player) {
+    subscribeToUplynkEvents(player) {
         const _self = this;
-        // verizonMedia events
+        // uplynk events
         [
             'preplayresponse',
             'pingresponse',
             'assetinforesponse'
         ].forEach(function(e) {
-            player.verizonMedia.addEventListener(e, function (e1) {
+            player.uplynk.addEventListener(e, function (e1) {
                 _self.writeEvents(JSON.stringify(e1));
             });
         });
-        // verizonMedia.assets events
+        // uplynk.assets events
         [
             'addasset',
             'removeasset'
         ].forEach(function(e) {
-            player.verizonMedia.assets.addEventListener(e, function (e1) {
+            player.uplynk.assets.addEventListener(e, function (e1) {
                 _self.writeEvents(JSON.stringify(e1));
             });
         });
-        // verizonMedia.ads events
+        // uplynk.ads events
         [
             'addadbreak',
             'removeadbreak'
         ].forEach(function(e) {
-            player.verizonMedia.ads.adBreaks.addEventListener(e, function (e1) {
+            player.uplynk.ads.adBreaks.addEventListener(e, function (e1) {
                 _self.writeEvents(JSON.stringify(e1));
                 if (e1.type == "addadbreak") {
-                    // verizonMedia.ads.adBreak[i] events
+                    // uplynk.ads.adBreak[i] events
                     [
                         'adbreakbegin',
                         'adbreakend',
@@ -250,7 +250,7 @@ export class PlayerUtil {
                             _self.writeEvents(JSON.stringify(e2));
                         });
                     });
-                    // verizonMedia.as.adBreak.ads[i] events
+                    // uplynk.as.adBreak.ads[i] events
                     for (let i = 0; i < e1.adBreak.ads.length; i++) {
                         [
                             'adbegin',
@@ -272,7 +272,7 @@ export class PlayerUtil {
 
     updateFeatures(sourceIndex) {
         const features = this.getFeatures(sourceIndex);
-        const featuresDiv = document.querySelector('#theoplayer-verizon-features');
+        const featuresDiv = document.querySelector('#theoplayer-uplynk-features');
         featuresDiv.innerHTML = "";
         for (let i = 0; i < features.length; i++) {
             const spanEl = document.createElement('span');
@@ -298,7 +298,7 @@ export class PlayerUtil {
                                       </textarea>
                                 </p>
                             </div>
-                            <div class="card-footer text-muted" id="theoplayer-verizon-features">
+                            <div class="card-footer text-muted" id="theoplayer-uplynk-features">
                             </div>
                         </div>
                     </div>`;
