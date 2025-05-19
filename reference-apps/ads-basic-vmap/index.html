@@ -27,7 +27,7 @@
 
         <div class="theoplayer-container video-js theoplayer-skin"></div>
     <p><b>Note:</b> If you are using an ad blocker plugin, you may need to disable it to play this sample correctly</p>
-    <button onclick="player.source = sourceTHEOads">Play THEO ads</button>
+    <button onclick="player.source = sourceTHEOads">Play CSAI ads</button>
     <button onclick="player.source = sourceIMAads">Play IMA ads</button>
 
 
@@ -57,10 +57,11 @@
                 },
                 ads: [
                     {
-                        sources: "single-pre-mid-post-no-skip.xml", // VMAP source!
+                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/vmap_ad_samples&sz=640x480&cust_params=sample_ar%3Dpreonly&ciu_szs=300x250%2C728x90&gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&impl=s&correlator=", // VMAP source!
+                        integration: "csai" // This is optional.
                     }
                 ],
-                poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Big.Buck.Bunny.-.Opening.Screen.png/1200px-Big.Buck.Bunny.-.Opening.Screen.png',
+                poster: 'https://cdn.theoplayer.com/video/big_buck_bunny/poster.jpg',
             };
 
             const sourceIMAads = {
@@ -74,7 +75,7 @@
                         integration: "google-ima"
                     }
                 ],
-                poster: 'http://prestashop.flickrocket.com/img/p/5/7/57-large_default.jpg',
+                poster: 'https://cdn.theoplayer.com/video/big_buck_bunny/poster.jpg',
             };
 
             // Setting the initial player source

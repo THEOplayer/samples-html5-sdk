@@ -1,21 +1,19 @@
-# Verizon Media App
-The Verizon Media App is a project which demonstrates the potential of THEOplayer's integration with the Verizon Media Platform.
-The primary purpose of this project is to host the code for the [demo](https://cdn.theoplayer.com/demos/verizon-media/index.html) linked below.
+# Uplynk App
+The Uplynk App is a project which demonstrates the potential of THEOplayer's integration with Uplynk.
+The primary purpose of this project is to host the code for the [demo](https://cdn.theoplayer.com/demos/uplynk/index.html) linked below.
 
 This app uses the following APIs:
-* https://docs.portal.theoplayer.com/docs/api-reference/theoplayer-verizonmediasource
-* https://docs.portal.theoplayer.com/docs/api-reference/theoplayer-verizonmedia
-* https://docs.portal.theoplayer.com/docs/api-reference/theoplayer-verizonmediaconfiguration
-* https://docs.portal.theoplayer.com/docs/api-reference/theoplayer-verizonmediauiconfiguration
+* https://docs.optiview.dolby.com/theoplayer/v9/api-reference/web/interfaces/UplynkSource.html
+* https://docs.optiview.dolby.com/theoplayer/v9/api-reference/web/classes/Player.html#uplynk
+* https://docs.optiview.dolby.com/theoplayer/v9/api-reference/web/interfaces/UplynkConfiguration.html
+* https://docs.optiview.dolby.com/theoplayer/v9/api-reference/web/interfaces/UplynkUiConfiguration.html
 
-The following guides are relevant:
-* https://docs.portal.theoplayer.com/docs/add-ons/verizon/verizon-2-preplay
-* https://docs.portal.theoplayer.com/docs/add-ons/verizon/verizon-1-ads
-* https://docs.portal.theoplayer.com/docs/add-ons/verizon/verizon-0-ping
+Please also take a look at all the guides under our Uplynk documentation:
+* https://docs.optiview.dolby.com/theoplayer/how-to-guides/web/uplynk/introduction/
 
 Links:
-* Github: https://github.com/THEOplayer/samples-html5-sdk/tree/master/reference-apps/verizon-media-app
-* Demo: https://cdn.theoplayer.com/demos/verizon-media/index.html
+* Github: https://github.com/THEOplayer/samples-html5-sdk/tree/master/reference-apps/uplynk-app
+* Demo: https://cdn.theoplayer.com/demos/uplynk/index.html
 
 # NPM scripts
 
@@ -25,7 +23,7 @@ Links:
 
 ## Deploying
 
-The `/public/` folder contains the files which can be deployed to a web server. It's this repository which is uploaded to https://cdn.theoplayer.com/demos/verizon-media/index.html.
+The `/public/` folder contains the files which can be deployed to a web server. It's this repository which is uploaded to https://cdn.theoplayer.com/demos/uplynk/index.html.
 
 Webpack must be used to build `/public/js/dist.js`. This file, `dist.js`, bundles the code from `/src/`, and contains the logic which is at the heart of this web app.
 

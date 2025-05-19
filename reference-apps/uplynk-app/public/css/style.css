@@ -11,7 +11,7 @@ body {
   position: relative;
 }
 
-.verizon-logo {
+.uplynk-logo {
   height: auto;
   max-width: 30%;
 }
@@ -71,7 +71,7 @@ label.radio-inline input[type="radio"]:checked ~ .bmd-radio:after {
     linear-gradient(0deg, rgba(0, 0, 0, 0.26) 1px, transparent 0);
 }
 
-_:-ms-fullscreen, :root .theo-verizonmedia-content-notification-thumbnail {
+_:-ms-fullscreen, :root .theo-uplynk-content-notification-thumbnail {
   width:25% !important;
 }
 
@@ -146,8 +146,8 @@ label[for="ads_skipOffset"] {font-size:1rem !important;color: #6c757d;}
   background: black;
 }
 
-#verizon-logo {
-  background-image: url("../Verizon.png");
+#uplynk-logo {
+  background-image: url("../Uplynk.png");
   background-repeat: no-repeat;
   background-color: white;
   background-size: contain;

@@ -1,12 +1,12 @@
 # Customize the ads overlay
-The present sample shows customized overlay elements for ads played with the THEOplayer integration.
+The present sample shows customized overlay elements for ads played with the CSAI integration.
 
 To keep the page simple, we moved to this readme notes and useful resources.
 
 ## About the player implementation
 The present samples are meant to be used with the NPM-installed player. Get your NPM web player on https://www.npmjs.com/package/theoplayer.
 
-Alternatively, you can also decide to generate a custom player on the THEO portal.
+Alternatively, you can also generate a custom player on THEOportal.
 
 <details style="border:1px solid #ccc;padding:1em; background-color:#f9f9f9">
   <summary>Making sure the player is implemented correctly: <u>URLs and license</u></summary>
@@ -29,8 +29,8 @@ The present sample showcases a customized UI overlay for CSAI ads played with th
 <details style="border:1px solid #ccc;padding:1em; background-color:#f9f9f9">
   <summary>Learn more</summary>
 
-### Notes about the THEOplayer integration
-Ads can be played in THEOplayer out of the box with the THEO integration. For this you don't need to add any library, nor to specify any integration in your adSource.
+### Notes about the CSAI integration
+Ads can be played in THEOplayer out of the box with the CSAI integration. For this you don't need to add any library, nor to specify any integration in your adSource.
 
 The UI, including the language, is customizable. Check the links below for related resources.
 
@@ -39,7 +39,7 @@ The UI, including the language, is customizable. Check the links below for relat
 ## Documentation and resources
 ### Player
 * [NPM web player](https://www.npmjs.com/package/theoplayer)
-* [THEO Portal](https://portal.theoplayer.com)
+* [THEOportal](https://portal.theoplayer.com)
 
 ### Ads
 * [How to guides - Introduction](https://docs.theoplayer.com/how-to-guides/01-ads/00-introduction.md)
@@ -47,14 +47,10 @@ The UI, including the language, is customizable. Check the links below for relat
 * [AdsConfiguration](https://docs.theoplayer.com/api-reference/web/theoplayer.adsconfiguration.md)
 * [Advertising Tester - VAST, VPAID, VMAP](https://www.theoplayer.com/theoplayer-demo-advertisement-tester-vpaid-vast-vmap)
 
-* [Setting up THEO ads](https://docs.theoplayer.com/how-to-guides/01-ads/03-how-to-set-up-vast-and-vmap.md)
+* [Setting up CSAI ads](https://docs.theoplayer.com/how-to-guides/01-ads/03-how-to-set-up-vast-and-vmap.md)
   <span style="display: inline-block;height:2em"></span>
-* [Customizing THEO ads](https://docs.theoplayer.com/how-to-guides/01-ads/02-customizing-the-ad-overlay-text.md)
+* [Customizing CSAI ads](https://docs.theoplayer.com/how-to-guides/01-ads/02-customizing-the-ad-overlay-text.md)
 
 * [Setting up IMA ads](https://docs.theoplayer.com/how-to-guides/01-ads/10-google-ima.md)
   <span style="display: inline-block;height:2em"></span>
 * [FAQ: Is it possible to hide/disable the Google IMA UI?](https://docs.theoplayer.com/how-to-guides/11-ui/05-is-it-possible-to-hide-googla-ima.md)
-
-
-
-

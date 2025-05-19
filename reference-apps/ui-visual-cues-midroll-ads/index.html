@@ -18,13 +18,13 @@
         <style>
             /* Define style for cues */
             .adCue {
-                width:.5em; 
+                width:.5em;
                 height:100%;
                 background-color: #fcba03;
                 position:absolute;
                 top:0;
             }
-            
+
         </style>
         <!-- ***** Google IMA library, used to play ads with the IMA integration. For testing purposes, it may be useful to use the debug version:  ***** -->
         <script type="text/javascript" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
@@ -36,7 +36,7 @@
         <p>In this example, we show a basic implementation of UI cues that appear on the timeline to indicate where the ads will be.</p>
         <div class="theoplayer-container video-js theoplayer-skin"></div>
         <p><b>Note:</b> If you are using an ad blocker plugin, you may need to disable it to play this sample correctly</p>
-        <button onclick="player.source = sourceTHEOads">Play THEO ads</button>
+        <button onclick="player.source = sourceTHEOads">Play CSAI ads</button>
         <button onclick="player.source = sourceIMAads">Play IMA ads</button>
         <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
         <script
@@ -66,30 +66,26 @@
                     {
                         sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
                         timeOffset: "start",
-                        skipOffset: 5
+                        skipOffset: 5,
                     },
                     {
-                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        sources: "https://cdn.theoplayer.com/demos/ads/vast/dfp-linear-inline-no-skip.xml",
                         timeOffset: 150,
-                        skipOffset: 5
                     },
                     {
-                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        sources: "https://cdn.theoplayer.com/demos/ads/vast/dfp-midroll-no-skip.xml",
                         timeOffset: 300,
-                        skipOffset: 5
                     },
                     {
-                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        sources: "https://cdn.theoplayer.com/demos/ads/vast/double-preroll-ima-dfp-skip-5s.xml",
                         timeOffset: 450,
-                        skipOffset: 5
                     },
                     {
-                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        sources: "https://cdn.theoplayer.com/demos/ads/vast/dfp-postroll-no-skip.xml",
                         timeOffset: "end",
-                        skipOffset: 5
                     }
                 ],
-                poster: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Big.Buck.Bunny.-.Opening.Screen.png/1200px-Big.Buck.Bunny.-.Opening.Screen.png"
+                poster: "https://cdn.theoplayer.com/video/big_buck_bunny/poster.jpg"
             };
 
             const sourceIMAads = {
@@ -105,31 +101,27 @@
                         integration: "google-ima"
                     },
                     {
-                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        sources: "https://cdn.theoplayer.com/demos/ads/vast/dfp-linear-inline-no-skip.xml",
                         timeOffset: 150,
-                        skipOffset: 5,
                         integration: "google-ima"
                     },
                     {
-                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        sources: "https://cdn.theoplayer.com/demos/ads/vast/dfp-midroll-no-skip.xml",
                         timeOffset: 300,
-                        skipOffset: 5,
                         integration: "google-ima"
                     },
                     {
-                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        sources: "https://cdn.theoplayer.com/demos/ads/vast/double-preroll-ima-dfp-skip-5s.xml",
                         timeOffset: 450,
-                        skipOffset: 5,
                         integration: "google-ima"
                     },
                     {
-                        sources: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+                        sources: "https://cdn.theoplayer.com/demos/ads/vast/dfp-postroll-no-skip.xml",
                         timeOffset: "end",
-                        skipOffset: 5,
                         integration: "google-ima"
                     }
                 ],
-                poster: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Big.Buck.Bunny.-.Opening.Screen.png/1200px-Big.Buck.Bunny.-.Opening.Screen.png"
+                poster: "https://cdn.theoplayer.com/video/big_buck_bunny/poster.jpg"
             };
 
             // Setting the initial player source
@@ -155,7 +147,7 @@
                     }
                 }
             }
- 
+
             function destroyCues() {
                 console.log("destroyCues");
                 const cues = element.querySelectorAll('.vjs-progress-control.vjs-control .adCue');
@@ -163,7 +155,7 @@
                     cue.parentNode.removeChild(cue);
                 }
             }
-            
+
             function detectDuration(adIsPlaying) {
                 if (!adIsPlaying) {
                     contentDuration = player.duration;
@@ -174,7 +166,7 @@
                     t++;
                 }
             }
-            
+
             function detectTimeOffset() {
                 if(adsPresent){
                     let t = 0;
@@ -195,11 +187,11 @@
                 detectDuration(adIsPlaying);
                 !adIsPlaying ? drawCues() : destroyCues();
             });
-            
+
             player.addEventListener('sourcechange', function (){
                 playedAds.length = 0;
             });
-            
+
             player.ads.addEventListener('adend', function (adEvent){
                 playedAds.push(adEvent.ad.adBreak.timeOffset);
             });

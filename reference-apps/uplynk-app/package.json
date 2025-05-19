@@ -1,5 +1,5 @@
 {
-  "name": "verizon-media-app",
+  "name": "uplynk-app",
   "version": "0.0.1",
   "private": true,
   "dependencies": {},
@@ -11,7 +11,7 @@
   "homepage": ".",
   "repository": {
     "type": "git",
-    "url": "https://github.com/THEOplayer/samples-html5-sdk/tree/master/reference-apps/verizon-media"
+    "url": "https://github.com/THEOplayer/samples-html5-sdk/tree/master/reference-apps/uplynk-app"
   },
   "devDependencies": {
     "local-web-server": "^3.0.7",

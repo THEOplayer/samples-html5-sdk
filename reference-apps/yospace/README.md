@@ -6,7 +6,7 @@ To keep the page simple, we moved to this readme notes and useful resources.
 ## About the player implementation
 The present samples are meant to be used with the NPM-installed player. Get your NPM web player on https://www.npmjs.com/package/theoplayer.
 
-Alternatively, you can also decide to generate a custom player on the THEO portal.
+Alternatively, you can also generate a custom player on THEOportal.
 
 <details style="border:1px solid #ccc;padding:1em; background-color:#f9f9f9">
   <summary>Making sure the player is implemented correctly: <u>URLs and license</u></summary>
@@ -40,7 +40,7 @@ The present sample showcases SSAI ads, integrated in the stream with Yospace.
 ## Documentation and resources
 ### Player
 * [NPM web player](https://www.npmjs.com/package/theoplayer)
-* [THEO Portal](https://portal.theoplayer.com)
+* [THEOportal](https://portal.theoplayer.com)
 
 ### UI and customization
 * [How-to guides - Introduction](https://docs.theoplayer.com/how-to-guides/11-ui/00-introduction.md)

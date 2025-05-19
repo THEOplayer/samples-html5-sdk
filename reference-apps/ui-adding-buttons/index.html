@@ -8,7 +8,7 @@
         <meta charset="UTF-8" />
         <title>Adding UI buttons - THEOplayer Web SDK samples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- adding Font AweAwesome script for step backward and step forward buttons -->       
+        <!-- adding Font AweAwesome script for step backward and step forward buttons -->
         <script src="https://kit.fontawesome.com/a7f9895e55.js"></script>
         <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
         <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
@@ -50,14 +50,14 @@
                     height: "320px"
                 }
             });
-            
+
             player.source = {
                 sources: {
                     type : 'application/x-mpegurl',
                     src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8'
                 }
                 ,
-                poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Big.Buck.Bunny.-.Opening.Screen.png/1200px-Big.Buck.Bunny.-.Opening.Screen.png',
+                poster: 'https://cdn.theoplayer.com/video/big_buck_bunny/poster.jpg',
             };
 
             // setting up the rewind button by setting up a video-js component
@@ -75,7 +75,7 @@
                     }
                     this.el().addEventListener('mouseover', toggleTooltip);
                     this.el().addEventListener('mouseout', toggleTooltip);
-       
+
                     this.el().appendChild(tooltipSpan);
                 },
                 handleClick: () => {
@@ -87,7 +87,7 @@
             });
             THEOplayer.videojs.registerComponent('RewindButton', RewindButton);
             player.ui.getChild('controlBar').addChild('RewindButton', {});
-            
+
             // setting up the forward button by setting up a video-js component
              Button = THEOplayer.videojs.getComponent('Button');
             const ForwardButton = THEOplayer.videojs.extend(Button, {

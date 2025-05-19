@@ -4,7 +4,7 @@ export let appConfig = appConfig || {
         {
             name: "Multi-Asset DRM",
             source: {
-                integration: 'verizon-media',
+                integration: 'uplynk',
                 id: ['e973a509e67241e3aa368730130a104d', 'e70a708265b94a3fa6716666994d877d'],
                 contentProtected: true,
                 assetType: 'asset',
@@ -20,7 +20,7 @@ export let appConfig = appConfig || {
         {
             name: "Ads",
             source: {
-                "integration": "verizon-media",
+                "integration": "uplynk",
                 "id": [
                     "41afc04d34ad4cbd855db52402ef210e",
                     "c6b61470c27d44c4842346980ec2c7bd",
@@ -45,26 +45,27 @@ export let appConfig = appConfig || {
                 'queue': true
             }
         },
-        {
-            name: "Live",
-            source: {
-                integration: 'verizon-media',
-                assetType: 'channel',
-                id: '3c367669a83b4cdab20cceefac253684',
-                preplayParameters: { 'ad': 'cleardashnew'},
-                playbackUrlParameters: {},
-                ping: {
-                    adImpressions: false,
-                    freeWheelVideoViews: false,
-                    linearAdData: true
-                },
-                contentProtected: true
-            },
-            features: ["Preplay", "Ping", "Asset Info", "DRM", "Ads", "SSAI"],
-            config: {
-                'general': ["coming-up-notification"],
-                'queue': false
-            }
-        }
+        // // The following stream is down for the moment.
+        // {
+        //     name: "Live",
+        //     source: {
+        //         integration: 'uplynk',
+        //         assetType: 'channel',
+        //         id: '3c367669a83b4cdab20cceefac253684',
+        //         preplayParameters: { 'ad': 'cleardashnew'},
+        //         playbackUrlParameters: {},
+        //         ping: {
+        //             adImpressions: false,
+        //             freeWheelVideoViews: false,
+        //             linearAdData: true
+        //         },
+        //         contentProtected: true
+        //     },
+        //     features: ["Preplay", "Ping", "Asset Info", "DRM", "Ads", "SSAI"],
+        //     config: {
+        //         'general': ["coming-up-notification"],
+        //         'queue': false
+        //     }
+        // }
     ]
 };
