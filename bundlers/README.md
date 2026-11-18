@@ -1,41 +1,45 @@
-# theoplayer-sdk-web-npm
+# samples-npm-html5-sdk
 
-THEOplayer is the universal video player solution created by [THEO Technologies](https://theoplayer.com).
-The THEOplayer Web SDK enables you to deliver content playback across HTML and JavaScript based platforms, such as browsers, smart TVs and other web applications.
+This repository contains sample projects that setup the THEOplayer HTML5 video player SDK through NPM through various popular bundlers.
+These projects serve as bootstrap templates, and might be insightful to app developers.
 
-The THEOplayer Web SDK can be installed through NPM, as explained at [https://www.npmjs.com/package/theoplayer](https://www.npmjs.com/package/theoplayer),
-and demonstrated through the [samples](/samples) in this repository.
+The available sample projects:
 
-## Samples
+* Webpack
+    * [JavaScript](webpack/javascript/)
+    * [TypeScript](webpack/typescript/)
+* Parcel
+    * [JavaScript](parcel/javascript/)
+    * [TypeScript](parcel/typescript/)
+* Rollup
+    * [JavaScript](rollup/javascript/)
+    * [TypeScript](rollup/typescript/)
+* Vite
+  * [JavaScript](vite/javascript/)
+  * [TypeScript](vite/typescript/)
+    
+## Usage
 
-Navigate to the [samples](/samples) to go through reference implementations for NPM in combination with Webpack, Rollup and Parcel.
+1. Navigate to a specific sample project folder using your terminal or command prompt, for example `webpack/javascript/`.
+2. Run `npm install` to install the dependencies.
+3. Enter a valid value for the `license` string in `util/constants.js`.
+Refer to the Frequently Asked Questions below if you're unsure on how to proceed with this step.
+4. Run `npm run build` to create a production-level bundle, or `npm run build-dev` to create a development-level bundle.
+5. Run `npm run serve` to start a local web server.
+6. Open http://localhost:8080 in your browser, or the server address suggested after executing the `npm run serve` command.
 
-Other related THEOplayer repositories:
+## Frequently Asked Questions
 
-* [samples-html5-sdk](https://github.com/THEOplayer/samples-html5-sdk): code samples for common use cases
-* [samples-react-js](https://github.com/THEOplayer/samples-react-js): basic implementation of a React application
-* [samples-angular](https://github.com/THEOplayer/samples-angular): basic implementation of an Angular application
-* [samples-vuejs](https://github.com/THEOplayer/samples-vuejs): basic implementation of a Vue.js application
-* [samples-nuxtjs](https://github.com/THEOplayer/samples-nuxtjs): basic implementation of an Nuxt.js application
-* [samples-react-native](https://github.com/THEOplayer/samples-react-native): code samples for React Native
+* Are there any prerequisites to using this repository and its sample projects?
+  * Yes, there are prerequisites.
+  You must have a valid THEOplayer license to successfully use the sample projects.
+  Refer to the "Create an SDK" and "Configure license" sections in our [getting started guide](http://localhost:8000/getting-started/01-sdks/01-web/00-getting-started-extended.md#create-an-sdk) for more information.
 
-## Documentation
+* Where do I find my value for the `license` string in `util/constants.js`?
+  * You can acquire a license at https://portal.theoplayer.com/getting-started.
+  Log in, build a Web SDK (or navigate to an existing one), and copy the license string to your clipboard.
+  Then, paste this value in `util/constants.js`. The green rectangle in the screenshot below points out where you can find this string on your SDK page.
 
-Documentation on how to install THEOplayer through NPM is located at [https://www.npmjs.com/package/theoplayer](https://www.npmjs.com/package/theoplayer).
-
-General documentation on the THEOplayer Web SDK is located at [https://docs.theoplayer.com/](https://docs.theoplayer.com/),
-and the API reference is located at [https://docs.theoplayer.com/api-reference/web/theoplayer.md](https://docs.theoplayer.com/api-reference/web/theoplayer.md).
-For example, the article at [https://docs.theoplayer.com/how-to-guides/04-drm/00-introduction.md](https://docs.theoplayer.com/how-to-guides/04-drm/00-introduction.md) explains how to enable DRM as the content protection,
-and the article at  [https://docs.theoplayer.com/api-reference/web/theoplayer.chromelessplayer.md](https://docs.theoplayer.com/api-reference/web/theoplayer.chromelessplayer.md) lists the available properties and methods of the Player API (e.g. `volume`, `play()`).
-
-## Support
-
-If you are having issues installing or using the package, first look for existing answers on our [documentation website](https://docs.theoplayer.com/),
-and in particular our [FAQ](https://docs.theoplayer.com/faq/00-introduction.md).
-
-You can also contact our technical support team by following the instructions on our [support page](https://docs.theoplayer.com/faq/00-introduction.md).
-Note that your level of support depends on your selected [support plan](https://www.theoplayer.com/supportplans).
-
-## License
-
-The contents of this package are subject to the [THEOplayer license](https://www.theoplayer.com/terms).
+* Are there other examples where THEOplayer is used through NPM?
+  * The project at [https://github.com/THEOplayer/samples-nextjs/tree/master/typescript-npm](https://github.com/THEOplayer/samples-nextjs/tree/master/typescript-npm) combines THEOplayer (through NPM), TypeScript and Next.js.
+  * The project at [https://replit.com/@THEOplayer/THEOplayer-NPM-Webpack](https://replit.com/@THEOplayer/THEOplayer-NPM-Webpack) is a replit project that can be used as an in-browser playground.
