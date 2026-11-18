@@ -1,0 +1,20 @@
+{
+  "name": "theoplayer-rollup-typescript",
+  "version": "0.0.1",
+  "scripts": {
+    "build-dev": "rollup --config --environment INCLUDE_DEPS,BUILD:production",
+    "build": "rollup --config",
+    "serve": "cd dist && http-server"
+  },
+  "dependencies": {
+    "theoplayer": "latest"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.2.1",
+    "http-server": "^14.1.1",
+    "rollup": "^2.79.1",
+    "rollup-plugin-copy": "^3.5.0",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.4"
+  }
+}

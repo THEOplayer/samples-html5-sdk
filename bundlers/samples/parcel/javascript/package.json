@@ -1,0 +1,24 @@
+{
+  "name": "theoplayer-parcel-javascript",
+  "version": "0.0.1",
+  "scripts": {
+    "build-dev": "cross-env NODE_ENV=development parcel build src/index.html --no-optimize",
+    "build": "cross-env NODE_ENV=production parcel build src/index.html",
+    "serve": "cd dist && http-server"
+  },
+  "staticFiles": {
+    "staticPath": "node_modules/theoplayer/",
+    "distDir": "dist/vendor/theoplayer/"
+  },
+  "dependencies": {
+    "theoplayer": "latest"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "cross-env": "^7.0.3",
+    "http-server": "^14.1.1",
+    "parcel": "^2.12.0",
+    "parcel-reporter-static-files-copy": "^1.5.3",
+    "process": "^0.11.10"
+  }
+}
