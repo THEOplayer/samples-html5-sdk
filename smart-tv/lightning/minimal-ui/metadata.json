@@ -1,0 +1,6 @@
+{
+  "name": "minimal-ui",
+  "identifier": "com.theoplayer.lightning.minimal-ui",
+  "version": "1.0.0",
+  "icon": "./static/icon.png"
+}

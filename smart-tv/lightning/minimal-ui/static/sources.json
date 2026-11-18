@@ -1,0 +1,85 @@
+[
+  {
+    "name": "Big Buck Bunny [HLS]",
+    "source": {
+      "sources": [
+        {
+          "src": "https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny_metadata.m3u8",
+          "type": "application/x-mpegurl"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Sintel [HLS]",
+    "source": {
+      "sources": [
+        {
+          "src": "https://cdn.theoplayer.com/video/sintel/index.m3u8",
+          "type": "application/x-mpegurl"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Elephant's Dream (HLS)",
+    "source": {
+      "sources": [
+        {
+          "src": "https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8",
+          "type": "application/x-mpegurl"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Star Wars: The Force Awakens - Official Comic Con 2015 Reel (HLS)",
+    "source": {
+      "sources": [
+        {
+          "src": "https://cdn.theoplayer.com/video/star_wars_episode_vii-the_force_awakens_official_comic-con_2015_reel_(2015)/index.m3u8",
+          "type": "application/x-mpegurl"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Live Stream (DASH)",
+    "source": {
+      "sources": [
+        {
+          "src": "http://livesim.dashif.org/livesim/testpic_2s/Manifest.mpd"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Elephant's Dream (HLS) + VAST pre-roll",
+    "source": {
+      "sources": [
+        {
+          "src": "https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8",
+          "type": "application/x-mpegurl"
+        }
+      ],
+      "ads": [{
+        "timeOffset": "start",
+        "sources": "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_ad_samples&sz=640x480&cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator="
+      }]
+    }
+  },
+  {
+    "name": "Elephant's Dream (HLS) + VMAP (pre,mid and post-roll)",
+    "source": {
+      "sources": [
+        {
+          "src": "https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8",
+          "type": "application/x-mpegurl"
+        }
+      ],
+      "ads": [{
+        "sources": "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/vmap_ad_samples&sz=640x480&cust_params=sample_ar%3Dpremidpost&ciu_szs=300x250&gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&impl=s&cmsid=496&vid=short_onecue&correlator="
+      }]
+    }
+  }
+]

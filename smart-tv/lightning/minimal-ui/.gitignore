@@ -1,0 +1,7 @@
+static/THEOplayer/THEOplayer*
+build
+node_modules
+
+dist
+releases
+.tmp
