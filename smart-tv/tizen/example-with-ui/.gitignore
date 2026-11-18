@@ -1,0 +1,7 @@
+js/THEOplayer.chromeless.js
+node_modules/
+libs/
+.idea/
+js/
+*.wgt
+.sign/

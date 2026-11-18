@@ -1,0 +1,22 @@
+{
+  "name": "theo-reference-app",
+  "version": "1.0.0",
+  "description": "Theo Tizen Reference App",
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js",
+    "watch": "rollup -c ./rollup.config.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/r8szq0vy/tizen-reference-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/r8szq0vy/tizen-reference-app#readme",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^4.1.1",
+    "tslib": "^1.11.1",
+    "rollup": "^2.7.6",
+    "typescript": "^3.8.3"
+  }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="THEO Tizen Reference App"/>
+
+
+    <title>THEOplayer Tizen UI</title>
+
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+
+<body>
+<div class='theoplayer-tizen theo-hide-controls'>
+    <div class="theo-menu-right"></div>
+    <div class="theo-top-control-bar">
+        <div class="theo-top-control-wrapper">
+            <div class="theo-icon-subtitles theo-icon"></div>
+            <div class="theo-icon-audio theo-icon"></div>
+        </div>
+    </div>
+    <div class="theo-big-play-button"></div>
+    <div class="theo-spinner"></div>
+    <div class="theo-bottom-control-bar">
+        <div class="theo-bottom-control-wrapper">
+            <div class="theo-play-pause-button theo-icon"></div>
+            <div class="theo-current-time"></div>
+            <div class="theo-progress-bar">
+                <div class="theo-current-progress"></div>
+            </div>
+            <div class="theo-duration"></div>
+        </div>
+    </div>
+    <div class='theo-seek-display hidden'>
+        <div class="theo-speed-display">
+            <div class="theo-speed-number"></div>
+            <div class="theo-speed-arrows"></div>
+        </div>
+        <strong class="theo-time-to-seek-to"></strong>
+    </div>
+    <div class="theo-overlay hidden"></div>
+</div>
+<script src='libs/THEOplayer.chromeless.js'></script>
+<script src="js/Main.js"></script>
+
+<script>
+    var element = document.querySelector('.theoplayer-tizen');
+    var player = new THEOplayer.Player(element, {
+        fluid: true,
+        libraryLocation: 'libs/'
+    });
+
+    var showCase = {
+        hls: {
+            sources: {
+                src: 'http://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8',
+                type: 'application/x-mpegurl'
+            }
+        },
+        dash: {
+            sources: {
+                src: 'https://demo.unified-streaming.com/video/tears-of-steel/tears-of-steel-multiple-subtitles.ism/.mpd',
+                type: 'application/dash+xml'
+            }
+        },
+        dashDrm: {
+            sources: {
+                src: 'https://amssamples.streaming.mediaservices.windows.net/622b189f-ec39-43f2-93a2-201ac4e31ce1/BigBuckBunny.ism/manifest(format=mpd-time-csf)',
+                type: 'application/dash+xml',
+                drm: {
+                    widevine: {
+                        licenseAcquisitionURL: 'https://amssamples.keydelivery.mediaservices.windows.net/Widevine/?KID=1ab45440-532c-4399-94dc-5c5ad9584bac',
+                    }
+                }
+            }
+        }
+    };
+
+    player.source = showCase['hls']; // 'hls' | 'dashDrm'
+
+    player.preload = 'auto';
+
+    new ReferenceApp.ExampleUI(player);
+
+</script>
+
+</body>
+
+</html>

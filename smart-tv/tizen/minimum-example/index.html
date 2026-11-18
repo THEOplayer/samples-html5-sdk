@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="THEO Tizen Reference App"/>
+    <title>THEOplayer Tizen UI</title>
+    <style>
+    .theoplayer-tizen {
+        padding-top: 56.25%;
+    }
+
+    video[src] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .theoplayer-ad-linear {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom:0;
+    }
+
+    </style>
+
+</head>
+
+
+<body>
+<div class='theoplayer-tizen'></div>
+<script src='libs/THEOplayer.chromeless.js'></script>
+
+<script>
+    var element = document.querySelector('.theoplayer-tizen');
+    var player = new THEOplayer.Player(element, {
+        fluid: true,
+        libraryLocation: 'libs/'
+    });
+
+    var showCase = {
+        hls: {
+            sources: {
+                src: 'http://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8',
+                type: 'application/x-mpegurl'
+            }
+        },
+        dash: {
+            sources: {
+                src: 'https://demo.unified-streaming.com/video/tears-of-steel/tears-of-steel-multiple-subtitles.ism/.mpd',
+                type: 'application/dash+xml'
+            }
+        },
+        dashDrm: {
+            sources: {
+                src: 'https://amssamples.streaming.mediaservices.windows.net/622b189f-ec39-43f2-93a2-201ac4e31ce1/BigBuckBunny.ism/manifest(format=mpd-time-csf)',
+                type: 'application/dash+xml',
+                drm: {
+                    widevine: {
+                        licenseAcquisitionURL: 'https://amssamples.keydelivery.mediaservices.windows.net/Widevine/?KID=1ab45440-532c-4399-94dc-5c5ad9584bac',
+                    }
+                }
+            }
+        }
+    };
+
+    player.source = showCase['dash']; // 'hls' | 'dashDrm'
+
+    player.preload = 'auto';
+
+    var keyCodes = {
+        LEFT: 37,
+        UP: 38,
+        RIGHT: 39,
+        DOWN: 40,
+        CONFIRM: 13,
+        // tizen
+        RETURN: 10009,
+        EXIT: 10182,
+        MEDIAPLAYPAUSE: 10252
+    };
+
+    if (typeof window.tizen !== "undefined") {
+        window.tizen.tvinputdevice.registerKey('MediaPlayPause'); // allow MediaPlayPause button
+    }
+
+    document.addEventListener('keydown', function (event) {
+        switch (event.keyCode) {
+            case keyCodes.CONFIRM:
+            case keyCodes.MEDIAPLAYPAUSE:
+                if (player.paused) {
+                    player.play();
+                } else {
+                    player.pause();
+                }
+                break;
+            case keyCodes.LEFT:
+                player.currentTime -= 10;
+                break;
+            case keyCodes.RIGHT:
+                player.currentTime += 10;
+                break;
+        }
+    });
+
+    // commonly used  events below for speeding up integration with implementation suggestions.
+    // more can be found at https://docs.portal.theoplayer.com/api-reference/web/theoplayer.playereventmap.md
+    player.addEventListener(['play', 'pause'], function () {
+        if (player.paused) {
+            console.log('player is paused');
+        } else {
+            console.log('player is unpaused');
+        }
+    });
+
+    player.addEventListener('playing', function () {
+        // (hide spinner if we were waiting)
+        console.log('player starts playing after unpause');
+    });
+
+    player.addEventListener('seeking', 'seeked', function () {
+        if (player.seeking) {
+            // (show spinner)
+            console.log('player is seeking to', player.currentTime);
+        } else {
+            // (hide spinner)
+            console.log('playing is done seeking to', player.currentTime);
+        }
+    });
+
+    player.addEventListener('waiting', function () {
+        // (show spinner)
+        console.log('player is waiting for data');
+    });
+
+    player.addEventListener('timeupdate', function () {
+        // (update displayed currentTime)
+        // console.log('currentTime is changed to', player.currentTime)
+    });
+
+    player.addEventListener('durationchange', function () {
+        // duration is NaN: duration not yet known
+        // duration is a finite number: video-on-demand
+        // duration is Infinity: stream is live
+        // Consider using seekable ranges to determine duration when live: https://docs.portal.theoplayer.com/api-reference/web/theoplayer.chromelessplayer.seekable.md#chromelessplayerseekable-property
+        console.log('duration is changed to', player.duration);
+    });
+
+    // API is similar for audioTracks. Just change textTracks to audioTracks in that case.
+    // API: https://docs.portal.theoplayer.com/api-reference/web/theoplayer.tracklisteventmap.md
+    player.textTracks.addEventListener('addtrack', function (addTrackEvent) {
+        // TextTrack API: https://docs.portal.theoplayer.com/api-reference/web/theoplayer.texttrack.md
+        var track = addTrackEvent.track;
+        console.log('track is added', track);
+
+        // TextTrack events API: https://docs.portal.theoplayer.com/api-reference/web/theoplayer.trackeventmap.md
+        track.addEventListener('addcue', function (addCueEvent) {
+
+            // Cue API object: https://docs.portal.theoplayer.com/api-reference/web/theoplayer.texttrackcue.md
+            // Cue events API: https://docs.portal.theoplayer.com/api-reference/web/theoplayer.texttrackcueeventmap.md
+            // note: cue content can differ for metadata cues. Refer to details for specific type for more details.
+            var cue = addCueEvent.cue;
+            console.log('cue is added', cue);
+        });
+    });
+
+
+</script>
+
+</body>
+
+</html>
