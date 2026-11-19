@@ -17,5 +17,8 @@
   },
   "engines": {
     "node": ">=22.12"
+  },
+  "allowScripts": {
+    "fsevents": false
   }
 }

@@ -23,5 +23,11 @@
   },
   "overrides": {
     "html-encoding-sniffer": "^7"
+  },
+  "allowScripts": {
+    "@parcel/watcher": false,
+    "@swc/core": false,
+    "lmdb": false,
+    "msgpackr-extract": false
   }
 }

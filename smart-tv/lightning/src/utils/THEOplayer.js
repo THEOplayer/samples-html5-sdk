@@ -4,6 +4,9 @@ import { Log } from '@lightningjs/sdk';
 let player = undefined;
 let videoWrapper = undefined;
 
+// Without a license, the player only plays on localhost. Get a license on THEOportal.
+const license = '';
+
 const THEOplayerLibraryLocation = '/static/THEOplayer';
 const THEOplayerLibrary = `${THEOplayerLibraryLocation}/THEOplayer.chromeless.js`;
 const THEOplayerCSS = `${THEOplayerLibraryLocation}/ui.css`;
@@ -15,8 +18,12 @@ const THEOplayerPlugin = {
     createPlayer() {
         if (player === undefined) {
             player = new THEOplayer.Player(videoWrapper, {
+                license,
                 libraryLocation: THEOplayerLibraryLocation
             });
+            if (!license && location.hostname !== 'localhost') {
+                showLicenseBanner();
+            }
         }
         return player;
     },
@@ -60,6 +67,25 @@ const setupVideoWrapper = () => {
         document.body.appendChild(wrapper);
     }
     return wrapper;
+};
+
+const showLicenseBanner = () => {
+    const banner = document.createElement('div');
+    banner.textContent =
+        'This page is not served from localhost, so OptiView Player needs a license. ' +
+        'Set it in src/utils/THEOplayer.js. Get a license on THEOportal (portal.theoplayer.com).';
+    Object.assign(banner.style, {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        right: '0',
+        zIndex: '10',
+        padding: '12px 16px',
+        background: '#fff3cd',
+        color: '#664d03',
+        font: '16px sans-serif'
+    });
+    document.body.appendChild(banner);
 };
 
 export default THEOplayerPlugin;

@@ -19,7 +19,7 @@ This sample shows how to bundle the OptiView Player Web SDK from the [`theoplaye
 
 ## How it works
 * `src/` creates a `Player`, with `libraryLocation` set to `vendor/theoplayer/`, and sets a source.
-* `rollup-plugin-copy` copies the player files from `node_modules/theoplayer` to `dist/vendor/theoplayer/`. The player loads its workers and other files from there at runtime.
+* The `copyPlayerFiles` plugin in `rollup.config.js` copies the player files from `node_modules/theoplayer` to `dist/vendor/theoplayer/`. The player loads its workers and other files from there at runtime.
 * See `rollup.config.js` for the Rollup configuration.
 
 ## Documentation

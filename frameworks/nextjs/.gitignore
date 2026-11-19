@@ -4,3 +4,5 @@ public/vendor/theoplayer/
 .idea/
 .env*.local
 next-env.d.ts
+# Created by next dev
+AGENTS.md

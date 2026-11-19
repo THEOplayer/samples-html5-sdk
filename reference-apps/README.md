@@ -24,7 +24,6 @@ The pages load `THEOplayer.js` and `ui.css` from `../../node_modules/theoplayer/
 | [ads-customize-overlay](ads-customize-overlay) | Change the ad overlay | Root `npm start` |
 | [ads-customize-ui](ads-customize-ui) | Style the UI during ads | Root `npm start` |
 | [ui-visual-cues-midroll-ads](ui-visual-cues-midroll-ads) | Ad markers on the timeline | Root `npm start` |
-| [content-protection](content-protection) | DRM configuration snippets | Copy into your app |
 | [multiview](multiview) | Several streams side by side with `@theoplayer/extended` | Root `npm start` |
 | [text-track-rendering-styling](text-track-rendering-styling) | Subtitle styling | Root `npm start` |
 | [ui-align-timeline-in-middle](ui-align-timeline-in-middle) | Timeline in the middle of the control bar | Root `npm start` |

@@ -3,7 +3,8 @@
   "private": true,
   "description": "OptiView Player Web SDK reference apps",
   "scripts": {
-    "start": "http-server -a localhost -p 8080 -c-1"
+    "start": "http-server -a localhost -p 8080 -c-1",
+    "clean": "node scripts/clean.mjs"
   },
   "author": "Dolby Laboratories",
   "dependencies": {

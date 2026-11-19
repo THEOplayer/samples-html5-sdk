@@ -1,6 +1,6 @@
 {
-  "name": "com.theoplayer.lightning.minimal-ui",
-  "description": "OptiView Player Lightning example with minimal UI",
+  "name": "com.theoplayer.lightning",
+  "description": "OptiView Player Lightning example",
   "private": true,
   "dependencies": {
     "@lightningjs/sdk": "^5.5.7",
@@ -9,11 +9,9 @@
   "scripts": {
     "postinstall": "npm run copy:theoplayer",
     "copy:theoplayer": "node scripts/copy-theoplayer.mjs",
-    "run": "lng build && lng serve",
     "build": "lng build",
-    "serve": "lng serve",
+    "serve": "http-server build -a localhost -p 8080 -c-1 -o",
     "watch": "lng watch",
-    "dev": "lng dev",
     "lint": "eslint ."
   },
   "devDependencies": {
@@ -23,6 +21,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.7",
     "globals": "^17.14.0",
+    "http-server": "^14.1.1",
     "prettier": "^3.10.1",
     "typescript": "~6.0.3"
   },
@@ -37,5 +36,11 @@
   },
   "engines": {
     "node": ">=22.12"
+  },
+  "allowScripts": {
+    "@lightningjs/sdk": true,
+    "core-js": false,
+    "esbuild": false,
+    "fsevents": false
   }
 }

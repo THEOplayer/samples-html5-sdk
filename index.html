@@ -195,12 +195,6 @@ npm install
 npm run build
 npm start</code>
         </li>
-        <li class="card">
-          <a class="card__link" href="./reference-apps/content-protection/README.md">
-            <h3>Content protection</h3>
-            <p>DRM configuration snippets for Axinom, BuyDRM KeyOS, ARRIS Titanium and custom servers.</p>
-          </a>
-        </li>
       </ul>
     </section>
 
@@ -209,79 +203,44 @@ npm start</code>
       <p class="section__intro">Each bundler sample is a separate npm project. Run the commands in a terminal; the README lists the URL to open.</p>
       <ul class="cards">
         <li class="card">
-          <a class="card__link" href="./bundlers/vite/javascript/README.md">
-            <h3>Vite + JavaScript</h3>
-            <p>Bundle the <code>theoplayer</code> package with Vite in JavaScript.</p>
-          </a>
+          <div class="card__link">
+            <h3>Vite</h3>
+            <p>Bundle the <code>theoplayer</code> package with Vite. The commands are for JavaScript; use the <code>typescript</code> folder for TypeScript.</p>
+          </div>
+          <p class="card__variants">README: <a href="./bundlers/vite/javascript/README.md">JavaScript</a>, <a href="./bundlers/vite/typescript/README.md">TypeScript</a></p>
           <code class="card__command">cd bundlers/vite/javascript
 npm install
 npm run dev</code>
         </li>
         <li class="card">
-          <a class="card__link" href="./bundlers/vite/typescript/README.md">
-            <h3>Vite + TypeScript</h3>
-            <p>Bundle the <code>theoplayer</code> package with Vite in TypeScript.</p>
-          </a>
-          <code class="card__command">cd bundlers/vite/typescript
-npm install
-npm run dev</code>
-        </li>
-        <li class="card">
-          <a class="card__link" href="./bundlers/webpack/javascript/README.md">
-            <h3>webpack + JavaScript</h3>
-            <p>Bundle the <code>theoplayer</code> package with webpack in JavaScript.</p>
-          </a>
+          <div class="card__link">
+            <h3>webpack</h3>
+            <p>Bundle the <code>theoplayer</code> package with webpack. The commands are for JavaScript; use the <code>typescript</code> folder for TypeScript.</p>
+          </div>
+          <p class="card__variants">README: <a href="./bundlers/webpack/javascript/README.md">JavaScript</a>, <a href="./bundlers/webpack/typescript/README.md">TypeScript</a></p>
           <code class="card__command">cd bundlers/webpack/javascript
 npm install
 npm run build
 npm run serve</code>
         </li>
         <li class="card">
-          <a class="card__link" href="./bundlers/webpack/typescript/README.md">
-            <h3>webpack + TypeScript</h3>
-            <p>Bundle the <code>theoplayer</code> package with webpack in TypeScript.</p>
-          </a>
-          <code class="card__command">cd bundlers/webpack/typescript
-npm install
-npm run build
-npm run serve</code>
-        </li>
-        <li class="card">
-          <a class="card__link" href="./bundlers/rollup/javascript/README.md">
-            <h3>Rollup + JavaScript</h3>
-            <p>Bundle the <code>theoplayer</code> package with Rollup in JavaScript.</p>
-          </a>
+          <div class="card__link">
+            <h3>Rollup</h3>
+            <p>Bundle the <code>theoplayer</code> package with Rollup. The commands are for JavaScript; use the <code>typescript</code> folder for TypeScript.</p>
+          </div>
+          <p class="card__variants">README: <a href="./bundlers/rollup/javascript/README.md">JavaScript</a>, <a href="./bundlers/rollup/typescript/README.md">TypeScript</a></p>
           <code class="card__command">cd bundlers/rollup/javascript
 npm install
 npm run build
 npm run serve</code>
         </li>
         <li class="card">
-          <a class="card__link" href="./bundlers/rollup/typescript/README.md">
-            <h3>Rollup + TypeScript</h3>
-            <p>Bundle the <code>theoplayer</code> package with Rollup in TypeScript.</p>
-          </a>
-          <code class="card__command">cd bundlers/rollup/typescript
-npm install
-npm run build
-npm run serve</code>
-        </li>
-        <li class="card">
-          <a class="card__link" href="./bundlers/parcel/javascript/README.md">
-            <h3>Parcel + JavaScript</h3>
-            <p>Bundle the <code>theoplayer</code> package with Parcel in JavaScript.</p>
-          </a>
+          <div class="card__link">
+            <h3>Parcel</h3>
+            <p>Bundle the <code>theoplayer</code> package with Parcel. The commands are for JavaScript; use the <code>typescript</code> folder for TypeScript.</p>
+          </div>
+          <p class="card__variants">README: <a href="./bundlers/parcel/javascript/README.md">JavaScript</a>, <a href="./bundlers/parcel/typescript/README.md">TypeScript</a></p>
           <code class="card__command">cd bundlers/parcel/javascript
-npm install
-npm run build
-npm run serve</code>
-        </li>
-        <li class="card">
-          <a class="card__link" href="./bundlers/parcel/typescript/README.md">
-            <h3>Parcel + TypeScript</h3>
-            <p>Bundle the <code>theoplayer</code> package with Parcel in TypeScript.</p>
-          </a>
-          <code class="card__command">cd bundlers/parcel/typescript
 npm install
 npm run build
 npm run serve</code>
@@ -318,7 +277,7 @@ npm run dev</code>
           </a>
           <code class="card__command">cd frameworks/angular
 npm install
-npm start</code>
+npm run dev</code>
         </li>
         <li class="card">
           <a class="card__link" href="./frameworks/vue/README.md">
@@ -366,13 +325,14 @@ npm install
 npm run build</code>
         </li>
         <li class="card">
-          <a class="card__link" href="./smart-tv/lightning/minimal-ui/README.md">
+          <a class="card__link" href="./smart-tv/lightning/README.md">
             <h3>Lightning</h3>
             <p>A Lightning app with a source list and play/pause controls.</p>
           </a>
-          <code class="card__command">cd smart-tv/lightning/minimal-ui
+          <code class="card__command">cd smart-tv/lightning
 npm install
-npm run dev</code>
+npm run build
+npm run serve</code>
         </li>
       </ul>
     </section>

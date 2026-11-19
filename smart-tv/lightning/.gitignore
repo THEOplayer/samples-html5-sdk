@@ -2,3 +2,9 @@
 .idea/tasks.xml
 .idea/dictionaries
 .idea/shelf
+static/THEOplayer/
+build
+node_modules
+dist
+releases
+.tmp

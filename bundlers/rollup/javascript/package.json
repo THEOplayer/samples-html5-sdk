@@ -11,13 +11,15 @@
   },
   "devDependencies": {
     "http-server": "^14.1.1",
-    "rollup": "^4.68.6",
-    "rollup-plugin-copy": "^3.5.0"
+    "rollup": "^4.68.6"
   },
   "overrides": {
     "html-encoding-sniffer": "^7"
   },
   "engines": {
     "node": ">=22.12"
+  },
+  "allowScripts": {
+    "fsevents": false
   }
 }

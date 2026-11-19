@@ -3,6 +3,10 @@ import react from '@vitejs/plugin-react';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
+    build: {
+        // The player is one large module by design, so raise the limit above its chunk size.
+        chunkSizeWarningLimit: 4000,
+    },
     plugins: [
         react(),
         // OptiView Player loads its workers from libraryLocation, so the player files are served next to the app.

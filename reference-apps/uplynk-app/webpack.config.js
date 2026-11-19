@@ -21,6 +21,10 @@ module.exports = {
             }
         ]
     },
+    performance: {
+        // The copied player files are large by design; only check the sample's own bundle.
+        assetFilter: (file) => !file.includes('vendor/theoplayer/'),
+    },
     plugins: [
         // THEOplayer loads its workers from libraryLocation, so the player files are served next to the app.
         new CopyPlugin({

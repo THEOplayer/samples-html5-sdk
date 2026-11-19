@@ -21,6 +21,10 @@ module.exports = {
             extractComments: false,
         })],
     },
+    performance: {
+        // The copied player files are large by design; only check the sample's own bundle.
+        assetFilter: (file) => !file.includes('vendor/theoplayer/'),
+    },
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',

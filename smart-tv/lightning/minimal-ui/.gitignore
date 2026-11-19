@@ -1,7 +1,0 @@
-static/THEOplayer/
-build
-node_modules
-
-dist
-releases
-.tmp

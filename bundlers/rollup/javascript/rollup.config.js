@@ -1,4 +1,21 @@
-import copy from 'rollup-plugin-copy';
+
+import { copyFileSync, mkdirSync, readdirSync } from 'node:fs';
+
+// The player loads its workers and other files from libraryLocation, so copy them next to the bundle.
+function copyPlayerFiles() {
+    return {
+        name: 'copy-player-files',
+        writeBundle() {
+            mkdirSync('dist/vendor/theoplayer', { recursive: true });
+            for (const file of readdirSync('node_modules/theoplayer')) {
+                if (/\.(js|css|html|wasm)$/.test(file)) {
+                    copyFileSync(`node_modules/theoplayer/${file}`, `dist/vendor/theoplayer/${file}`);
+                }
+            }
+            copyFileSync('src/index.html', 'dist/index.html');
+        }
+    };
+}
 
 export default {
     input: {
@@ -13,11 +30,6 @@ export default {
     },
     external: [ 'theoplayer' ],
     plugins: [
-        copy({
-            targets: [
-                { src: './node_modules/theoplayer/*.(js|css|html|wasm)' , dest: './dist/vendor/theoplayer' },
-                { src: './src/index.html' , dest: './dist' }
-            ]
-        })
+        copyPlayerFiles()
     ]
 };

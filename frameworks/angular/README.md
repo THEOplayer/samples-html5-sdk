@@ -14,7 +14,7 @@ This sample is a separate npm project, so the root `npm start` of this repositor
    This gets the latest OptiView Player 11.x release from the [`theoplayer`](https://www.npmjs.com/package/theoplayer) npm package.
 3. Start the dev server:
    ```sh
-   npm start
+   npm run dev
    ```
    Open http://localhost:4200.
 

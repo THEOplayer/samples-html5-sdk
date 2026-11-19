@@ -41,6 +41,18 @@ npm run dev
 
 The README in each sample folder lists its commands, the URL to open, and where to set the license.
 
+### Removing installed dependencies
+
+To remove every `node_modules` folder and `package-lock.json` file in the repository, run this in the repository root:
+
+```sh
+npm run clean
+```
+
+### Install scripts
+
+npm 11.19 and later block the install scripts of dependencies unless the project's `allowScripts` field approves them. Most of these scripts are not needed, because the build tools ship prebuilt binaries as separate packages, so each `package.json` sets them to `false`. The Lightning sample allows the `@lightningjs/sdk` script, which copies the polyfills that its build needs.
+
 ## How the samples load the player
 
 The player loads extra files at runtime, such as the transmuxer worker (`THEOplayer.transmux.js` and `.wasm`), `iframe.html` and `theoplayer.sw.js`. It loads them from the `libraryLocation` in the player configuration. Every sample therefore serves the files of the `theoplayer` package next to the app, and sets `libraryLocation` to that folder:
