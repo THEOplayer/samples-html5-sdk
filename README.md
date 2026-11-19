@@ -11,7 +11,7 @@ More live demos are on the [OptiView Player examples page](https://optiview.dolb
 | [`reference-apps`](./reference-apps) | Static pages for ads, MultiView, subtitles, UI customization, the Visibility API, a PWA and a loading-time utility | Root `npm start` |
 | [`reference-apps/uplynk-app`](./reference-apps/uplynk-app), [`wowza`](./reference-apps/wowza), [`wowza-backup-streams`](./reference-apps/wowza-backup-streams) | Uplynk and Wowza Streaming Cloud integrations | In the sample folder |
 | [`bundlers`](./bundlers) | [Vite](./bundlers/vite), [webpack](./bundlers/webpack), [Rollup](./bundlers/rollup) and [Parcel](./bundlers/parcel), in JavaScript and TypeScript | In the sample folder |
-| [`frameworks`](./frameworks) | [React](./frameworks/react), [Next.js](./frameworks/nextjs), [Angular](./frameworks/angular), [Vue](./frameworks/vue) and [Nuxt](./frameworks/nuxt) | In the sample folder |
+| [`frameworks`](./frameworks) | [React](./frameworks/react), [Next.js](./frameworks/nextjs), [Angular](./frameworks/angular), [Vue](./frameworks/vue), [Nuxt](./frameworks/nuxt), [SvelteKit](./frameworks/sveltekit), [Astro](./frameworks/astro), [Solid](./frameworks/solid) and [React Router](./frameworks/react-router) | In the sample folder |
 | [`smart-tv`](./smart-tv) | [webOS](./smart-tv/webos), [Tizen](./smart-tv/tizen) and [Lightning](./smart-tv/lightning) | In the sample folder, then on a TV |
 
 ## Running the samples
