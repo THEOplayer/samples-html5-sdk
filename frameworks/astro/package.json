@@ -1,0 +1,28 @@
+{
+  "name": "optiview-astro-sample",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "copy:theoplayer": "node scripts/copy-theoplayer.mjs",
+    "predev": "npm run copy:theoplayer",
+    "dev": "astro dev",
+    "prebuild": "npm run copy:theoplayer",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "theoplayer": "^11",
+    "@theoplayer/web-ui": "^2"
+  },
+  "devDependencies": {
+    "astro": "^7.4.12",
+    "typescript": "^7.0.2"
+  },
+  "allowScripts": {
+    "fsevents": false
+  }
+}

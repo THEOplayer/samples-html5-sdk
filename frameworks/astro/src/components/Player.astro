@@ -1,0 +1,38 @@
+<optiview-player class="player"></optiview-player>
+
+<script>
+  // Your OptiView Player license string. Without a license, the player only works on localhost.
+  const LICENSE = '';
+
+  class OptiViewPlayer extends HTMLElement {
+    private dispose?: () => void;
+
+    connectedCallback() {
+      let disposed = false;
+      let ui: HTMLElement | undefined;
+      this.dispose = () => {
+        disposed = true;
+        ui?.remove();
+      };
+      void import('@theoplayer/web-ui').then(({ DefaultUI }) => {
+        if (disposed) return;
+        const playerUI = new DefaultUI({ libraryLocation: '/vendor/theoplayer/', license: LICENSE });
+        playerUI.source = {
+          sources: [{ src: 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8', type: 'application/x-mpegurl' }]
+        };
+        ui = playerUI;
+        this.append(playerUI);
+      }).catch(() => {
+        if (!disposed) {
+          this.textContent = 'Unable to load the player.';
+          this.setAttribute('role', 'alert');
+        }
+      });
+    }
+
+    disconnectedCallback() {
+      this.dispose?.();
+    }
+  }
+  if (!customElements.get('optiview-player')) customElements.define('optiview-player', OptiViewPlayer);
+</script>
