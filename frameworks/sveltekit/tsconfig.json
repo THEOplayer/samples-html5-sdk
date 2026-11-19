@@ -1,0 +1,9 @@
+{
+  "extends": "$app/tsconfig",
+  "include": ["src", "*.ts"],
+  "compilerOptions": {
+    "strict": true,
+    "skipLibCheck": true,
+    "moduleResolution": "bundler"
+  }
+}
