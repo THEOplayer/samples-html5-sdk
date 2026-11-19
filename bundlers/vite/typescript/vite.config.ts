@@ -7,7 +7,8 @@ export default defineConfig({
             targets: [
                 {
                     src: 'node_modules/theoplayer/*.(css|js|html|wasm)',
-                    dest: 'vendor/theoplayer/'
+                    dest: 'vendor/theoplayer/',
+                    rename: { stripBase: true }
                 }
             ]
         })

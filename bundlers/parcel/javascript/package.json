@@ -11,14 +11,17 @@
     "distDir": "dist/vendor/theoplayer/"
   },
   "dependencies": {
-    "theoplayer": "latest"
+    "theoplayer": "^11"
   },
   "devDependencies": {
     "buffer": "^6.0.3",
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.1.0",
     "http-server": "^14.1.1",
-    "parcel": "^2.12.0",
+    "parcel": "^2.16.4",
     "parcel-reporter-static-files-copy": "^1.5.3",
     "process": "^0.11.10"
+  },
+  "overrides": {
+    "html-encoding-sniffer": "^7"
   }
 }

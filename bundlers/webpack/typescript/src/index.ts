@@ -10,5 +10,5 @@ const configuration: PlayerConfiguration = {
 
 const player: Player = new THEOplayer.Player(element, configuration);
 
-player.src = '//cdn.theoplayer.com/video/elephants-dream/playlist.m3u8';
+player.src = 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8';
 

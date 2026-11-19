@@ -2,6 +2,12 @@ import * as THEOplayer from 'theoplayer';
 import {LICENSE} from '../../../util/constants';
 import {Player, PlayerConfiguration} from 'theoplayer';
 
+// Parcel's CSS transformer cannot parse ui.css, so load the copied stylesheet at runtime.
+const stylesheet = document.createElement('link');
+stylesheet.rel = 'stylesheet';
+stylesheet.href = '/vendor/theoplayer/ui.css';
+document.head.appendChild(stylesheet);
+
 const element: HTMLElement = document.getElementById('my-player')!;
 const configuration: PlayerConfiguration = {
     license: LICENSE,
@@ -10,5 +16,5 @@ const configuration: PlayerConfiguration = {
 
 const player: Player = new THEOplayer.Player(element, configuration);
 
-player.src = '//cdn.theoplayer.com/video/elephants-dream/playlist.m3u8';
+player.src = 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8';
 
