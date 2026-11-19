@@ -1,33 +1,47 @@
 <script setup lang="ts">
-import { Player, type SourceDescription } from 'theoplayer'
+import { DefaultUI } from '@theoplayer/web-ui'
+import type { SourceDescription } from 'theoplayer/chromeless'
 
 const props = defineProps<{ source: SourceDescription }>()
 
 const config = useRuntimeConfig()
 const container = useTemplateRef<HTMLDivElement>('container')
-let player: Player | undefined
+let ui: DefaultUI | undefined
 
 onMounted(() => {
-  player = new Player(container.value!, {
+  ui = new DefaultUI({
     license: config.public.theoplayerLicense,
-    libraryLocation: '/vendor/theoplayer/',
-    ui: { fluid: true }
+    libraryLocation: '/vendor/theoplayer/'
   })
-  player.source = props.source
+  ui.source = props.source
+  container.value!.appendChild(ui)
 })
 
 watch(
   () => props.source,
   (source) => {
-    if (player) player.source = source
+    if (ui) ui.source = source
   }
 )
 
 onBeforeUnmount(() => {
-  player?.destroy()
+  ui?.remove()
 })
 </script>
 
 <template>
-  <div ref="container" class="theoplayer-container video-js theoplayer-skin vjs-16-9" />
+  <div ref="container" class="player" />
 </template>
+
+<style>
+.player {
+  max-width: 960px;
+  aspect-ratio: 16 / 9;
+}
+
+theoplayer-default-ui {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+</style>

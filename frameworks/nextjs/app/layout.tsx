@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import 'theoplayer/ui.css';
 import './globals.css';
 
 export const metadata: Metadata = {

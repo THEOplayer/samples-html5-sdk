@@ -1,6 +1,6 @@
 # OptiView Player with React
 
-A React 19 app, built with Vite 8, that wraps OptiView Player in a React component.
+A React 19 app, built with Vite 8, that plays a stream with the `<DefaultUI>` component from [OptiView Web UI for React](https://www.npmjs.com/package/@theoplayer/react-ui) (`@theoplayer/react-ui` `^2`).
 
 This sample is a separate npm project, so the root `npm start` of this repository does not build or serve it. You can copy this folder out of the repository and use it as a starting point.
 
@@ -26,9 +26,9 @@ npm run preview
 
 ## About the player implementation
 
-* [`src/player/THEOplayerView.tsx`](src/player/THEOplayerView.tsx) is the player component. It creates the `Player` in a `useEffect` on a container `<div>`, passes it to the `onPlayerCreated` callback, and calls `player.destroy()` when the component unmounts. Extend it with the player APIs you need.
-* [`src/App.tsx`](src/App.tsx) renders the component and sets the source in its `onPlayerCreated` callback. Set your license in the `license` constant in this file.
-* The player loads extra files, such as the transmuxer worker, from `libraryLocation`. [`vite.config.ts`](vite.config.ts) copies the files from `node_modules/theoplayer` to `vendor/theoplayer/` with `vite-plugin-static-copy`, and the component sets `libraryLocation` to `${import.meta.env.BASE_URL}vendor/theoplayer/`, so it also works when the app is not served from `/`.
+* [`src/App.tsx`](src/App.tsx) renders `<DefaultUI>` with a player `configuration` and a `source`. `<DefaultUI>` creates the player when it mounts and destroys it when it unmounts. Set your license in the `license` constant in this file.
+* The `onReady` callback receives the `ChromelessPlayer`, so you can use the full player API from there. The sample uses it to mute the player and start it automatically. See [OptiView Web UI for React](https://www.npmjs.com/package/@theoplayer/react-ui) for custom layouts.
+* The player loads extra files, such as the transmuxer worker, from `libraryLocation`. [`vite.config.ts`](vite.config.ts) copies the files from `node_modules/theoplayer` to `vendor/theoplayer/` with `vite-plugin-static-copy`, and `src/App.tsx` sets `libraryLocation` to `${import.meta.env.BASE_URL}vendor/theoplayer/`, so it also works when the app is not served from `/`.
 
 ## License
 

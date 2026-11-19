@@ -1,40 +1,35 @@
 import { useCallback } from 'react';
-import { Player } from 'theoplayer';
+import { DefaultUI } from '@theoplayer/react-ui';
+import type { ChromelessPlayer, PlayerConfiguration, SourceDescription } from 'theoplayer/chromeless';
 import './App.css';
-
-import { THEOplayerView } from './player/THEOplayerView';
 
 const license = '';
 
-function App() {
-    const onPlayer = useCallback((player: Player): void => {
-        console.log('onPlayer, loading and setting source');
+const configuration: PlayerConfiguration = {
+    license,
+    // The player loads its workers from this location, so vite.config.ts copies the library files next to the app.
+    libraryLocation: `${import.meta.env.BASE_URL}vendor/theoplayer/`,
+};
 
+const source: SourceDescription = {
+    sources: [
+        {
+            src: 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8',
+            type: 'application/x-mpegurl',
+        },
+    ],
+};
+
+function App() {
+    const onReady = useCallback((player: ChromelessPlayer): void => {
+        console.log('Player is ready');
         player.muted = true;
         player.autoplay = true;
-        // HLS Sample source
-        player.source = {
-            sources: [
-                {
-                    src: 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8',
-                    type: 'application/x-mpegurl',
-                },
-            ],
-        };
-        // HLS Sample source
-        // player.source = {
-        //     sources: [
-        //         {
-        //             src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8',
-        //             type: 'application/x-mpegurl',
-        //         },
-        //     ],
-        // };
     }, []);
 
     return (
         <div className="App">
-            <THEOplayerView onPlayerCreated={onPlayer} license={license} />
+            <DefaultUI configuration={configuration} source={source} onReady={onReady} />
         </div>
     );
 }

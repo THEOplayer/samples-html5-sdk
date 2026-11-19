@@ -28,9 +28,10 @@ Use `npm run generate` instead of `npm run build` to make a static site.
 
 ## About the player implementation
 
+* It uses `DefaultUI` from [OptiView Web UI](https://www.npmjs.com/package/@theoplayer/web-ui) (`@theoplayer/web-ui` `^2`), which brings its own styles, so no `ui.css` is needed.
 * The player needs browser APIs, so it cannot render on the server. [`app/app.vue`](app/app.vue) wraps the player in `<ClientOnly>`.
-* [`app/components/Player.vue`](app/components/Player.vue) creates the `Player` in `onMounted`, watches the `source` prop, and calls `player.destroy()` in `onBeforeUnmount`. It reads the license from `useRuntimeConfig().public.theoplayerLicense`, which Nuxt fills from `NUXT_PUBLIC_THEOPLAYER_LICENSE` at runtime.
-* The player loads extra files, such as the transmuxer worker, from `libraryLocation`. [`nuxt.config.ts`](nuxt.config.ts) serves `node_modules/theoplayer` at `/vendor/theoplayer` with `nitro.publicAssets`. In development Nitro serves the files from `node_modules`, and `npm run build` copies them to `.output/public/vendor/theoplayer/`, so no copy script is needed. The component sets `libraryLocation` to `/vendor/theoplayer/`. `nuxt.config.ts` also adds `theoplayer/ui.css` to the global CSS.
+* [`app/components/Player.vue`](app/components/Player.vue) creates a `DefaultUI` in `onMounted`, watches the `source` prop, and in `onBeforeUnmount` removes the UI element, which destroys the player. It reads the license from `useRuntimeConfig().public.theoplayerLicense`, which Nuxt fills from `NUXT_PUBLIC_THEOPLAYER_LICENSE` at runtime.
+* The player loads extra files, such as the transmuxer worker, from `libraryLocation`. [`nuxt.config.ts`](nuxt.config.ts) serves `node_modules/theoplayer` at `/vendor/theoplayer` with `nitro.publicAssets`. In development Nitro serves the files from `node_modules`, and `npm run build` copies them to `.output/public/vendor/theoplayer/`, so no copy script is needed. The component sets `libraryLocation` to `/vendor/theoplayer/`.
 
 ## License
 

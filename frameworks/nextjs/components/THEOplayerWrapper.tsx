@@ -1,8 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { PreloadType, SourceDescription } from 'theoplayer';
-import { Player } from 'theoplayer';
+import { DefaultUI } from '@theoplayer/react-ui';
+import type { ChromelessPlayer, PlayerConfiguration, PreloadType, SourceDescription } from 'theoplayer/chromeless';
 
 export interface THEOplayerWrapperProps {
     preload?: PreloadType;
@@ -11,22 +11,17 @@ export interface THEOplayerWrapperProps {
     onPlay?: () => void;
 }
 
-function THEOplayerWrapper({ preload, autoplay, source, onPlay }: THEOplayerWrapperProps) {
-    const playerRef = useRef<Player | null>(null);
-    const [isReady, setIsReady] = useState(false);
+const configuration: PlayerConfiguration = {
+    license: process.env.NEXT_PUBLIC_THEOPLAYER_LICENSE ?? '',
+    libraryLocation: '/vendor/theoplayer/',
+};
 
-    const setContainer = useCallback((container: HTMLDivElement) => {
-        const player = new Player(container, {
-            license: process.env.NEXT_PUBLIC_THEOPLAYER_LICENSE,
-            libraryLocation: '/vendor/theoplayer/',
-        });
+function THEOplayerWrapper({ preload, autoplay, source, onPlay }: THEOplayerWrapperProps) {
+    const playerRef = useRef<ChromelessPlayer | null>(null);
+    const [isReady, setIsReady] = useState(false);
+    const onReady = useCallback((player: ChromelessPlayer) => {
         playerRef.current = player;
         setIsReady(true);
-        return () => {
-            player.destroy();
-            playerRef.current = null;
-            setIsReady(false);
-        };
     }, []);
 
     useEffect(() => {
@@ -38,17 +33,17 @@ function THEOplayerWrapper({ preload, autoplay, source, onPlay }: THEOplayerWrap
     }, [isReady, autoplay]);
 
     useEffect(() => {
-        if (playerRef.current) playerRef.current.source = source;
-    }, [isReady, source]);
-
-    useEffect(() => {
         const player = playerRef.current;
         if (!player || !onPlay) return;
         player.addEventListener('play', onPlay);
         return () => player.removeEventListener('play', onPlay);
     }, [isReady, onPlay]);
 
-    return <div className={'video-js theoplayer-skin vjs-16-9'} ref={setContainer} />;
+    return (
+        <div style={{ width: '100%', aspectRatio: '16 / 9' }}>
+            <DefaultUI configuration={configuration} source={source} onReady={onReady} />
+        </div>
+    );
 }
 
 export default THEOplayerWrapper;
