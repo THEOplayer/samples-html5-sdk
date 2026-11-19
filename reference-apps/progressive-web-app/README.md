@@ -18,7 +18,7 @@ Browsers only allow service workers on `https://` pages and on `localhost`. To i
 
 ## About the player implementation
 
-* The page loads `THEOplayer.js` and `ui.css` from `../../node_modules/theoplayer/`, and [`js/main.js`](js/main.js) sets `libraryLocation` to the same folder.
+* The page loads `THEOplayer.chromeless.js` from `../../node_modules/theoplayer/` and `THEOplayerUI.js` from `../../node_modules/@theoplayer/web-ui/dist/`. [`js/main.js`](js/main.js) creates a `THEOplayerUI.DefaultUI` from [OptiView Web UI](https://www.npmjs.com/package/@theoplayer/web-ui) and sets `libraryLocation` to `../../node_modules/theoplayer/`.
 * [`sw.js`](sw.js) caches the app files and the player files on install, and serves them from the cache when they are available. The video stream itself is not cached, so playback still needs a network connection.
 * If you change the player files or the app, change `cacheName` in `sw.js` so the browser installs the new service worker.
 * The service worker only controls pages in its own folder, but it can cache files from other folders on the same origin, such as `node_modules`.

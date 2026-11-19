@@ -1,15 +1,15 @@
-const cacheName = 'optiview-player-pwa';
+const cacheName = 'optiview-player-pwa-web-ui';
 const filesToCache = [
     './',
     'index.html',
     'js/main.js',
     'css/style.css',
     'manifest.json',
-    '../../node_modules/theoplayer/THEOplayer.js',
-    '../../node_modules/theoplayer/ui.css',
+    '../../node_modules/theoplayer/THEOplayer.chromeless.js',
     '../../node_modules/theoplayer/iframe.html',
     '../../node_modules/theoplayer/THEOplayer.transmux.js',
-    '../../node_modules/theoplayer/THEOplayer.transmux.wasm'
+    '../../node_modules/theoplayer/THEOplayer.transmux.wasm',
+    '../../node_modules/@theoplayer/web-ui/dist/THEOplayerUI.js'
 ];
 
 /* Start the service worker and cache all of the app's content */
