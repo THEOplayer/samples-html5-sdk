@@ -11,14 +11,14 @@ This sample shows how to bundle the OptiView Player Web SDK from the [`theoplaye
    ```sh
    npm install
    ```
-   This installs the latest OptiView Player 11.x release, because `package.json` depends on `theoplayer` `^11`.
+   This installs the latest OptiView Player 11.x release, and the latest Web UI 2.x release, because `package.json` depends on `theoplayer` `^11` and `@theoplayer/web-ui` `^2`.
 2. Set your license string in `LICENSE` in [`bundlers/util/constants.js`](../../util/constants.js). An empty license only allows playback on _localhost_.
 3. Build and serve the sample:
 * `npm run build` creates a production build in `dist/`.
 * `npm run serve` serves `dist/` on http://localhost:8080.
 
 ## How it works
-* `src/` creates a `Player`, with `libraryLocation` set to `vendor/theoplayer/`, and sets a source.
+* `src/` creates a `DefaultUI` from [OptiView Web UI](https://www.npmjs.com/package/@theoplayer/web-ui), with `libraryLocation` set to `vendor/theoplayer/`, sets a source and adds it to the page.
 * The `copyPlayerFiles` plugin in `rollup.config.js` copies the player files from `node_modules/theoplayer` to `dist/vendor/theoplayer/`. The player loads its workers and other files from there at runtime.
 * See `rollup.config.js` for the Rollup configuration.
 

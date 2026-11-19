@@ -5,10 +5,12 @@
     <link rel="icon" href="data:,">
     <title>OptiView Player</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href='./vendor/theoplayer/ui.css'>
+    <style>
+        #my-player { max-width: 960px; }
+        theoplayer-default-ui { display: block; width: 100%; aspect-ratio: 16 / 9; }
+    </style>
 </head>
 <body>
-    <div id="my-player" class="video-js theoplayer-skin vjs-16-9"></div>
-    <script src="./vendor/theoplayer/THEOplayer.js"></script>
-    <script src="./bundle.js"></script></body>
+    <div id="my-player"></div>
+    <script type="module" src="./bundle.js"></script></body>
 </html>

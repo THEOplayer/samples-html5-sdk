@@ -13,8 +13,8 @@ Each sample's README lists the commands to build and run it.
 
 ## What every sample does
 1. Depends on `theoplayer` `^11`, so `npm install` gets the latest OptiView Player 11.x release.
-2. Imports `Player` from `theoplayer` and creates it with `libraryLocation: 'vendor/theoplayer/'`.
-3. Copies the player files (`THEOplayer.transmux.js`, `theoplayer.sw.js`, `iframe.html`, `ui.css` and others) from `node_modules/theoplayer` to `dist/vendor/theoplayer/`. The player loads its workers from `libraryLocation` at runtime, so these files must be served next to your bundle.
+2. Creates a `DefaultUI` from [OptiView Web UI](https://www.npmjs.com/package/@theoplayer/web-ui) (`@theoplayer/web-ui` `^2`) with `libraryLocation` pointing to the copied player files in `vendor/theoplayer/`.
+3. Copies the player files (`THEOplayer.transmux.js`, `theoplayer.sw.js`, `iframe.html` and others) from `node_modules/theoplayer` to `dist/vendor/theoplayer/`. The player loads its workers from `libraryLocation` at runtime, so these files must be served next to your bundle.
 
 ## License
 All samples read the license from [`util/constants.js`](util/constants.js). An empty license only allows playback on _localhost_. To play on other domains, get a license on the [THEOportal](https://portal.theoplayer.com): log in, open your Web SDK, and copy its license string into `LICENSE`.

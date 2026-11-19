@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@theoplayer/web-ui": "^2",
     "theoplayer": "^11"
   },
   "devDependencies": {
