@@ -16,13 +16,13 @@ export default class Splash extends Lightning.Component {
                 x: 960,
                 y: 540,
                 // eslint-disable-next-line no-undef
-                texture: { type: lng.textures.ImageTexture, src: 'static/images/ic_theo_logo.png' }
+                texture: { type: lng.textures.ImageTexture, src: 'static/images/optiview_logo.png' }
             }
         };
     }
 
     async _enable() {
-        // wait until the THEOplayer library is loaded
+        // wait until the OptiView Player library is loaded
         const loadStart = new Date().getTime();
         if (!this.player) {
             this.player = await THEOplayerPlugin.initLibrary();

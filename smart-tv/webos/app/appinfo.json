@@ -1,13 +1,13 @@
 {
   "id": "webos.theo",
-  "title": "WebOS",
+  "title": "OptiView Player webOS",
   "main": "index.html",
   "icon": "small-icon.png",
   "largeIcon": "large-icon.png",
   "type": "web",
-  "vendor": "THEO Technologies",
+  "vendor": "Dolby Laboratories",
   "version": "1.0.0",
-  "appDescription": "WebOS App",
+  "appDescription": "OptiView Player webOS sample",
   "iconColor": "white",
   "splashBackground": "splash-screen.png",
   "requiredMemory": 250

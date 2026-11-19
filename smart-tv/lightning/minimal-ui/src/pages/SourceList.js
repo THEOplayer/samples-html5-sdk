@@ -23,7 +23,7 @@ export default class SourceList extends Lightning.Component {
     }
 
     _firstEnable() {
-        this.tag('VersionLabel').patch({ text: { text: `THEOplayer SDK v${THEOplayer.version}` } });
+        this.tag('VersionLabel').patch({ text: { text: `OptiView Player v${THEOplayer.version}` } });
         this.tag('List').items = SOURCES.map((src, index) => ({
             label: src.name,
             onEnter: () => {

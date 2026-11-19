@@ -1,7 +1,7 @@
-import SourceList from './pages/sourcelist';
+import SourceList from './pages/SourceList';
 import THEOplayerPlugin from './utils/THEOplayer';
-import Splash from './pages/splash';
-import Player from './pages/player';
+import Splash from './pages/Splash';
+import Player from './pages/Player';
 
 export default {
     boot: () => {

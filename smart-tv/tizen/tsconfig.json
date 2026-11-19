@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "strict": false,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "lib": ["es2015", "dom"]
+    },
+    "include": ["example-with-ui/src"]
+}

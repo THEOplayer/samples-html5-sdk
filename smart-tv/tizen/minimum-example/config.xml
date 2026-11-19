@@ -4,8 +4,8 @@
   <content src="index.html" />
   <access origin="*"></access>
   <feature name="http://tizen.org/feature/screen.size.normal.1080.1920" />
-  <icon src="theo.png" />
-  <name>THEO Tizen Minimal ReferenceApp</name>
+  <icon src="optiview.png" />
+  <name>OptiView Player Tizen Minimal</name>
   <tizen:privilege name="http://tizen.org/privilege/internet" />
   <tizen:privilege name="http://tizen.org/privilege/download" />
   <tizen:privilege name="http://tizen.org/privilege/filesystem.read" />

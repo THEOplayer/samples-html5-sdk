@@ -1,19 +1,25 @@
-# THEOplayer Tizen Reference
+# OptiView Player Tizen Reference
 
-The THEOplayer Tizen Reference provides a simple reference set-up to simplify integration.
+The OptiView Player Tizen Reference provides a simple reference set-up to simplify integration.
 
 This project provides two Tizen projects:
-* `minimum-example`: a barebone example of THEOplayer for Tizen.
-* `example-with-ui`: a slightly more advanced showcase of THEOplayer with a Tizen UI.
+* `minimum-example`: a barebone example of OptiView Player for Tizen.
+* `example-with-ui`: a slightly more advanced showcase of OptiView Player with a Tizen UI.
 
 More specific details on set-up can be found in the respective subdirectories. Below we describe general set-up that applies for both projects:
+
+## Requirements
+* [Node.js](https://nodejs.org/) 22.12 or later
+* This sample uses TypeScript and Rollup 4, and depends on `theoplayer` `^11`, so `npm install` gets the latest OptiView Player 11.x release.
+* An OptiView Player license for domains other than _localhost_. Get one on the [THEOportal](https://portal.theoplayer.com).
 
 ## Set-up
 
 * Install Tizen Studio
   * Make sure to install the Tizen Tools under Tools -> Extension Manager (both under Main SDK and Extension SDK tabs)
   * Set up your [certificate under Certificate Manager](https://docs.tizen.org/application/vstools/tools/certificate-manager#creating-a-certificate-profile)
-* Both subprojects expect the THEOplayer library to be put under `libs/`. Include the worker files when using HLS as well.
+* Run `npm install` in this folder. This installs [the `theoplayer` package](https://www.npmjs.com/package/theoplayer) and copies the OptiView Player library files to `libs/` in both subprojects.
+* To build the TypeScript sources of `example-with-ui`, run `npm run build` in this folder.
 
 ## Importing the project in Tizen Studio
 
@@ -63,3 +69,21 @@ We recommend using a physical Tizen device. If this is not possible, using an em
 * AVPlay will not be available.
 * DRM is not available due to lack of a Content Decryption Module (CDM)
 * manifest.json permissions is ignored for emulators. Make sure to test on a physical device for certainty.
+
+## About the player implementation
+
+This sample is a separate npm project, so the root `npm start` of this repository does not build or serve it.
+
+* The apps use `THEOplayer.chromeless.js`, the player without the default UI, because TV apps use their own UI for remote control navigation.
+* `npm install` runs `copy:theoplayer`, which copies the player files (`.js`, `.css`, `.html` and `.wasm`, without the ESM and type files) from `node_modules/theoplayer` to the `libs/` folder of each app. Run `npm run copy:theoplayer` again after you update the player.
+* The pages load `libs/THEOplayer.chromeless.js` and set `libraryLocation` to `libs/`. The transmuxer worker for HLS is loaded from this folder, so keep `libs/` in the Tizen Studio project.
+* `npm run build` builds the UI bundle of `example-with-ui`, `npm run watch` rebuilds it when a file changes, and `npm run typecheck` checks its TypeScript code.
+
+### License
+
+Apps on a TV are not served from `localhost`, so the license that allows `localhost` does not work there. Add `license: '<your license>'` to the player configuration in `minimum-example/index.html`, or in `example-with-ui/index.html` for the UI example. Get a license for the Web SDK on [THEOportal](https://portal.theoplayer.com).
+
+## Documentation
+* [Getting started on Tizen](https://optiview.dolby.com/docs/theoplayer/getting-started/sdks/tizen/getting-started/)
+* [Getting started on Web](https://optiview.dolby.com/docs/theoplayer/getting-started/sdks/web/getting-started/)
+* [OptiView Player examples](https://optiview.dolby.com/docs/theoplayer/examples/)

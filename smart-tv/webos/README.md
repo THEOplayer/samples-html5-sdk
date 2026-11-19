@@ -1,8 +1,13 @@
-# Getting Started with THEOPlayer on WebOS
+# Getting started with OptiView Player on webOS
+
+## Requirements
+* [Node.js](https://nodejs.org/) 22.12 or later
+* This sample uses TypeScript and Rollup 4, and depends on `theoplayer` `^11`, so `npm install` gets the latest OptiView Player 11.x release.
+* An OptiView Player license for domains other than _localhost_. Get one on the [THEOportal](https://portal.theoplayer.com).
 
 ## Prerequisites
 
-1. Make sure the WebOS SDK, available for download at <http://webostv.developer.lge.com/sdk/installation>, is correctly installed on your system.
+1. Make sure the WebOS SDK, available for download at <https://webostv.developer.lge.com/develop/tools/cli-installation>, is correctly installed on your system.
    - You will find the following 2 installation options:
      - At a minimum you need the CLI tool packaged in the _minimal installation bundle_. You will be able to install other components later on if required by using the Component Manager in your installation folder `{installation folder}\webOS_TV_SDK\ComponentManager)`
      - The _full installation bundle_ will install the CLI, WebOS IDE (Eclipse based), VirtualBox emulators, plugins, ...
@@ -17,29 +22,25 @@
 
 - First we'll need a collection of HTML/CSS/JS files for the app. Next we will package it to an ipk file that will be deployed on the webOS device
 - The packager will use the `app` folder to build the IPK package, so that's where the JS, CSS and HTML files will need to end up
-- If you're not interested in testing the example-with-ui variant:
-  - the `app` folder contains a crude solution with entry point `index.html`;
-  - the only thing left to do in this scenario is to put your THEOPlayer library files in the `libs` folder under `app`
-- The folder `example-with-UI` contains a more elaborate example. The following extra steps are required
-  - optionally modify the code and run the following commands
+- Run `npm install` in this folder. This installs [the `theoplayer` package](https://www.npmjs.com/package/theoplayer) and copies the OptiView Player library files to the `libs` folders of `app` and `example-with-ui`.
+- If you're not interested in testing the example-with-ui variant, the `app` folder contains a crude solution with entry point `index.html` and is ready to be packaged.
+- The folder `example-with-ui` contains a more elaborate example. The following extra steps are required
+  - optionally modify the code in `example-with-ui/src` and build it to `example-with-ui/js/Main.js`
     ```
-    cd example-with-ui
-    npm i
     npm run build
     ```
   - next copy the `js` folder, the `css` folder and the `index.html` file to the app folder (overwriting the existing files)
     ```
-    cp -R js/ ../app/js/
-    cp -R css/ ../app/css/
-    cp -R libs/ ../app/libs/
-    cp  index.html ../app/
+    cp -R example-with-ui/js/ app/js/
+    cp -R example-with-ui/css/ app/css/
+    cp example-with-ui/index.html app/
     ```
 
 ## Setting up the physical device
 
 ### Prerequisites
 
-1. Make sure you have created an LG Developer Account at <http://webostv.developer.lge.com/develop/app-test>. You will need this to login to the Developer Tools app on the physical device.
+1. Make sure you have created an LG Developer Account at <https://webostv.developer.lge.com/develop/getting-started/developer-mode-app>. You will need this to login to the Developer Tools app on the physical device.
 2. Download the Developer Tools app to the tv (use the LG Content Store), login with your LG account and follow the instructions to set the device in developer mode (a restart is required)
 
 ### Make a connection
@@ -68,7 +69,7 @@ If you decide to use an emulator: start the emulator of your choice (you might n
 
 # Running the app
 
-**Note**: please visit the LG WebOS developer site at http://webostv.developer.lge.com/ to get more info on commands, tools and guidelines.
+**Note**: please visit the LG WebOS developer site at https://webostv.developer.lge.com/ to get more info on commands, tools and guidelines.
 
 First make sure to cd into the root folder (this is the parent of app folder). Next run the following commands.
 
@@ -100,3 +101,21 @@ ares-launch web.theo  -d tv
 ```
 ares-inspect web.theo -d tv --open
 ```
+
+## About the player implementation
+
+This sample is a separate npm project, so the root `npm start` of this repository does not build or serve it.
+
+* The apps use `THEOplayer.chromeless.js`, the player without the default UI, because TV apps use their own UI for remote control navigation.
+* `npm install` runs `copy:theoplayer`, which copies the player files (`.js`, `.css`, `.html` and `.wasm`, without the ESM and type files) from `node_modules/theoplayer` to `app/libs/` and `example-with-ui/libs/`. Run `npm run copy:theoplayer` again after you update the player.
+* The pages load `libs/THEOplayer.chromeless.js` and set `libraryLocation` to `libs/`. The transmuxer worker for HLS is loaded from this folder, so `libs/` must be part of the IPK package.
+* `npm run typecheck` checks the TypeScript code of `example-with-ui`, and `npm run watch` rebuilds it when a file changes.
+
+### License
+
+Apps on a TV are not served from `localhost`, so the license that allows `localhost` does not work there. Add `license: '<your license>'` to the player configuration in `app/index.html`, or in `example-with-ui/index.html` for the UI example. Get a license for the Web SDK on [THEOportal](https://portal.theoplayer.com).
+
+## Documentation
+* [Getting started on webOS](https://optiview.dolby.com/docs/theoplayer/getting-started/sdks/webos/getting-started/)
+* [Getting started on Web](https://optiview.dolby.com/docs/theoplayer/getting-started/sdks/web/getting-started/)
+* [OptiView Player examples](https://optiview.dolby.com/docs/theoplayer/examples/)
