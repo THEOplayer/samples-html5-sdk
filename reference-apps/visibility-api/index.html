@@ -9,6 +9,7 @@
         <title>Visibility API - OptiView Player Web SDK samples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="../../assets/favicon.ico">
+        <link rel="stylesheet" href="../../assets/sample.css">
         <!-- ***** REPLACE URL TO OPTIVIEW PLAYER CSS ***** -->
         <link
                 rel="stylesheet"
@@ -17,8 +18,16 @@
         />
     </head>
     <body>
-        <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
-        <h1>OptiView Player <span></span> - Visibility API</h1>
+<nav class="navbar">
+  <a href="../../index.html"><img src="../../assets/dolby-optiview-white.svg" alt="Dolby OptiView"></a>
+  <div class="navbar__links">
+    <a href="../../index.html">All samples</a>
+    <a href="README.md">README</a>
+    <a href="https://optiview.dolby.com/docs/theoplayer/">Docs</a>
+  </div>
+</nav>
+<main class="sample">
+        <h1>Visibility API <span></span></h1>
         <p>In this example, we show the Visibility functionality: the video will only be playing while visible to the user.</p>
 
         <div class="theoplayer-container video-js theoplayer-skin"></div>
@@ -73,5 +82,6 @@
             document.querySelector('h1 span').innerHTML = THEOplayer.version;
 
         </script>
-    </body>
+    </main>
+</body>
 </html>
