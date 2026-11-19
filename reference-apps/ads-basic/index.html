@@ -6,10 +6,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Ads Basic - THEOplayer Web SDK samples</title>
-    <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
+    <title>Ads Basic - OptiView Player Web SDK samples</title>
+    <link rel="icon" href="../../assets/favicon.ico">
 
-    <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
+    <!-- ***** REPLACE URL TO OPTIVIEW PLAYER CSS ***** -->
     <link
       rel="stylesheet"
       type="text/css"
@@ -21,7 +21,7 @@
   </head>
   <body>
   <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
-  <h1>THEOplayer <span></span> - Basic ads playback (CSAI)</h1>
+  <h1>OptiView Player <span></span> - Basic ads playback (CSAI)</h1>
   <p>This sample showcases how to play and schedule VAST ads in THEOplayer</p>
 
   <div class="theoplayer-container video-js theoplayer-skin"></div>
@@ -29,7 +29,7 @@
   <button onclick="player.source = sourceTHEOads">Play CSAI ads</button>
   <button onclick="player.source = sourceIMAads">Play IMA ads</button>
 
-    <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
+    <!-- ***** REPLACE URL TO OPTIVIEW PLAYER JS ***** -->
     <script
       type="text/javascript"
       src="../../node_modules/theoplayer/THEOplayer.js"
@@ -37,7 +37,7 @@
     <script>
       const element = document.querySelector(".theoplayer-container");
       let player = new THEOplayer.Player(element, {
-        // ***** REPLACE THEOPLAYER LOCATION *****
+        // ***** REPLACE PLAYER LIBRARY LOCATION *****
         libraryLocation: "../../node_modules/theoplayer/",
         // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
         license:"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj",

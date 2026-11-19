@@ -1,15 +1,15 @@
-var theoplayerWowza = {
+const theoplayerWowza = {
     registerPlayer: function(player) {
 
-        var wowzaData = null;
-        var wowzaSource = null;
-        var streamIsUnavailable = false;
-        var wowzaStreamInterval;
-        var countdownTimerInterval;
-        var isWaiting = false;
-        var hasInterval = false;
-        var statechangeCallback = null;
-        var datachangeCallback = null;
+        let wowzaData = null;
+        let wowzaSource = null;
+        let streamIsUnavailable = false;
+        let wowzaStreamInterval;
+        let countdownTimerInterval;
+        let isWaiting = false;
+        let hasInterval = false;
+        let statechangeCallback = null;
+        let datachangeCallback = null;
 
         function handleWowzaOffline() {
             statechangeCallback({state: "unavailable", info: "The configured stream is currently unavailable."});
@@ -26,14 +26,14 @@ var theoplayerWowza = {
         }
 
         function setupCountdown(countDownDate) {
-            var countDownDate = countDownDate.getTime();
+            const countDownTime = countDownDate.getTime();
             countdownTimerInterval = setInterval(function() {
-                var now = new Date().getTime();
-                var distance = countDownDate - now;
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                const now = new Date().getTime();
+                const distance = countDownTime - now;
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 getContainer().querySelector('.countdown').innerHTML = days + "d " + hours + "h "
                     + minutes + "m " + seconds + "s ";
                 if (distance < 0) {
@@ -44,30 +44,30 @@ var theoplayerWowza = {
         }
 
         function createStreamStatusDiv() {
-            var streamStatusDiv = getContainer().querySelector('.stream-status');
+            let streamStatusDiv = getContainer().querySelector('.stream-status');
             if (!streamStatusDiv) {
                 streamStatusDiv = document.createElement('div');
                 streamStatusDiv.className = 'stream-status';
-                var poster = getPoster();
+                const poster = getPoster();
                 if (poster) {
                     streamStatusDiv.style.background = 'url("' + poster + '")';
                     streamStatusDiv.style.backgroundSize = 'cover';
                 }
 
                 if (wowzaData) {
-                    var countdown = wowzaData['countdown_timestamp'];
+                    let countdown = wowzaData['countdown_timestamp'];
                     if (countdown) {
                         countdown = new Date((parseInt(countdown)*1000));
                         if (countdown.getTime() > Date.now()) { // in the future
-                            var countdownDiv = document.createElement('div');
+                            const countdownDiv = document.createElement('div');
                             countdownDiv.className = "stream-status-overlay";
-                            var date = countdown.toDateString();
-                            var hhmm = countdown.toISOString().substr(11, 5);
-                            var title = wowzaData['title'] + "<br />" || "";
+                            const date = countdown.toDateString();
+                            const hhmm = countdown.toISOString().substr(11, 5);
+                            const title = wowzaData['title'] + "<br />" || "";
                             countdownDiv.innerHTML = title + "Stream will start on:<br />" + date + " @ " + hhmm;
                             streamStatusDiv.appendChild(countdownDiv);
 
-                            var countdownTimer = document.createElement('div');
+                            const countdownTimer = document.createElement('div');
                             countdownTimer.className = 'countdown';
                             countdownTimer.innerHTML = "&nbsp;";
                             countdownDiv.appendChild(countdownTimer);
@@ -84,7 +84,7 @@ var theoplayerWowza = {
             }
         }
         function removeStreamStatusDiv() {
-            var streamStatusDiv = getContainer().querySelector('.stream-status');
+            const streamStatusDiv = getContainer().querySelector('.stream-status');
             if (streamStatusDiv) {
                 streamStatusDiv.parentNode.removeChild(streamStatusDiv);
             }
@@ -102,8 +102,8 @@ var theoplayerWowza = {
 
 
         function streamInterval() {
-            var currentSrc = player.src;
-            var xhttp = new XMLHttpRequest();
+            const currentSrc = player.src;
+            const xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && (this.status != 200) && isWaiting && !streamIsUnavailable) {
 
@@ -165,7 +165,7 @@ var theoplayerWowza = {
             wowzaSource = e.source.metadata && e.source.metadata.wowza;
             if (wowzaSource) {
                 registerWowzaEvents();
-                var wowzaJson = wowzaSource.jsonUrl;
+                const wowzaJson = wowzaSource.jsonUrl;
                 if (wowzaJson) {
                     registerWowzaData(wowzaJson);
                 }
@@ -175,7 +175,7 @@ var theoplayerWowza = {
         }
 
         function registerWowzaData(url) {
-            var xhttp = new XMLHttpRequest();
+            const xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && (this.status == 200)) {
                     wowzaData = JSON.parse(xhttp.responseText);

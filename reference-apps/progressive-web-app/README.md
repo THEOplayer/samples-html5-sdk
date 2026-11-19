@@ -1,30 +1,34 @@
-# Progressive web app with THEOplayer
-## Info
-This project demonstrates how THEOplayer could fit in a progressive web app. The repository at https://github.com/jamesjohnson280/hello-pwa is the starting point for this project.
+# Progressive web app with OptiView Player
 
-## Notes
-* This application should not be rolled out in production.
-* The `/theoplayer/` folder contains the files of the THEOplayer library. Replace these files with your own THEOplayer files if you clone (or download) this project.
-* Resources: https://developers.google.com/web/tools/workbox, https://developers.google.com/web/tools, https://web.dev/progressive-web-apps/
-* Online demo of this project: https://cdn.theoplayer.com/demos/progressive-web-app/index.html
-* This project passed the Lighthouse audit on the 7th of May, 2020.
-![Lighthouse Audit](lighthouse_audit.png "Lighthouse Audit")
+This sample shows OptiView Player in an installable progressive web app (PWA). It has a web app manifest, app icons and a service worker that caches the app and the player files. It is based on [hello-pwa](https://github.com/jamesjohnson280/hello-pwa).
+
+This sample is a demo. Do not use it in production as is.
+
+## Running this sample
+
+1. Install [Node.js](https://nodejs.org/) 22.12 or later.
+2. In the repository root, install the dependencies and start the local server:
+   ```sh
+   npm install
+   npm start
+   ```
+3. Open http://localhost:8080/reference-apps/progressive-web-app/index.html.
+
+Browsers only allow service workers on `https://` pages and on `localhost`. To install the app, use the install button in the address bar of Chrome or Edge.
 
 ## About the player implementation
-The present samples are meant to be used with the NPM-installed player. Get your NPM web player on https://www.npmjs.com/package/theoplayer.
 
-Alternatively, you can also decide to generate a custom player on the THEO portal.
+* The page loads `THEOplayer.js` and `ui.css` from `../../node_modules/theoplayer/`, and [`js/main.js`](js/main.js) sets `libraryLocation` to the same folder.
+* [`sw.js`](sw.js) caches the app files and the player files on install, and serves them from the cache when they are available. The video stream itself is not cached, so playback still needs a network connection.
+* If you change the player files or the app, change `cacheName` in `sw.js` so the browser installs the new service worker.
+* The service worker only controls pages in its own folder, but it can cache files from other folders on the same origin, such as `node_modules`.
 
-<details style="border:1px solid #ccc;padding:1em; background-color:#f9f9f9">
-  <summary>Making sure the player is implemented correctly: <u>URLs and license</u></summary>
+## License
 
-### Check the URLs
-Once you have installed your player, check whether the following URLs need changing to point to the folder containing the player SDK:
-* UI CSS library: `href="../../node_modules/theoplayer/ui.css"`
-* THEOplayer library: `src="../../node_modules/theoplayer/THEOplayer.js"`
-* libraryLocation: `libraryLocation: "../../node_modules/theoplayer/"`
+The license in [`js/main.js`](js/main.js) only allows playback on `localhost`. To play on other domains, get a license on [THEOportal](https://portal.theoplayer.com).
 
-### License
-The license included in the implementation only allows for playback on _localhost_.
-To play on any other domains, as well as to make sure your license doesn't expire, get your license on  https://portal.theoplayer.com.
-</details>
+## Resources
+
+* [Progressive web apps on web.dev](https://web.dev/explore/progressive-web-apps)
+* [Getting started with OptiView Player on Web](https://optiview.dolby.com/docs/theoplayer/getting-started/sdks/web/getting-started/)
+* [OptiView Player examples](https://optiview.dolby.com/docs/theoplayer/examples/)

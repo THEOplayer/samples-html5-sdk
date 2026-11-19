@@ -2,9 +2,9 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Wowza</title>
-    <link rel="stylesheet" type="text/css" href='//cdn.theoplayer.com/dash/theoplayer/ui.css'>
+    <link rel="stylesheet" type="text/css" href='vendor/theoplayer/ui.css'>
     <link rel="stylesheet" type="text/css" href='css/theoplayer-wowza.css'>
-    <script type='text/javascript' src='//cdn.theoplayer.com/dash/theoplayer/THEOplayer.js'></script>
+    <script type='text/javascript' src='vendor/theoplayer/THEOplayer.js'></script>
     <script type='text/javascript' src="js/theoplayer-wowza.js"></script>
     <style>
         .stream-status {
@@ -59,14 +59,14 @@
 
 <div class="theoplayer-container video-js theoplayer-skin vjs-16-9"></div>
 <div id="config-container">
-    <div class="field" id="stream_1"><label>Stream 1</label><input type="text" id="src_1" value="https://cdn3.wowza.com/1/WnNtUHZFTkZselB0/bkVqeHY5/hls/live/playlist.m3u8"></div>
-    <div class="field"><label>Wowza JSON Stream 1</label><input id="wowzaJson_1" type="text" value="https://player.cloud.wowza.com/hosted/yhxpg0tx/wowza.json" /></div>
+    <div class="field" id="stream_1"><label>Stream 1</label><input type="text" id="src_1" value="" placeholder="https://&lt;your Wowza stream&gt;/playlist.m3u8"></div>
+    <div class="field"><label>Wowza JSON Stream 1</label><input id="wowzaJson_1" type="text" value="" placeholder="https://player.cloud.wowza.com/hosted/&lt;stream ID&gt;/wowza.json" /></div>
 
-    <div class="field" id="stream_2"><label>Stream 2</label><input type="text" id="src_2" value="https://cdn3.wowza.com/1/c3kzVVdOVU9DZ1ZK/d3BPcmZS/hls/live/playlist.m3u8"></div>
-    <div class="field"><label>Wowza JSON Stream 2</label><input id="wowzaJson_2" type="text" value="https://player.cloud.wowza.com/hosted/fs2ztrsf/wowza.json" /></div>
+    <div class="field" id="stream_2"><label>Stream 2</label><input type="text" id="src_2" value="" placeholder="https://&lt;your Wowza stream&gt;/playlist.m3u8"></div>
+    <div class="field"><label>Wowza JSON Stream 2</label><input id="wowzaJson_2" type="text" value="" placeholder="https://player.cloud.wowza.com/hosted/&lt;stream ID&gt;/wowza.json" /></div>
 
-    <div class="field" id="stream_3"><label>Stream 3</label><input type="text" id="src_3" value="https://cdn3.wowza.com/1/bVIzRFJncWFLcUd2/OG1EeUw4/hls/live/playlist.m3u8"></div>
-    <div class="field"><label>Wowza JSON Stream 3</label><input id="wowzaJson_3" type="text" value="https://player.cloud.wowza.com/hosted/z753ttwg/wowza.json" /></div>
+    <div class="field" id="stream_3"><label>Stream 3</label><input type="text" id="src_3" value="" placeholder="https://&lt;your Wowza stream&gt;/playlist.m3u8"></div>
+    <div class="field"><label>Wowza JSON Stream 3</label><input id="wowzaJson_3" type="text" value="" placeholder="https://player.cloud.wowza.com/hosted/&lt;stream ID&gt;/wowza.json" /></div>
 
     <div class="field"><label>Retry (in ms)</label><input id="retry" type="text" value="3000" /></div>
     <div class="field"><label>Offline text</label><input id="offlineText" type="text" value="The stream is currently not available. :(" /></div>
@@ -75,15 +75,14 @@
 </div>
 
 <script>
-    var element = document.querySelector('.theoplayer-container');
-    var player = new THEOplayer.Player(element, {
-        libraryLocation : '//cdn.theoplayer.com/dash/theoplayer/'
+    const element = document.querySelector('.theoplayer-container');
+    const player = new THEOplayer.Player(element, {
+        libraryLocation : 'vendor/theoplayer/'
     });
 
-    var wowzaSession = theoplayerWowza.registerPlayer(player);
+    const wowzaSession = theoplayerWowza.registerPlayer(player);
 
     function getSourceDescription() {
-        //var jsonUrl = document.getElementById('wowzaJson_1').value;
         return {
             sources : [{
                 src : document.getElementById('src_1').value,

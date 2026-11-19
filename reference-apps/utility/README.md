@@ -1,23 +1,26 @@
 # Utility
 
-Projects in this folder offer utility.
-For example, there is a project which will help you measure the loading time of the THEOplayer SDK.
+Tools that help you test OptiView Player.
 
-## About the player implementation
-The present samples are meant to be used with the NPM-installed player. Get your NPM web player on https://www.npmjs.com/package/theoplayer.
+* [measure-loading-time](measure-loading-time/index.html) logs to the browser console how long the player takes to load its files, to load the source and to start playback. Open the developer tools to see the results.
 
-Alternatively, you can also generate a custom player on THEOportal.
+## Running this sample
+1. Install [Node.js](https://nodejs.org/) 22.12 or later.
+2. In the repository root, install the dependencies and start the local server:
+   ```sh
+   npm install
+   npm start
+   ```
+   `npm install` gets the latest OptiView Player 11.x release from the [`theoplayer`](https://www.npmjs.com/package/theoplayer) npm package.
+3. Open http://localhost:8080/reference-apps/utility/measure-loading-time/index.html.
 
-<details style="border:1px solid #ccc;padding:1em; background-color:#f9f9f9">
-  <summary>Making sure the player is implemented correctly: <u>URLs and license</u></summary>
-
-### Check the URLs
-Once you have installed your player, check whether the following URLs need changing to point to the folder containing the player SDK:
-* UI CSS library: `href="../../node_modules/theoplayer/ui.css"`
-* THEOplayer library: `src="../../node_modules/theoplayer/THEOplayer.js"`
-* libraryLocation: `libraryLocation: "../../node_modules/theoplayer/"`
+The page loads the player from `../../../node_modules/theoplayer/`:
+* UI CSS: `../../../node_modules/theoplayer/ui.css`
+* Player library: `../../../node_modules/theoplayer/THEOplayer.js`
+* `libraryLocation`: `../../../node_modules/theoplayer/`
 
 ### License
-The license included in the implementation only allows for playback on _localhost_.
-To play on any other domains, as well as to make sure your license doesn't expire, get your license on https://portal.theoplayer.com.
-</details>
+The license in this sample only allows playback on _localhost_.
+To play on other domains, get your own license on the [THEOportal](https://portal.theoplayer.com) and set it in the player configuration.
+
+See [Getting started on Web](https://optiview.dolby.com/docs/theoplayer/getting-started/sdks/web/getting-started/) for the full setup guide, and the [examples page](https://optiview.dolby.com/docs/theoplayer/examples/) for more live demos.

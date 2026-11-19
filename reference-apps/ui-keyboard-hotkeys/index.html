@@ -6,10 +6,10 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Keyboard hotkeys - THEOplayer Web SDK samples</title>
+        <title>Keyboard hotkeys - OptiView Player Web SDK samples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/favicon3.ico">
-        <!-- ***** REPLACE URL TO THEOPLAYER CSS ***** -->
+        <link rel="icon" href="../../assets/favicon.ico">
+        <!-- ***** REPLACE URL TO OPTIVIEW PLAYER CSS ***** -->
         <link
                 rel="stylesheet"
                 type="text/css"
@@ -21,7 +21,7 @@
     </style>
     <body>
     <button id="goBackButton" style="position:fixed; bottom:.5em;right: 0.5em;padding: 0.5em 1em;" onclick="location.href='../../index.html'">Go back to sample list</button>
-    <h1>THEOplayer <span></span> - Keyboard hotkeys</h1>
+    <h1>OptiView Player <span></span> - Keyboard hotkeys</h1>
     <p>In this example, we added some sample keyboard hotkeys and associated them with specific functions.</p>
         <div class="theoplayer-container video-js theoplayer-skin"></div>
     <p><b>Note:</b> for the hotkeys to work, the player must be in focus.</p>
@@ -36,7 +36,7 @@
         <li><code>mute: m</code></li>
     </ul>
     <p>Check the code and define your own hotkeys.</p>
-        <!-- ***** REPLACE URL TO THEOPLAYER JS ***** -->
+        <!-- ***** REPLACE URL TO OPTIVIEW PLAYER JS ***** -->
         <script
                 type="text/javascript"
                 src="../../node_modules/theoplayer/THEOplayer.js"
@@ -44,7 +44,7 @@
         <script>
             const element = document.querySelector(".theoplayer-container");
             let player = new THEOplayer.Player(element, {
-                // ***** REPLACE THEOPLAYER LOCATION *****
+                // ***** REPLACE PLAYER LIBRARY LOCATION *****
                 libraryLocation: "../../node_modules/theoplayer/",
                 // ***** REPLACE WITH YOUR LICENSE TO PLAY ON YOUR DOMAINS *****
                 license:"sZP7IYe6T6f_TQ41CSU13OzkIlglFSaz0S5-CSbzI6ztCLUKTDx10L0kIlf6FOPlUY3zWokgbgjNIOf9flBk0uU60lCoFSfZ0LR-3QBZCmzr3DfrFSg6CKakIS5iIQfkIOfVfK4_bQgZCYxNWoryIQXzImf90lao0Ler0Sfi0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lbZTSez3u5cTuRcFOPeWok1dDrLYtA1Ioh6TgV6WQjlCDcEWt3zf6i6UQ1gWtAVCYggb6rlWoz6Ymi6IQj-CDgpbkjLWt4ZCoh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfG3edt06TgV6dwx-Wuh6Ymi6bo4pIXjNWYAZIY3LdDjpflNzbG4gFOPKIDXzUYPgbZf9Dkkj",
@@ -57,9 +57,9 @@
             player.source = {
                     sources: [{
                         type : 'application/x-mpegurl',
-                        src: '//cdn.theoplayer.com/video/elephants-dream/playlist-single-audio.m3u8'
+                        src: 'https://cdn.theoplayer.com/video/elephants-dream/playlist-single-audio.m3u8'
                     }],
-                    poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/800px-ElephantsDreamPoster.jpg'
+                    poster: 'https://cdn.theoplayer.com/video/elephants-dream.png'
             };
 
             function THEOplayer_UI_Hotkeys (player) {

@@ -2,7 +2,7 @@ if (HLS) {
     let drmConfiguration = {
         "fairplay": {
             "licenseAcquisitionURL": "<LICENSE_KEY_URL_FAIRPLAY>",
-            "certificateURL": "CERTIFICATE_URL>"
+            "certificateURL": "<CERTIFICATE_URL>"
             // "certificate": "<CERTIFICATE_AS_STRING_OR_UInt8Array>",
             // "headers": {"<KEY>": "<VALUE>"},
             // "useCredentials": <true||false>

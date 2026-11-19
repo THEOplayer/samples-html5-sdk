@@ -4,7 +4,7 @@ if (HLS) {
         "customdata": "<CUSTOMDATA>",
         "fairplay": {
             "licenseAcquisitionURL": "<LICENSE_KEY_URL_FAIRPLAY>",
-            "certificateURL": "CERTIFICATE_URL>"
+            "certificateURL": "<CERTIFICATE_URL>"
         }
     };
     player.source = {

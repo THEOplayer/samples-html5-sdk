@@ -1,15 +1,22 @@
 {
-  "name": "static",
-  "version": "1.0.0",
-  "description": "This is a static template with no bundling",
-  "main": "index.html",
+  "name": "theoplayer-samples-web",
+  "private": true,
+  "description": "OptiView Player Web SDK reference apps",
   "scripts": {
-    "start": "serve"
+    "start": "http-server -a localhost -p 8080 -c-1"
   },
-  "author": "THEO Technologies",
+  "author": "Dolby Laboratories",
   "dependencies": {
-    "@theoplayer/extended": "^9",
-    "@theoplayer/web-ui": "^1.10",
-    "theoplayer": "^9"
+    "@theoplayer/extended": "^11",
+    "theoplayer": "^11"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "overrides": {
+    "html-encoding-sniffer": "^7"
+  },
+  "engines": {
+    "node": ">=22.12"
   }
 }

@@ -1,41 +1,42 @@
 # Playing VMAP ads
-The present sample shows how to add CSAI ads (preroll, midroll, postroll) through a VMAP in THEOplayer.
+The present sample shows how to add CSAI ads (preroll, midroll, postroll) through a VMAP in OptiView Player.
 
-To keep the page simple, we moved to this readme notes and useful resources.
 
-## About the player implementation
-The present samples are meant to be used with the NPM-installed player. Get your NPM web player on https://www.npmjs.com/package/theoplayer.
+## Running this sample
+1. Install [Node.js](https://nodejs.org/) 22.12 or later.
+2. In the repository root, install the dependencies and start the local server:
+   ```sh
+   npm install
+   npm start
+   ```
+   `npm install` gets the latest OptiView Player 11.x release from the [`theoplayer`](https://www.npmjs.com/package/theoplayer) npm package.
+3. Open http://localhost:8080/reference-apps/ads-basic-vmap/index.html.
 
-Alternatively, you can also generate a custom player on THEOportal.
-
-<details style="border:1px solid #ccc;padding:1em; background-color:#f9f9f9">
-  <summary>Making sure the player is implemented correctly: <u>URLs and license</u></summary>
-
-### Check the URLs
-Once you have installed your player, check whether the following URLs need changing to point to the folder containing the player SDK:
-* UI CSS library: `href="../../node_modules/theoplayer/ui.css"`
-* THEOplayer library: `src="../../node_modules/theoplayer/THEOplayer.js"`
-* libraryLocation: `libraryLocation: "../../node_modules/theoplayer/"`
+The page loads the player from `../../node_modules/theoplayer/`:
+* UI CSS: `../../node_modules/theoplayer/ui.css`
+* Player library: `../../node_modules/theoplayer/THEOplayer.js`
+* `libraryLocation`: `../../node_modules/theoplayer/`
 
 ### License
-The license included in the implementation only allows for playback on _localhost_.
-To play on any other domains, as well as to make sure your license doesn't expire, get your license on  https://portal.theoplayer.com.
-</details>
+The license in this sample only allows playback on _localhost_.
+To play on other domains, get your own license on the [THEOportal](https://portal.theoplayer.com) and set it in the player configuration.
+
+See [Getting started on Web](https://optiview.dolby.com/docs/theoplayer/getting-started/sdks/web/getting-started/) for the full setup guide, and the [examples page](https://optiview.dolby.com/docs/theoplayer/examples/) for more live demos.
 
 ## Using ads
-In THEOplayer you can do SSAI and/or CSAI.
+In OptiView Player you can do SSAI and/or CSAI.
 The present sample showcases CSAI VMAP ads with the CSAI and the Google IMA integrations, which are the most commonly used.
 
 <details style="border:1px solid #ccc;padding:1em; background-color:#f9f9f9">
   <summary>Learn more</summary>
 
 ### Notes about the CSAI integration
-Ads can be played in THEOplayer out of the box with the CSAI integration. For this, you don't need to add any library, nor to specify any integration in your adSource.
+Ads can be played in OptiView Player out of the box with the CSAI integration. For this, you don't need to add any library, nor to specify any integration in your adSource.
 
 The UI, including the language, is customizable. Check the links below for related resources.
 
 ### Notes about the Google IMA integration
-Ads can also be played in THEOplayer with the Google IMA integration. For this, the IMA library is needed. You also need to specify `integration: 'google-ima'` in your adSource.
+Ads can also be played in OptiView Player with the Google IMA integration. For this, the IMA library is needed. You also need to specify `integration: 'google-ima'` in your adSource.
 
 Some aspects of the UI are customizable, but since IMA ads play in an `<iframe>`, this cannot be changed at will. Check the links below for related resources.
 </details>
@@ -46,15 +47,15 @@ Some aspects of the UI are customizable, but since IMA ads play in an `<iframe>`
 * [THEOportal](https://portal.theoplayer.com)
 
 ### Ads
-* [How to guides - Introduction](https://docs.theoplayer.com/how-to-guides/01-ads/00-introduction.md)
-* [Ads API reference](https://docs.theoplayer.com/api-reference/web/theoplayer.ads.md)
-* [AdsConfiguration](https://docs.theoplayer.com/api-reference/web/theoplayer.adsconfiguration.md)
+* [How to guides - Introduction](https://optiview.dolby.com/docs/theoplayer/how-to-guides/ads/introduction/)
+* [Ads API reference](https://optiview.dolby.com/docs/theoplayer/v11/api-reference/web/interfaces/Ads.html)
+* [AdsConfiguration](https://optiview.dolby.com/docs/theoplayer/v11/api-reference/web/interfaces/AdsConfiguration.html)
 * [Advertising Tester - VAST, VPAID, VMAP](https://www.theoplayer.com/theoplayer-demo-advertisement-tester-vpaid-vast-vmap)
   
-* [Setting up CSAI ads](https://docs.theoplayer.com/how-to-guides/01-ads/03-how-to-set-up-vast-and-vmap.md)
+* [Setting up CSAI ads](https://optiview.dolby.com/docs/theoplayer/how-to-guides/ads/how-to-set-up-vast-and-vmap/)
   <span style="display: inline-block;height:2em"></span>
-* [Customizing CSAI ads](https://docs.theoplayer.com/how-to-guides/01-ads/02-customizing-the-ad-overlay-text.md)
+* [Customizing CSAI ads](https://optiview.dolby.com/docs/theoplayer/how-to-guides/ads/customizing-the-ad-overlay-text/)
 
-* [Setting up IMA ads](https://docs.theoplayer.com/how-to-guides/01-ads/10-google-ima.md)
+* [Setting up IMA ads](https://optiview.dolby.com/docs/theoplayer/how-to-guides/ads/google-ima/)
   <span style="display: inline-block;height:2em"></span>
-* [FAQ: Is it possible to hide/disable the Google IMA UI?](https://docs.theoplayer.com/how-to-guides/11-ui/05-is-it-possible-to-hide-googla-ima.md)
+* [FAQ: Is it possible to hide/disable the Google IMA UI?](https://optiview.dolby.com/docs/theoplayer/how-to-guides/ui/is-it-possible-to-hide-googla-ima/)
