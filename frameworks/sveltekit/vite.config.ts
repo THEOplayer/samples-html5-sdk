@@ -1,0 +1,9 @@
+import adapter from '@sveltejs/adapter-static';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  // The player is one large module by design, so raise the limit above its chunk size.
+  build: { chunkSizeWarningLimit: 4000 },
+  plugins: [sveltekit({ adapter: adapter() })]
+});
