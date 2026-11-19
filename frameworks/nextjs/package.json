@@ -1,27 +1,31 @@
 {
-  "name": "theoplayer-nextjs-typescript-npm",
-  "version": "0.1.0",
+  "name": "theoplayer-nextjs-sample",
+  "version": "0.2.0",
   "private": true,
-  "packageManager": "yarn@4.6.0",
   "scripts": {
+    "copy:theoplayer": "node scripts/copy-theoplayer.mjs",
+    "predev": "npm run copy:theoplayer",
     "dev": "next dev",
+    "prebuild": "npm run copy:theoplayer",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "create-static-theo": "copyfiles --flat node_modules/theoplayer/* public/vendor/theoplayer"
+    "lint": "eslint ."
   },
   "dependencies": {
-    "next": "^15.1.6",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "theoplayer": "^8.10.0"
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "theoplayer": "^11"
   },
   "devDependencies": {
-    "@types/node": "22.13.1",
-    "@types/react": "^19.0.8",
-    "copyfiles": "^2.4.1",
-    "eslint": "^9.19.0",
-    "eslint-config-next": "^15.1.6",
-    "typescript": "~5.7.3"
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.4.6",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22.12"
   }
 }

@@ -4,7 +4,7 @@ import './App.css';
 
 import { THEOplayerView } from './player/THEOplayerView';
 
-const license = '<insert license>';
+const license = '';
 
 function App() {
     const onPlayer = useCallback((player: Player): void => {
@@ -12,12 +12,12 @@ function App() {
 
         player.muted = true;
         player.autoplay = true;
-        // MPEG-DASH Sample source
+        // HLS Sample source
         player.source = {
             sources: [
                 {
-                    src: '//dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd',
-                    type: 'application/dash+xml',
+                    src: 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8',
+                    type: 'application/x-mpegurl',
                 },
             ],
         };
@@ -25,7 +25,7 @@ function App() {
         // player.source = {
         //     sources: [
         //         {
-        //             src: '//cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8',
+        //             src: 'https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8',
         //             type: 'application/x-mpegurl',
         //         },
         //     ],

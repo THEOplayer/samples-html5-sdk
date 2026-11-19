@@ -1,70 +1,54 @@
 'use client';
 
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import type { Player, PlayerConfiguration, PreloadType, SourceDescription } from 'theoplayer';
-import * as THEOplayer from 'theoplayer';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import type { PreloadType, SourceDescription } from 'theoplayer';
+import { Player } from 'theoplayer';
 
 export interface THEOplayerWrapperProps {
-    preload?: PreloadType,
-    autoplay?: boolean,
-    source: SourceDescription,
-    onPlay?: () => void
+    preload?: PreloadType;
+    autoplay?: boolean;
+    source: SourceDescription;
+    onPlay?: () => void;
 }
 
 function THEOplayerWrapper({ preload, autoplay, source, onPlay }: THEOplayerWrapperProps) {
-    const [player, setPlayer] = useState<Player | null>(null);
     const playerRef = useRef<Player | null>(null);
+    const [isReady, setIsReady] = useState(false);
 
-    const setPlayerEl = useCallback((el: HTMLElement | null) => {
-        if (!el || playerRef.current) return;
-
-        const newPlayer = new THEOplayer.Player(el, {
-            license: process.env.theoplayerLicenseString,
-            libraryLocation: process.env.theoplayerLibraryLocation
+    const setContainer = useCallback((container: HTMLDivElement) => {
+        const player = new Player(container, {
+            license: process.env.NEXT_PUBLIC_THEOPLAYER_LICENSE,
+            libraryLocation: '/vendor/theoplayer/',
         });
-
-        playerRef.current = newPlayer;
-
-        (window as any).player = newPlayer;
-        setPlayer(newPlayer);
-        console.log('Created new player:', newPlayer);
-
+        playerRef.current = player;
+        setIsReady(true);
         return () => {
-            playerRef.current?.destroy();
+            player.destroy();
             playerRef.current = null;
-            setPlayer(null);
-        }
+            setIsReady(false);
+        };
     }, []);
 
     useEffect(() => {
-        if (!player) return;
-        player.preload = preload ?? 'none';
-    }, [player, preload]);
+        if (playerRef.current) playerRef.current.preload = preload ?? 'none';
+    }, [isReady, preload]);
 
     useEffect(() => {
-        if (!player) return;
-        player.autoplay = autoplay ?? false;
-    }, [player, autoplay]);
+        if (playerRef.current) playerRef.current.autoplay = autoplay ?? false;
+    }, [isReady, autoplay]);
 
     useEffect(() => {
-        if (!player) return;
-        player.source = source;
-    }, [player, source]);
+        if (playerRef.current) playerRef.current.source = source;
+    }, [isReady, source]);
 
     useEffect(() => {
+        const player = playerRef.current;
         if (!player || !onPlay) return;
         player.addEventListener('play', onPlay);
-        return () => {
-            player.removeEventListener('play', onPlay);
-        }
-    }, [player, onPlay]);
+        return () => player.removeEventListener('play', onPlay);
+    }, [isReady, onPlay]);
 
-    return (
-        <div
-            className={"video-js theoplayer-skin vjs-16-9"}
-            ref={setPlayerEl}
-        />
-    );
+    return <div className={'video-js theoplayer-skin vjs-16-9'} ref={setContainer} />;
 }
 
 export default THEOplayerWrapper;
