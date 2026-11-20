@@ -9,6 +9,7 @@
   "author": "Dolby Laboratories",
   "dependencies": {
     "@theoplayer/extended": "^11",
+    "@theoplayer/web-ui": "^2",
     "theoplayer": "^11"
   },
   "devDependencies": {

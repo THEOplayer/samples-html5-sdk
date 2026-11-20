@@ -26,7 +26,8 @@ npm run preview
 
 ## About the player implementation
 
-* [`src/components/Player.vue`](src/components/Player.vue) is the player component. It creates the `Player` in `onMounted`, watches the `source` prop, and calls `player.destroy()` in `onBeforeUnmount`. It imports `theoplayer/ui.css`. Set your license in the `LICENSE` constant in this file.
+* It uses `DefaultUI` from [OptiView Web UI](https://www.npmjs.com/package/@theoplayer/web-ui) (`@theoplayer/web-ui` `^2`), which brings its own styles, so no `ui.css` is needed.
+* [`src/components/Player.vue`](src/components/Player.vue) is the player component. It creates a `DefaultUI` in `onMounted`, watches the `source` prop, and in `onBeforeUnmount` removes the UI element, which destroys the player. Set your license in the `LICENSE` constant in this file.
 * [`src/App.vue`](src/App.vue) renders the component with a source.
 * The player loads extra files, such as the transmuxer worker, from `libraryLocation`. [`vite.config.js`](vite.config.js) copies the files from `node_modules/theoplayer` to `vendor/theoplayer/` with `vite-plugin-static-copy`, and the component sets `libraryLocation` to `${import.meta.env.BASE_URL}vendor/theoplayer/`.
 

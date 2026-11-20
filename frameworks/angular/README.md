@@ -26,9 +26,9 @@ Serve that folder with any static web server.
 
 ## About the player implementation
 
-* [`src/app/theoplayer/theoplayer.component.ts`](src/app/theoplayer/theoplayer.component.ts) is the player component. It creates the `Player` in `afterNextRender`, so it only runs in the browser, after the container element exists. It takes the source as a signal input and calls `player.destroy()` in `ngOnDestroy`. Set your license in the `LICENSE` constant in this file.
+* It uses `DefaultUI` from [OptiView Web UI](https://www.npmjs.com/package/@theoplayer/web-ui) (`@theoplayer/web-ui` `^2`), which brings its own styles, so no `ui.css` is needed.
+* [`src/app/theoplayer/theoplayer.component.ts`](src/app/theoplayer/theoplayer.component.ts) is the player component. It creates a `DefaultUI` in `afterNextRender`, so it only runs in the browser, after the container element exists. It takes the source as a signal input and in `ngOnDestroy` removes the UI element, which destroys the player. Set your license in the `LICENSE` constant in this file.
 * [`src/app/app.ts`](src/app/app.ts) renders the component with a source.
-* [`src/index.html`](src/index.html) loads `vendor/theoplayer/ui.css`.
 * The player loads extra files, such as the transmuxer worker, from `libraryLocation`. The `assets` entry in [`angular.json`](angular.json) copies the files from `node_modules/theoplayer` to `vendor/theoplayer`, and the component sets `libraryLocation` to `vendor/theoplayer/`.
 
 ## License

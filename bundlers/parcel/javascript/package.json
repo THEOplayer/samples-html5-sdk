@@ -11,6 +11,7 @@
     "distDir": "dist/vendor/theoplayer/"
   },
   "dependencies": {
+    "@theoplayer/web-ui": "^2",
     "theoplayer": "^11"
   },
   "devDependencies": {
@@ -29,5 +30,8 @@
     "@swc/core": false,
     "lmdb": false,
     "msgpackr-extract": false
+  },
+  "@parcel/resolver-default": {
+    "packageExports": true
   }
 }

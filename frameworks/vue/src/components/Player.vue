@@ -1,7 +1,6 @@
 <script setup>
 import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue';
-import { Player } from 'theoplayer';
-import 'theoplayer/ui.css';
+import { DefaultUI } from '@theoplayer/web-ui';
 
 // Your OptiView Player license string. Without a license, the player only works on localhost.
 const LICENSE = '';
@@ -11,37 +10,43 @@ const props = defineProps({
 });
 
 const container = useTemplateRef('container');
-let player;
+let ui;
 
 onMounted(() => {
-  player = new Player(container.value, {
+  ui = new DefaultUI({
     license: LICENSE,
-    // The library files are copied to vendor/theoplayer (see vite.config.js).
-    libraryLocation: `${import.meta.env.BASE_URL}vendor/theoplayer/`,
-    ui: { fluid: true }
+    libraryLocation: `${import.meta.env.BASE_URL}vendor/theoplayer/`
   });
-  player.source = props.source;
+  ui.source = props.source;
+  container.value.appendChild(ui);
 });
 
 watch(
   () => props.source,
   (source) => {
-    if (player) player.source = source;
+    if (ui) ui.source = source;
   }
 );
 
 onBeforeUnmount(() => {
-  player?.destroy();
+  ui?.remove();
 });
 </script>
 
 <template>
-  <div ref="container" class="theoplayer-container video-js theoplayer-skin vjs-16-9 THEOplayer"></div>
+  <div ref="container" class="player"></div>
 </template>
 
 <style>
-.THEOplayer {
+.player {
   max-width: 960px;
   margin: 0 auto;
+  aspect-ratio: 16 / 9;
+}
+
+theoplayer-default-ui {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 </style>

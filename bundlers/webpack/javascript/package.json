@@ -8,6 +8,7 @@
     "preview": "http-server dist"
   },
   "dependencies": {
+    "@theoplayer/web-ui": "^2",
     "theoplayer": "^11"
   },
   "devDependencies": {

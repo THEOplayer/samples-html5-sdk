@@ -1,4 +1,4 @@
-
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { copyFileSync, mkdirSync, readdirSync } from 'node:fs';
 
 // The player loads its workers and other files from libraryLocation, so copy them next to the bundle.
@@ -18,18 +18,17 @@ function copyPlayerFiles() {
 }
 
 export default {
+    // The player's ES modules use top-level `this`, which is `globalThis` in a browser script.
+    context: 'globalThis',
     input: {
         'bundle': './src/index.js'
     },
     output: {
         dir: './dist',
-        format: 'iife',
-        globals: {
-            theoplayer: 'THEOplayer'
-        }
+        format: 'es'
     },
-    external: [ 'theoplayer' ],
     plugins: [
+        nodeResolve(),
         copyPlayerFiles()
     ]
 };

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SourceDescription } from 'theoplayer'
+import type { SourceDescription } from 'theoplayer/chromeless'
 
 const source: SourceDescription = {
   sources: [

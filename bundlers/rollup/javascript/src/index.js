@@ -1,12 +1,17 @@
-import * as THEOplayer from 'theoplayer';
-import {LICENSE} from '../../../util/constants';
+import { DefaultUI } from '@theoplayer/web-ui';
+import { LICENSE } from '../../../util/constants';
 
-const element = document.getElementById('my-player');
 const configuration = {
     license: LICENSE,
     libraryLocation: './vendor/theoplayer/'
 };
 
-const player = new THEOplayer.Player(element, configuration);
+const ui = new DefaultUI(configuration);
+ui.source = {
+    sources: {
+        src: 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8',
+        type: 'application/x-mpegurl'
+    }
+};
 
-player.src = 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8';
+document.getElementById('my-player').appendChild(ui);

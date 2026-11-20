@@ -4,14 +4,11 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     mode: "development",
-    devtool: "inline-source-map",
+    devtool: "source-map",
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
         path: __dirname + '/dist'
-    },
-    externals: {
-        'theoplayer': 'THEOplayer'
     },
     resolve: {
         extensions: [".js"]
@@ -22,8 +19,11 @@ module.exports = {
         })],
     },
     performance: {
-        // The copied player files are large by design; only check the sample's own bundle.
-        assetFilter: (file) => !file.includes('vendor/theoplayer/'),
+        // The bundle includes the player, which is large by design, so raise the limits above its size.
+        // Source maps and the copied player files are not checked.
+        assetFilter: (file) => !file.endsWith('.map') && !file.includes('vendor/theoplayer/'),
+        maxAssetSize: 4_000_000,
+        maxEntrypointSize: 4_000_000,
     },
     plugins: [
         new HtmlWebpackPlugin({

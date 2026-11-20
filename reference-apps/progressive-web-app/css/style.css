@@ -4,7 +4,8 @@ html, body {
     height: 100%;
     width: 100%;
 }
-.video-js {
+.theoplayer-container,
+theoplayer-default-ui {
     width: 100%;
     height: 100%;
 }

@@ -1,20 +1,18 @@
-import * as THEOplayer from 'theoplayer';
-import {LICENSE} from '../../../util/constants';
-import {Player, PlayerConfiguration} from 'theoplayer';
+import { DefaultUI } from '@theoplayer/web-ui';
+import type { PlayerConfiguration } from 'theoplayer/chromeless';
+import { LICENSE } from '../../../util/constants';
 
-// Parcel's CSS transformer cannot parse ui.css, so load the copied stylesheet at runtime.
-const stylesheet = document.createElement('link');
-stylesheet.rel = 'stylesheet';
-stylesheet.href = '/vendor/theoplayer/ui.css';
-document.head.appendChild(stylesheet);
-
-const element: HTMLElement = document.getElementById('my-player')!;
 const configuration: PlayerConfiguration = {
     license: LICENSE,
     libraryLocation: '/vendor/theoplayer/'
 };
 
-const player: Player = new THEOplayer.Player(element, configuration);
+const ui = new DefaultUI(configuration);
+ui.source = {
+    sources: {
+        src: 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8',
+        type: 'application/x-mpegurl'
+    }
+};
 
-player.src = 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8';
-
+document.getElementById('my-player')!.appendChild(ui);

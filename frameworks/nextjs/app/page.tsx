@@ -2,13 +2,13 @@
 
 import { useCallback, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
-import type { PreloadType, SourceDescription } from 'theoplayer';
+import type { PreloadType, SourceDescription } from 'theoplayer/chromeless';
 import styles from './page.module.css';
 
 // OptiView Player requires browser APIs, so it is only rendered on the client.
 const THEOplayerWrapper = dynamic(() => import('../components/THEOplayerWrapper'), {
     ssr: false,
-    loading: () => <div className={'video-js theoplayer-skin vjs-16-9'} />,
+    loading: () => <div style={{ aspectRatio: '16 / 9' }} />,
 });
 
 const preloadTypes: PreloadType[] = ['none', 'metadata', 'auto'];
