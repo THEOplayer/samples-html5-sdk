@@ -7,7 +7,7 @@ const destinations = ['minimum-example/libs', 'example-with-ui/libs'];
 for (const destination of destinations) {
     mkdirSync(destination, { recursive: true });
     for (const file of readdirSync(source)) {
-        if (/\.(css|js|html|wasm)$/.test(file) && !/\.(esm|d)\.js$/.test(file)) {
+        if (/\.(css|js|html|wasm)$/.test(file)) {
             cpSync(`${source}/${file}`, `${destination}/${file}`);
         }
     }
