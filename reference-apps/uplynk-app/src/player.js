@@ -26,6 +26,8 @@ export class PlayerUtil {
         this.createTHEOplayerInfo(element);
 
         this.theoplayerRef = new THEOplayer.Player(element, {
+            // Replace with your OptiView Player license. It needs the Uplynk feature.
+            license: '',
             libraryLocation: 'vendor/theoplayer/',
             uplynk: {
                 onSeekOverAd: app.config.uplynk.seekOverAd,

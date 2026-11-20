@@ -18,7 +18,7 @@ This sample is a separate npm project, so the root `npm start` does not build or
 
 ## License
 
-Uplynk playback needs a license with the Uplynk feature. The default `localhost` license does not include it, so the player shows a license error until you add your own. Add `license: '<your license>'` to the player configuration in [`src/player.js`](src/player.js). Get a license on [THEOportal](https://portal.theoplayer.com).
+Uplynk playback needs a license with the Uplynk feature. The default `localhost` license does not include it, so the player shows a license error until you add your own. Set `license` in the player configuration in [`src/player.js`](src/player.js), then run `npm run build` again. Get a license on [THEOportal](https://portal.theoplayer.com).
 
 ## About the player implementation
 
