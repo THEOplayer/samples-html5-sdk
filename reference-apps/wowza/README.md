@@ -1,28 +1,26 @@
-# THEOplayer Wowza
-Wowza and THEOplayer are partners in the streaming industry. When developers use both products,
+# OptiView Player and Wowza Streaming Cloud
+Wowza and OptiView Player are partners in the streaming industry. When developers use both products,
 * Wowza Streaming Cloud is used on the back-end to manage live streams.
-* THEOplayer is used on the client-side to playout the live streams.
+* OptiView Player is used on the client-side to playout the live streams.
 
 Cross-product documentation resources:
 * https://www.wowza.com/blog/wowza-streaming-cloud-getting-started
-* https://www.theoplayer.com/blog/theoplayer-joins-wowza-media-systems-technology-alliance-partner-program
 
-This reference app demonstrates an integration between THEOplayer and Wowza Streaming Cloud.
- * You can use this project as a starting template for Wowza and THEOplayer playback.
+This reference app demonstrates an integration between OptiView Player and Wowza Streaming Cloud.
+ * You can use this project as a starting template for Wowza and OptiView Player playback.
  * You can leverage the `theoplayer-wowza.js` JavaScript library. **This is completely optional.**
- This JavaScript file exposes an API which automatically unlocks a number of features which bridge THEOplayer and Wowza functionalities.
+ This JavaScript file exposes an API which automatically unlocks a number of features which bridge OptiView Player and Wowza functionalities.
 
-Head over to https://www.wowza.com/blog/wowza-streaming-cloud-getting-started for an introduction to Wowza Streaming Cloud and THEOplayer.
+Head over to https://www.wowza.com/blog/wowza-streaming-cloud-getting-started for an introduction to Wowza Streaming Cloud and OptiView Player.
 
 # Features of `theoplayer-wowza.js`
 ## Livestream information retrieval
 When setting a stream, you can supply a Wowza configuration which will be intercepted and processed by `theoplayer-wowza.js`.
 If this configuration contains the `jsonUrl`, then the JSON response will automatically be fetched and exposed.
- // image
 Furthermore,
-* THEOplayer overlays the title when the video is paused.
-* THEOplayer sets the poster image if no prior poster has been configured.
-* THEOplayer leverages this information to enhance the offline-to-online-to-offline transitions. (See below.) 
+* OptiView Player overlays the title when the video is paused.
+* OptiView Player sets the poster image if no prior poster has been configured.
+* OptiView Player leverages this information to enhance the offline-to-online-to-offline transitions. (See below.) 
 
 ## Enhanced offline-to-online-to-offline transitions
 The main use-case of Wowza Streaming Cloud is to stream live video.
@@ -48,10 +46,10 @@ The main use-case of Wowza Streaming Cloud is to stream live video.
 </details>
 
 When you supply a Wowza configuration, the following functionalities are unlocked:
-* When your live stream is still offline, then THEOplayer displays a placeholder which overlaps the video player.
-* When your live stream becomes available, then THEOplayer automatically starts playing the stream.
-* When your live stream stops, then THEOplayer displays a placeholder which overlaps the video player.
-* When your live stream restarsm then THEOplayer automatically starts playing the stream.
+* When your live stream is still offline, then OptiView Player displays a placeholder which overlaps the video player.
+* When your live stream becomes available, then OptiView Player automatically starts playing the stream.
+* When your live stream stops, then OptiView Player displays a placeholder which overlaps the video player.
+* When your live stream restarts, then OptiView Player automatically starts playing the stream.
 
 ![Placeholder when a stream is unavailable.](docs/placeholder.png "Placeholder when a stream is unavailable.")
 
@@ -60,12 +58,8 @@ What's shown inside of the placeholder?
 * A) A single, configurable status message.
 * B) A poster image, title and countdown clock -- if the `jsonUrl` is provided.
 
-# Getting started
+# Setting up a Wowza live stream
 
-## 1. THEOplayer HTML5 SDK
-Create a THEOplayer HTML5 SDK at https://portal.theoplayer.com/. Get familiar with the THEOplayer API at https://docs.portal.theoplayer.com/getting-started/01-sdks/01-web/00-getting-started.md.
-
-## 2. Create a Wowza live stream
 Login to your Wowza account and configure a livestream.
 
 After configuring your livestream, you'll have access to your HLS live stream and your public stream ID.
@@ -77,17 +71,26 @@ In the screenshot above, `https://cdn3.wowza.com/1/ZTdJRm1BaEJSVFh0/MUpKb0Vy/hls
 ` is the URL of the HLS live stream, and `mmww1k9z` is your public stream ID.
 You can create your public JSON URL by entering the stream ID in the following template: `https://player.cloud.wowza.com/hosted/<stream ID>/wowza.json`.
 
-## 3. Configure local demo
-First of all, you must run the NPM scripts described below to install your NPM dependencies and to compile the 
-previously mentioned `theoplayer-wowza.js`. Finally, you can run an NPM script to boot a local web server.
+# Running this sample
 
-Once you have all of your library files, you want to swap in your THEOplayer library files in `public/index.html`.
-(Head over to the [getting started guide](https://docs.portal.theoplayer.com/getting-started/01-sdks/01-web/00-getting-started.md) if you're unsure on how to achieve this.)
+1. Install [Node.js](https://nodejs.org/) 22.12 or later.
+2. In this folder, install the dependencies, build the app and start the local server:
+   ```sh
+   npm install
+   npm run build
+   npm start
+   ```
+   Use `npm run build-dev` instead of `npm run build` for an unminified build.
+3. Open http://localhost:8000.
+4. Enter the URL of your own Wowza Streaming Cloud HLS stream and its `wowza.json` URL. The sample has no working default stream, because the Wowza streams it used are no longer available.
 
-Then, you want to configure your Wowza stream and Wowza configuration in `public/index.html`.
-Go through the API for more information on the Wowza configuration.
+This sample is a separate npm project, so the root `npm start` does not build or serve it.
 
-The recording at https://youtu.be/JsJcUteaEiw runs through the second and third step.
+## About the player implementation
+
+* `npm run build` bundles [`src/`](src) into `public/js/theoplayer-wowza.js` with webpack. It also copies the player files from `node_modules/theoplayer` to `public/vendor/theoplayer/`. Both are build output and not committed.
+* [`public/index.html`](public/index.html) loads `vendor/theoplayer/THEOplayer.js` and sets `libraryLocation` to `vendor/theoplayer/`.
+* Set your stream URLs, Wowza configuration and `license` in the player configuration in `public/index.html`. Without a license, the player only plays on `localhost`, and only streams that the default license allows. Get a license on [THEOportal](https://portal.theoplayer.com).
 
 # Live Demo
 A live demo is available at https://cdn.theoplayer.com/demos/wowza/github-reference-app/index.html.
@@ -96,16 +99,16 @@ A live demo is available at https://cdn.theoplayer.com/demos/wowza/github-refere
 
 `THEOplayerWowza`: the global variable which exposes a function to register a video player.
 ```javascript
-var wowzaSession = theoplayerWowza.registerPlayer(player);
+const wowzaSession = theoplayerWowza.registerPlayer(player);
 ```
 The `wowzaSession` exposes two functions:
 ```javascript
 wowzaSession.getState(); // returns 'offline' or 'online'
-wowza.getStreamData(); // returns the jsonUrl response (e.g. {"title":"Live Streaming with Wowza Streaming Cloud","image":"//prod-railsapp.s3.amazonaws.com/uploads/player/video_poster_image/1153020/get_started_wcs.jpg","live":true,"live_done":false,"countdown":true,"countdown_timestamp":"1592413200","file":"https://cdn3.wowza.com/1/ZTdJRm1BaEJSVFh0/MUpKb0Vy/hls/live/playlist.m3u8","sources":[]})
+wowzaSession.getStreamData(); // returns the jsonUrl response (e.g. {"title":"Live Streaming with Wowza Streaming Cloud","image":"//prod-railsapp.s3.amazonaws.com/uploads/player/video_poster_image/1153020/get_started_wcs.jpg","live":true,"live_done":false,"countdown":true,"countdown_timestamp":"1592413200","file":"https://cdn3.wowza.com/1/ZTdJRm1BaEJSVFh0/MUpKb0Vy/hls/live/playlist.m3u8","sources":[]})
 ```
 You can use a `WowzaConfiguration` when you have registered your player through `theoplayerWowza.registerPlayer(player)`.
 ```javascript
-var wowzaConfiguration = {
+const wowzaConfiguration = {
     "jsonUrl": "https://player.cloud.wowza.com/hosted/mmww1k9z/wowza.json",
     "retry": "3000",
     "offlineText": "The stream is currently not available. :(",
@@ -136,14 +139,7 @@ In a `WowzaSourceConfiguration`, you can configure the following flags:
 - `statechangeCallback`: the function which should be called when a stream either becomes available or unavailable.
 
 
-# NPM scripts
-- Install NPM dependencies: `npm install`
-- Build `js/theoplayer-wowza.js` with Webpack: `npm run build-dev` or `npn run build`
-- Serve the app locally: `npm run start` (Open [http://localhost:8000](http://localhost:8000) to view it in the browser.)
+# Resources
 
-# Future work
-* Improve README.md.
-* Refactor `/src`.
-* Sometimes the HLS master playlist returns a 200 status code (from cache), but the media playlists are still 404s.
-When this occurs, the client reloads the stream. While this is not wrong, it can trigger some transitions which could be
-considered a visual glitch.
+* [Getting started with OptiView Player on Web](https://optiview.dolby.com/docs/theoplayer/getting-started/sdks/web/getting-started/)
+* [OptiView Player examples](https://optiview.dolby.com/docs/theoplayer/examples/)

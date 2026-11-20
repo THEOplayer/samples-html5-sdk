@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="OptiView Player Tizen sample"/>
+    <title>OptiView Player Tizen minimum example</title>
+    <style>
+    .theoplayer-tizen {
+        padding-top: 56.25%;
+    }
+
+    video[src] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .theoplayer-ad-linear {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom:0;
+    }
+
+    </style>
+
+</head>
+
+
+<body>
+<div class='theoplayer-tizen'></div>
+<script src='libs/THEOplayer.chromeless.js'></script>
+
+<script>
+    const element = document.querySelector('.theoplayer-tizen');
+    const player = new THEOplayer.Player(element, {
+        fluid: true,
+        libraryLocation: 'libs/'
+    });
+
+    const showCase = {
+        hls: {
+            sources: {
+                src: 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8',
+                type: 'application/x-mpegurl'
+            }
+        },
+        dash: {
+            sources: {
+                src: 'https://demo.unified-streaming.com/video/tears-of-steel/tears-of-steel-multiple-subtitles.ism/.mpd',
+                type: 'application/dash+xml'
+            }
+        },
+        hlsDrm: {
+            sources: {
+                src: 'https://media.axprod.net/TestVectors/Cmaf/protected_1080p_h264_cbcs/manifest.m3u8',
+                type: 'application/x-mpegurl'
+            },
+            contentProtection: {
+                integration: 'axinom',
+                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJ2ZXJzaW9uIjogMSwKICAiY29tX2tleV9pZCI6ICI2OWU1NDA4OC1lOWUwLTQ1MzAtOGMxYS0xZWI2ZGNkMGQxNGUiLAogICJtZXNzYWdlIjogewogICAgInR5cGUiOiAiZW50aXRsZW1lbnRfbWVzc2FnZSIsCiAgICAidmVyc2lvbiI6IDIsCiAgICAibGljZW5zZSI6IHsKICAgICAgImFsbG93X3BlcnNpc3RlbmNlIjogdHJ1ZQogICAgfSwKICAgICJjb250ZW50X2tleXNfc291cmNlIjogewogICAgICAiaW5saW5lIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICIzMDJmODBkZC00MTFlLTQ4ODYtYmNhNS1iYjFmODAxOGEwMjQiLAogICAgICAgICAgImVuY3J5cHRlZF9rZXkiOiAicm9LQWcwdDdKaTFpNDNmd3YremZ0UT09IiwKICAgICAgICAgICJ1c2FnZV9wb2xpY3kiOiAiUG9saWN5IEEiCiAgICAgICAgfQogICAgICBdCiAgICB9LAogICAgImNvbnRlbnRfa2V5X3VzYWdlX3BvbGljaWVzIjogWwogICAgICB7CiAgICAgICAgIm5hbWUiOiAiUG9saWN5IEEiLAogICAgICAgICJwbGF5cmVhZHkiOiB7CiAgICAgICAgICAibWluX2RldmljZV9zZWN1cml0eV9sZXZlbCI6IDE1MCwKICAgICAgICAgICJwbGF5X2VuYWJsZXJzIjogWwogICAgICAgICAgICAiNzg2NjI3RDgtQzJBNi00NEJFLThGODgtMDhBRTI1NUIwMUE3IgogICAgICAgICAgXQogICAgICAgIH0KICAgICAgfQogICAgXQogIH0KfQ._NfhLVY7S6k8TJDWPeMPhUawhympnrk6WAZHOVjER6M',
+                widevine: {
+                    licenseAcquisitionURL: 'https://drm-widevine-licensing.axtest.net/AcquireLicense'
+                },
+                playready: {
+                    licenseAcquisitionURL: 'https://drm-playready-licensing.axtest.net/AcquireLicense'
+                }
+            }
+        }
+    };
+
+    player.source = showCase['hls']; // 'dash' | 'hlsDrm'
+
+    player.preload = 'auto';
+
+    const keyCodes = {
+        LEFT: 37,
+        UP: 38,
+        RIGHT: 39,
+        DOWN: 40,
+        CONFIRM: 13,
+        // tizen
+        RETURN: 10009,
+        EXIT: 10182,
+        MEDIAPLAYPAUSE: 10252
+    };
+
+    if (typeof window.tizen !== "undefined") {
+        window.tizen.tvinputdevice.registerKey('MediaPlayPause'); // allow MediaPlayPause button
+    }
+
+    document.addEventListener('keydown', function (event) {
+        switch (event.keyCode) {
+            case keyCodes.CONFIRM:
+            case keyCodes.MEDIAPLAYPAUSE:
+                if (player.paused) {
+                    player.play();
+                } else {
+                    player.pause();
+                }
+                break;
+            case keyCodes.LEFT:
+                player.currentTime -= 10;
+                break;
+            case keyCodes.RIGHT:
+                player.currentTime += 10;
+                break;
+        }
+    });
+
+    // commonly used  events below for speeding up integration with implementation suggestions.
+    // more can be found at https://docs.portal.theoplayer.com/api-reference/web/theoplayer.playereventmap.md
+    player.addEventListener(['play', 'pause'], function () {
+        if (player.paused) {
+            console.log('player is paused');
+        } else {
+            console.log('player is unpaused');
+        }
+    });
+
+    player.addEventListener('playing', function () {
+        // (hide spinner if we were waiting)
+        console.log('player starts playing after unpause');
+    });
+
+    player.addEventListener('seeking', 'seeked', function () {
+        if (player.seeking) {
+            // (show spinner)
+            console.log('player is seeking to', player.currentTime);
+        } else {
+            // (hide spinner)
+            console.log('playing is done seeking to', player.currentTime);
+        }
+    });
+
+    player.addEventListener('waiting', function () {
+        // (show spinner)
+        console.log('player is waiting for data');
+    });
+
+    player.addEventListener('timeupdate', function () {
+        // (update displayed currentTime)
+        // console.log('currentTime is changed to', player.currentTime)
+    });
+
+    player.addEventListener('durationchange', function () {
+        // duration is NaN: duration not yet known
+        // duration is a finite number: video-on-demand
+        // duration is Infinity: stream is live
+        // Consider using seekable ranges to determine duration when live: https://docs.portal.theoplayer.com/api-reference/web/theoplayer.chromelessplayer.seekable.md#chromelessplayerseekable-property
+        console.log('duration is changed to', player.duration);
+    });
+
+    // API is similar for audioTracks. Just change textTracks to audioTracks in that case.
+    // API: https://docs.portal.theoplayer.com/api-reference/web/theoplayer.tracklisteventmap.md
+    player.textTracks.addEventListener('addtrack', function (addTrackEvent) {
+        // TextTrack API: https://docs.portal.theoplayer.com/api-reference/web/theoplayer.texttrack.md
+        const track = addTrackEvent.track;
+        console.log('track is added', track);
+
+        // TextTrack events API: https://docs.portal.theoplayer.com/api-reference/web/theoplayer.trackeventmap.md
+        track.addEventListener('addcue', function (addCueEvent) {
+
+            // Cue API object: https://docs.portal.theoplayer.com/api-reference/web/theoplayer.texttrackcue.md
+            // Cue events API: https://docs.portal.theoplayer.com/api-reference/web/theoplayer.texttrackcueeventmap.md
+            // note: cue content can differ for metadata cues. Refer to details for specific type for more details.
+            const cue = addCueEvent.cue;
+            console.log('cue is added', cue);
+        });
+    });
+
+
+</script>
+
+</body>
+
+</html>

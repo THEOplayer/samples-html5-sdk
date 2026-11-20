@@ -1,0 +1,128 @@
+/* Shared page style for the reference apps, in the style of the OptiView documentation site. */
+:root {
+  --primary: #6d19ff;
+  --primary-dark: #5c00fc;
+  --text: #1c1e21;
+  --text-muted: #525860;
+  --background: #fff;
+  --surface: #f5f6f7;
+  --border: #dadde1;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--background);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 60px;
+  padding: 0 1.5rem;
+  background: #000;
+}
+
+.navbar img {
+  display: block;
+  height: 24px;
+  width: auto;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.navbar__links a {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.navbar__links a:hover {
+  color: #b9b9ba;
+}
+
+.sample {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.sample > h1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.sample > h1 > span:not(:empty) {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.sample > h1 > span:not(:empty)::before {
+  content: 'OptiView Player ';
+}
+
+.sample > p {
+  color: var(--text-muted);
+}
+
+.sample a {
+  color: var(--primary);
+}
+
+.sample > .theoplayer-container,
+.sample > .video-js {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 20%);
+}
+
+.sample > button,
+.sample > p > button,
+.sample > div:not(.video-js) > button {
+  margin: 0 0.5rem 0.5rem 0;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  background: var(--primary);
+  color: #fff;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.sample > button:hover,
+.sample > p > button:hover,
+.sample > div:not(.video-js) > button:hover {
+  background: var(--primary-dark);
+}
+
+.sample > select,
+.sample > div:not(.video-js) > select,
+.sample > input,
+.sample > div:not(.video-js) > input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+}

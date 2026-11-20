@@ -1,15 +1,15 @@
-var theoplayerWowza = {
+const theoplayerWowza = {
   registerPlayer: function registerPlayer(player) {
-    var wowzaData = null;
-    var wowzaSource = null;
-    var streamIsUnavailable = false;
-    var wowzaStreamInterval;
-    var countdownTimerInterval;
-    var isWaiting = false;
-    var hasInterval = false;
-    var statechangeCallback = null;
-    var datachangeCallback = null;
-    var queryParameter = null;
+    let wowzaData = null;
+    let wowzaSource = null;
+    let streamIsUnavailable = false;
+    let wowzaStreamInterval;
+    let countdownTimerInterval;
+    let isWaiting = false;
+    let hasInterval = false;
+    let statechangeCallback = null;
+    let datachangeCallback = null;
+    let queryParameter = null;
 
     function handleWowzaOffline() {
       statechangeCallback({
@@ -34,14 +34,14 @@ var theoplayerWowza = {
     }
 
     function setupCountdown(countDownDate) {
-      var countDownDate = countDownDate.getTime();
+      const countDownTime = countDownDate.getTime();
       countdownTimerInterval = setInterval(function () {
-        var now = new Date().getTime();
-        var distance = countDownDate - now;
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
-        var minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
-        var seconds = Math.floor(distance % (1000 * 60) / 1000);
+        const now = new Date().getTime();
+        const distance = countDownTime - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+        const minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
+        const seconds = Math.floor(distance % (1000 * 60) / 1000);
         getContainer().querySelector('.countdown').innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
         if (distance < 0) {
@@ -52,12 +52,12 @@ var theoplayerWowza = {
     }
 
     function createStreamStatusDiv() {
-      var streamStatusDiv = getContainer().querySelector('.stream-status');
+      let streamStatusDiv = getContainer().querySelector('.stream-status');
 
       if (!streamStatusDiv) {
         streamStatusDiv = document.createElement('div');
         streamStatusDiv.className = 'stream-status';
-        var poster = getPoster();
+        const poster = getPoster();
 
         if (poster) {
           streamStatusDiv.style.background = 'url("' + poster + '")';
@@ -65,21 +65,21 @@ var theoplayerWowza = {
         }
 
         if (wowzaData) {
-          var countdown = wowzaData['countdown_timestamp'];
+          let countdown = wowzaData['countdown_timestamp'];
 
           if (countdown) {
             countdown = new Date(parseInt(countdown) * 1000);
 
             if (countdown.getTime() > Date.now()) {
               // in the future
-              var countdownDiv = document.createElement('div');
+              const countdownDiv = document.createElement('div');
               countdownDiv.className = "stream-status-overlay";
-              var date = countdown.toDateString();
-              var hhmm = countdown.toISOString().substr(11, 5);
-              var title = wowzaData['title'] + "<br />" || false;
+              const date = countdown.toDateString();
+              const hhmm = countdown.toISOString().substr(11, 5);
+              const title = wowzaData['title'] + "<br />" || false;
               countdownDiv.innerHTML = title + "Stream will start on:<br />" + date + " @ " + hhmm;
               streamStatusDiv.appendChild(countdownDiv);
-              var countdownTimer = document.createElement('div');
+              const countdownTimer = document.createElement('div');
               countdownTimer.className = 'countdown';
               countdownTimer.innerHTML = "&nbsp;";
               countdownDiv.appendChild(countdownTimer);
@@ -96,7 +96,7 @@ var theoplayerWowza = {
     }
 
     function removeStreamStatusDiv() {
-      var streamStatusDiv = getContainer().querySelector('.stream-status');
+      const streamStatusDiv = getContainer().querySelector('.stream-status');
 
       if (streamStatusDiv) {
         streamStatusDiv.parentNode.removeChild(streamStatusDiv);
@@ -125,44 +125,33 @@ var theoplayerWowza = {
 
 
     function streamInterval() {
-      var sources = [player.source];
+      const sources = [player.source];
 
       if (wowzaSource.backupStreams && wowzaSource.backupStreams.length > 0) {
-        for (var i = 0; i < wowzaSource.backupStreams.length; i++) {
+        for (let i = 0; i < wowzaSource.backupStreams.length; i++) {
           sources.push(wowzaSource.backupStreams[i]);
         }
       }
 
       console.log("sources", sources);
 
-      var f = (function(){
-        var xhttp = [], i;
-        for (var i = 0; i < sources.length; i++) {
-          var currentSrc = getSrc(sources[i]);
-          var testSrc = currentSrc;
-          var rn = Math.round(Math.random() * 1000000000000);
-
-          if (currentSrc.indexOf("?") > -1) {
-            testSrc = currentSrc + "&rn=" + rn;
-          } else {
-            testSrc = currentSrc + "?rn=" + rn;
+      sources.forEach((source, i) => {
+        const currentSrc = getSrc(source);
+        const separator = currentSrc.includes("?") ? "&" : "?";
+        const testSrc = currentSrc + separator + "rn=" + Math.round(Math.random() * 1000000000000);
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", testSrc, true);
+        xhttp.onreadystatechange = function () {
+          if (xhttp.readyState !== 4) return;
+          if (xhttp.status !== 200 && isWaiting && !streamIsUnavailable) {
+            handleWowzaOffline();
+          } else if (xhttp.status === 200 && streamIsUnavailable) {
+            handleWowzaOnline();
+            reloadCurrentStream(source, i);
           }
-
-          (function(i){
-            xhttp[i] = new XMLHttpRequest();
-            xhttp[i].open("GET", testSrc, true);
-            xhttp[i].onreadystatechange = function(){
-              if (xhttp[i].readyState === 4 && xhttp[i].status !== 200 && isWaiting && !streamIsUnavailable) {
-                handleWowzaOffline();
-              } else if (xhttp[i].readyState === 4 && xhttp[i].status === 200 && streamIsUnavailable) {
-                handleWowzaOnline();
-                reloadCurrentStream(sources[i], i);
-              }
-            };
-            xhttp[i].send();
-          })(i);
-        }
-      })();
+        };
+        xhttp.send();
+      });
     }
 
     function checkStreamStatus() {
@@ -177,7 +166,7 @@ var theoplayerWowza = {
     function requestInterceptor(request) {
       if (request.url == player.src) {
         // check master playlist
-        var urlSplit = request.url.split("?");
+        const urlSplit = request.url.split("?");
 
         if (urlSplit.length > 1) {
           // check if master playlist has query params
@@ -187,7 +176,7 @@ var theoplayerWowza = {
         }
       } else if (queryParameter) {
         // if no master playlist and active set of query params
-        var newUrl = request.url + "?" + queryParameter; // append query params
+        const newUrl = request.url + "?" + queryParameter; // append query params
 
         request.redirect({
           url: newUrl
@@ -244,7 +233,7 @@ var theoplayerWowza = {
 
       if (wowzaSource) {
         registerWowzaEvents();
-        var wowzaJson = wowzaSource.jsonUrl;
+        const wowzaJson = wowzaSource.jsonUrl;
 
         if (wowzaJson) {
           registerWowzaData(wowzaJson);
@@ -256,7 +245,7 @@ var theoplayerWowza = {
     }
 
     function registerWowzaData(url) {
-      var xhttp = new XMLHttpRequest();
+      const xhttp = new XMLHttpRequest();
 
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -279,8 +268,8 @@ var theoplayerWowza = {
         if (source.metadata.wowza.backupStreams) {
            source = source;
         } else {
-          var backupStreams = player.source.metadata.wowza.backupStreams;
-          var originalSourceFixedFormatting = fixSource(player.source);
+          const backupStreams = player.source.metadata.wowza.backupStreams;
+          const originalSourceFixedFormatting = fixSource(player.source);
           backupStreams[i-1] = originalSourceFixedFormatting;
           source.metadata.wowza.backupStreams = backupStreams;
         }

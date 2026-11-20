@@ -1,47 +1,38 @@
-# Uplynk App
-The Uplynk App is a project which demonstrates the potential of THEOplayer's integration with Uplynk.
-The primary purpose of this project is to host the code for the [demo](https://cdn.theoplayer.com/demos/uplynk/index.html) linked below.
+# Uplynk with OptiView Player
 
-This app uses the following APIs:
-* https://docs.optiview.dolby.com/theoplayer/v9/api-reference/web/interfaces/UplynkSource.html
-* https://docs.optiview.dolby.com/theoplayer/v9/api-reference/web/classes/Player.html#uplynk
-* https://docs.optiview.dolby.com/theoplayer/v9/api-reference/web/interfaces/UplynkConfiguration.html
-* https://docs.optiview.dolby.com/theoplayer/v9/api-reference/web/interfaces/UplynkUiConfiguration.html
+This app shows the OptiView Player integration with Uplynk: playback of Uplynk assets with server-side ads, ad and asset markers on the timeline, ad skipping, and asset information. It is the source of the [live demo](https://cdn.theoplayer.com/demos/uplynk/index.html).
 
-Please also take a look at all the guides under our Uplynk documentation:
-* https://docs.optiview.dolby.com/theoplayer/how-to-guides/web/uplynk/introduction/
+## Running this sample
 
-Links:
-* Github: https://github.com/THEOplayer/samples-html5-sdk/tree/master/reference-apps/uplynk-app
-* Demo: https://cdn.theoplayer.com/demos/uplynk/index.html
+1. Install [Node.js](https://nodejs.org/) 22.12 or later.
+2. In this folder, install the dependencies, build the app and start the local server:
+   ```sh
+   npm install
+   npm run build
+   npm start
+   ```
+   Use `npm run build-dev` instead of `npm run build` for an unminified build with a source map.
+3. Open http://localhost:8000.
 
-# NPM scripts
+This sample is a separate npm project, so the root `npm start` does not build or serve it.
 
-- Install NPM dependencies: `npm install`
-- Build with Webpack: `npm run build-dev` or `npn run build`
-- Serve the app locally: `npm run start` (Open [http://localhost:8000](http://localhost:8000) to view it in the browser.)
+## License
 
-## Deploying
+Uplynk playback needs a license with the Uplynk feature. The default `localhost` license does not include it, so the player shows a license error until you add your own. Set `license` in the player configuration in [`src/player.js`](src/player.js), then run `npm run build` again. Get a license on [THEOportal](https://portal.theoplayer.com).
 
-The `/public/` folder contains the files which can be deployed to a web server. It's this repository which is uploaded to https://cdn.theoplayer.com/demos/uplynk/index.html.
+## About the player implementation
 
-Webpack must be used to build `/public/js/dist.js`. This file, `dist.js`, bundles the code from `/src/`, and contains the logic which is at the heart of this web app.
+* `npm run build` bundles [`src/`](src) into `public/js/dist.js` with webpack and Babel. It also copies the player files from `node_modules/theoplayer` to `public/vendor/theoplayer/`. Both are build output and not committed.
+* [`public/index.html`](public/index.html) loads `vendor/theoplayer/THEOplayer.js`, and [`src/player.js`](src/player.js) sets `libraryLocation` to `vendor/theoplayer/`.
+* [`src/config.js`](src/config.js) has the player configuration and the Uplynk sources. [`src/app.js`](src/app.js) has the app logic, and [`src/player.js`](src/player.js) creates the player and listens to its Uplynk events.
+* The `uplynk` object in the player configuration sets the Uplynk UI: content and ad notifications, asset and ad break markers, and the skip offset.
+* The layout uses Bootstrap Material Design 4.
+* To deploy the app, build it and upload the `public/` folder to a web server.
 
-## Files
+## Resources
 
-The application has the following files at its core:
-- /src/config.js - stores player configuration and video source objects
-- /src/app.js - handles the application logic
-- /src/player.js - creates and interacts with the player object
-
-# Frameworks and libraries
-The application uses THEOplayer's default web SDK library location. This library location is located at `https://cdn.theoplayer.com/dash/theoplayer/`. 
-This URL is incorporated in `/public/index.html` and `/src/player.js`. This library location will only be valid for `https://*.theoplayer.com` and `localhost` domains.
-Replace the library with your own THEOplayer if you clone this project.
-
-The application uses Javascript according to the [ECMAScript 5](https://www.w3schools.com/js/js_es5.asp) specification.
-
-The application uses [Bootstrap 4.3](https://getbootstrap.com/docs/4.3/getting-started/introduction/) for handling the layout and provide mobile-first UI experience. [Material design](https://material.io/design/) is used as the design language of the application.
-
-# Browser compatibility
-The application is compatible with all modern Chromium browsers.
+* [Uplynk guides](https://optiview.dolby.com/docs/theoplayer/how-to-guides/web/uplynk/introduction/)
+* [`UplynkSource` API](https://optiview.dolby.com/docs/theoplayer/v11/api-reference/web/interfaces/UplynkSource.html)
+* [`UplynkConfiguration` API](https://optiview.dolby.com/docs/theoplayer/v11/api-reference/web/interfaces/UplynkConfiguration.html)
+* [`UplynkUiConfiguration` API](https://optiview.dolby.com/docs/theoplayer/v11/api-reference/web/interfaces/UplynkUiConfiguration.html)
+* [OptiView Player examples](https://optiview.dolby.com/docs/theoplayer/examples/)

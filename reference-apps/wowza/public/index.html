@@ -2,9 +2,9 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Wowza</title>
-    <link rel="stylesheet" type="text/css" href='//cdn.theoplayer.com/dash/theoplayer/ui.css'>
+    <link rel="stylesheet" type="text/css" href='vendor/theoplayer/ui.css'>
     <link rel="stylesheet" type="text/css" href='css/theoplayer-wowza.css'>
-    <script type='text/javascript' src='//cdn.theoplayer.com/dash/theoplayer/THEOplayer.js'></script>
+    <script type='text/javascript' src='vendor/theoplayer/THEOplayer.js'></script>
     <script type='text/javascript' src="js/theoplayer-wowza.js"></script>
     <style>
 
@@ -61,8 +61,8 @@
 
 <div class="theoplayer-container video-js theoplayer-skin vjs-16-9"></div>
 <div id="config-container">
-    <div class="field"><label>Stream</label><input id="src" type="text" value="https://cdn3.wowza.com/1/N1pvc1pUTVMyc1VI/Y3RSajI5/hls/live/playlist.m3u8" /></div>
-    <div class="field"><label>Wowza JSON</label><input id="wowzaJson" type="text" value="https://player.cloud.wowza.com/hosted/0jgtbpld/wowza.json" /></div>
+    <div class="field"><label>Stream</label><input id="src" type="text" value="" placeholder="https://&lt;your Wowza stream&gt;/playlist.m3u8" /></div>
+    <div class="field"><label>Wowza JSON</label><input id="wowzaJson" type="text" value="" placeholder="https://player.cloud.wowza.com/hosted/&lt;stream ID&gt;/wowza.json" /></div>
     <div class="field"><label>Retry (in ms)</label><input id="retry" type="text" value="3000" /></div>
     <div class="field"><label>Offline text</label><input id="offlineText" type="text" value="The stream is currently not available. :(" /></div>
     <div class="field"><label>Placeholder image</label><input id="placeholderImg" type="text" value="https://www.wowza.com/vodassets/get_started_wcs/get_started_wcs.jpg" /></div>
@@ -70,12 +70,12 @@
 </div>
 
 <script>
-    var element = document.querySelector('.theoplayer-container');
-    var player = new THEOplayer.Player(element, {
-        libraryLocation : '//cdn.theoplayer.com/dash/theoplayer/'
+    const element = document.querySelector('.theoplayer-container');
+    const player = new THEOplayer.Player(element, {
+        libraryLocation : 'vendor/theoplayer/'
     });
 
-    var wowzaSession = theoplayerWowza.registerPlayer(player);
+    const wowzaSession = theoplayerWowza.registerPlayer(player);
 
     function getSourceDescription() {
         return {

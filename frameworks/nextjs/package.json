@@ -1,0 +1,31 @@
+{
+  "name": "theoplayer-nextjs-sample",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "copy:theoplayer": "node scripts/copy-theoplayer.mjs",
+    "predev": "npm run copy:theoplayer",
+    "dev": "next dev",
+    "prebuild": "npm run copy:theoplayer",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "theoplayer": "^11"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.4.6",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22.12"
+  }
+}

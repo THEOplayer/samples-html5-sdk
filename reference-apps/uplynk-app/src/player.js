@@ -26,7 +26,9 @@ export class PlayerUtil {
         this.createTHEOplayerInfo(element);
 
         this.theoplayerRef = new THEOplayer.Player(element, {
-            libraryLocation: '//cdn.theoplayer.com/dash/theoplayer/',
+            // Replace with your OptiView Player license. It needs the Uplynk feature.
+            license: '',
+            libraryLocation: 'vendor/theoplayer/',
             uplynk: {
                 onSeekOverAd: app.config.uplynk.seekOverAd,
                 ui: {
@@ -303,7 +305,7 @@ export class PlayerUtil {
                         </div>
                     </div>`;
         element.innerHTML = htmlToAdd;
-        var closeButton = document.querySelector('.fa-window-close');
+        const closeButton = document.querySelector('.fa-window-close');
         closeButton.addEventListener('click', function() {
             document.querySelector('.theoplayer-info').classList.toggle('hidden');
         })

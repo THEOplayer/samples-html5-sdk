@@ -1,0 +1,284 @@
+/* Colors and layout follow the OptiView documentation site. */
+:root {
+  --primary: #6d19ff;
+  --text: #1c1e21;
+  --text-muted: #525860;
+  --background: #fff;
+  --surface: #f5f6f7;
+  --border: #dadde1;
+  --code-background: #f0f0f3;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #888bfe;
+    --text: #e3e3e3;
+    --text-muted: #a8acb3;
+    --background: #1b1b1d;
+    --surface: #242526;
+    --border: #3a3b3c;
+    --code-background: #2b2c2e;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--background);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.875em;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+  background: var(--code-background);
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 1.5rem;
+  background: #000;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
+}
+
+.navbar__brand img {
+  display: block;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar__links a {
+  color: #fff;
+  font-weight: 500;
+}
+
+.navbar__links a:hover {
+  color: #b9b9ba;
+  text-decoration: none;
+}
+
+.hero {
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+  color: #fff;
+  background: #000 url('gradient-bg.jpg') top center / cover no-repeat;
+}
+
+.hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.hero p {
+  max-width: 36em;
+  margin: 0 auto;
+  font-size: 1.25rem;
+  text-wrap: balance;
+}
+
+.hero__toc {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.hero__toc a {
+  padding: 0.4rem 1rem;
+  border: 1px solid rgb(255 255 255 / 50%);
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.hero__toc a:hover {
+  background: rgb(255 255 255 / 15%);
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.admonition {
+  padding: 1rem 1.25rem;
+  border-left: 5px solid var(--primary);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.admonition p {
+  margin: 0.5rem 0 0;
+}
+
+section {
+  scroll-margin-top: 70px;
+}
+
+h2 {
+  margin: 3rem 0 0.25rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.section__intro {
+  margin: 0 0 1.25rem;
+  color: var(--text-muted);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+  box-shadow: 0 1.5px 3px rgb(0 0 0 / 15%);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 3px 6px rgb(0 0 0 / 20%);
+}
+
+.card__link {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  color: inherit;
+}
+
+.card__link:hover {
+  text-decoration: none;
+}
+
+.card h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.card__readme {
+  padding: 0 1.25rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.card__variants {
+  margin: 0;
+  padding: 0 1.25rem 1rem;
+  font-size: 0.875rem;
+}
+
+.card__command {
+  display: block;
+  margin: 0 1.25rem 1rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 2rem;
+  padding: 2rem 1.5rem;
+  color: #fff;
+  background: #000;
+}
+
+.footer a {
+  color: #ebedf0;
+}
+
+.footer p {
+  flex-basis: 100%;
+  margin: 0;
+  text-align: center;
+  color: #a8acb3;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .navbar__brand img {
+    height: 20px;
+    width: auto;
+  }
+
+  .navbar__links {
+    gap: 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .hero {
+    padding: 3rem 1rem 2rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+}
+
+.admonition--warning {
+  margin-top: 1rem;
+  border-left-color: #e6a700;
+  background: #fff8e6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .admonition--warning {
+    background: #3b2e00;
+  }
+}

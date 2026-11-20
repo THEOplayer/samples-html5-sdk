@@ -1,84 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Static Template</title>
-    <style>
-      body {font-size: 16px;font-family:Verdana, sans-serif}
-      h1 {font-size: 2em;}
-      h3 {font-size: 1.25em;margin-bottom: 0;}
-      ul {list-style:none;margin-top:.5em;padding-left:1.5em}
-      li {line-height:130%}
-      a {text-decoration: none;color:#00C}
-      b {line-height: 2em;}
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiView Player samples for web</title>
+    <link rel="icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="assets/index.css">
   </head>
   <body>
-    <h1>THEOplayer samples for web</h1>
+    <nav class="navbar">
+      <a class="navbar__brand" href="https://optiview.dolby.com/docs/theoplayer/">
+        <img src="assets/dolby-optiview-white.svg" alt="Dolby OptiView" height="28">
+      </a>
+      <div class="navbar__links">
+        <a href="https://optiview.dolby.com/docs/theoplayer/getting-started/sdks/web/getting-started/">Docs</a>
+        <a href="https://optiview.dolby.com/docs/theoplayer/examples/">Examples</a>
+        <a href="https://github.com/THEOplayer/samples-html5-sdk">GitHub</a>
+      </div>
+    </nav>
 
-        <h3>Ads</h3>
-        <ul id="csaiAdsSamples"><b>CSAI</b>
-          <li><a href="./reference-apps/ads-basic/index.html">Ads Basic</a></li>
-          <li><a href="./reference-apps/ads-basic-vmap/index.html">Ads Basic VMAP</a></li>
-          <li><a href="./reference-apps/ads-customize-overlay/index.html">Ads Customize Overlay</a></li>
-          <li><a href="./reference-apps/ads-customize-ui/index.html">Ads Customize UI</a></li>
-        </ul>
-        <ul  id="ssaiAdsSamples"><b>SSAI</b>
-          <li><a href="./reference-apps/yospace/index.html">Yospace</a></li>
-        </ul>
+    <header class="hero">
+      <h1>OptiView Player samples for web</h1>
+      <p>Reference apps and starter projects for the OptiView Player Web SDK.</p>
+      <nav class="hero__toc">
+        <a href="#reference-apps">Reference apps</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#bundlers">Bundlers</a>
+        <a href="#frameworks">Frameworks</a>
+        <a href="#smart-tv">Smart TV</a>
+      </nav>
+    </header>
 
-        <h3>Cache</h3>
-        <ul id="cacheSamples">
-          <li><a href="./reference-apps/cache-simple/index.html">Cache simple</a></li>
-          <li><a href="./reference-apps/cache-on-demand-with-button/index.html">Cache on demand with button</a></li>
-        </ul>
+    <main class="container">
+      <div class="admonition">
+        <strong>How to run the samples</strong>
+        <p>The root <code>npm start</code> runs the static reference apps directly, without a build. Every other sample is its own npm project: run the commands on its card from the repository root, or follow its README.</p>
+        <p>More live demos are on the <a href="https://optiview.dolby.com/docs/theoplayer/examples/">OptiView Player examples page</a>.</p>
+      </div>
+    <div class="admonition admonition--warning">
+      <strong>License</strong>
+      <p>Without a license, OptiView Player only plays on <code>localhost</code>. To play on other domains, get a license on <a href="https://portal.theoplayer.com">THEOportal</a> and set it in the sample, as its README describes.</p>
+    </div>
 
-        <h3>Millicast</h3>
-        <ul id="millicastSamples">
-            <li><a href="./reference-apps/millicast/index.html">Millicast</a></li>
-            <li><a href="./reference-apps/millicast-openvideoui/index.html">Millicast with Open Video UI</a></li>
-        </ul>
+    <section id="reference-apps">
+      <h2>Reference apps</h2>
+      <p class="section__intro">Static pages that load the player from the <code>node_modules</code> folder in the repository root. Run <code>npm install &amp;&amp; npm start</code> in the root and open them here.</p>
+      <ul class="cards">
+        <li class="card">
+          <a class="card__link" href="./reference-apps/ads-basic/index.html">
+            <h3>Ads</h3>
+            <p>Pre-roll, mid-roll and post-roll ads with the CSAI and Google IMA integrations.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/ads-basic/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/ads-basic-vmap/index.html">
+            <h3>Ads with VMAP</h3>
+            <p>Schedule ad breaks from a VMAP file.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/ads-basic-vmap/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/ads-customize-overlay/index.html">
+            <h3>Customize the ad overlay</h3>
+            <p>Change the texts and elements shown on top of an ad.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/ads-customize-overlay/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/ads-customize-ui/index.html">
+            <h3>Customize the UI during ads</h3>
+            <p>Style the default UI while an ad plays.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/ads-customize-ui/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/ui-visual-cues-midroll-ads/index.html">
+            <h3>Ad markers on the timeline</h3>
+            <p>Draw a cue on the progress bar for every upcoming ad break.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/ui-visual-cues-midroll-ads/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/multiview/index.html">
+            <h3>MultiView</h3>
+            <p>Play several streams side by side with <code>@theoplayer/extended</code>.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/multiview/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/text-track-rendering-styling/index.html">
+            <h3>Style subtitles</h3>
+            <p>Set the font, colors and edge style of subtitles, and let viewers change them.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/text-track-rendering-styling/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/ui-align-timeline-in-middle/index.html">
+            <h3>Timeline in the middle</h3>
+            <p>Move the time indicators to the middle of the control bar.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/ui-align-timeline-in-middle/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/ui-change-big-play-button/index.html">
+            <h3>Big play button</h3>
+            <p>Restyle the big play button of the default UI.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/ui-change-big-play-button/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/ui-keyboard-hotkeys/index.html">
+            <h3>Keyboard hotkeys</h3>
+            <p>Control playback, volume and full screen from the keyboard.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/ui-keyboard-hotkeys/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/ui-language-localization/index.html">
+            <h3>Localize the UI</h3>
+            <p>Translate the texts of the default UI.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/ui-language-localization/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/ui-quality-selector-and-labels/index.html">
+            <h3>Quality selector</h3>
+            <p>Build a custom quality menu with your own labels.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/ui-quality-selector-and-labels/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/ui-remove-an-element/index.html">
+            <h3>Remove UI elements</h3>
+            <p>Hide default UI elements with CSS or JavaScript.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/ui-remove-an-element/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/visibility-api/index.html">
+            <h3>Visibility API</h3>
+            <p>Pause or react when the player scrolls out of view.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/visibility-api/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/progressive-web-app/index.html">
+            <h3>Progressive web app</h3>
+            <p>An installable app that caches the player with a service worker.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/progressive-web-app/README.md">Read the README</a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/utility/measure-loading-time/index.html">
+            <h3>Measure loading time</h3>
+            <p>Measure how long the player takes to load and start playback.</p>
+          </a>
+          <a class="card__readme" href="./reference-apps/utility/measure-loading-time/README.md">Read the README</a>
+        </li>
+      </ul>
+    </section>
 
-        <h3>MultiView</h3>
-        <ul id="multiviewSamples">
-            <li><a href="./reference-apps/multiview/index.html">MultiView (Basic))</a></li>
-        </ul>
+    <section id="integrations">
+      <h2>Integrations</h2>
+      <p class="section__intro">Each integration is a separate npm project with a webpack build. Run the commands in a terminal and open <a href="http://localhost:8000">localhost:8000</a>.</p>
+      <ul class="cards">
+        <li class="card">
+          <a class="card__link" href="./reference-apps/uplynk-app/README.md">
+            <h3>Uplynk</h3>
+            <p>Uplynk playback with ad breaks, asset info and ad skipping. Needs a license with Uplynk enabled.</p>
+          </a>
+          <code class="card__command">cd reference-apps/uplynk-app
+npm install
+npm run build
+npm start</code>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/wowza/README.md">
+            <h3>Wowza Streaming Cloud</h3>
+            <p>Show a placeholder while a live stream is offline and start playback when it goes live.</p>
+          </a>
+          <code class="card__command">cd reference-apps/wowza
+npm install
+npm run build
+npm start</code>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./reference-apps/wowza-backup-streams/README.md">
+            <h3>Wowza backup streams</h3>
+            <p>Switch to the next online backup stream when the primary stream stops.</p>
+          </a>
+          <code class="card__command">cd reference-apps/wowza-backup-streams
+npm install
+npm run build
+npm start</code>
+        </li>
+      </ul>
+    </section>
 
-        <h3>TextTracks</h3>
-        <ul id="textTrackSamples">
-          <li><a href="./reference-apps/text-track-rendering-subtitles/index.html">Text track rendering - Subtitles</a></li>
-          <li><a href="./reference-apps/text-track-rendering-styling/index.html">Text track rendering - Styling</a></li>
-          <li><a href="./reference-apps/text-track-rendering-thumbnails/index.html">Text track rendering - Thumbnails</a></li>
-          <!--<li></li>-->
-        </ul>
+    <section id="bundlers">
+      <h2>Bundlers</h2>
+      <p class="section__intro">Each bundler sample is a separate npm project. Run the commands in a terminal; the README lists the URL to open.</p>
+      <ul class="cards">
+        <li class="card">
+          <div class="card__link">
+            <h3>Vite</h3>
+            <p>Bundle the <code>theoplayer</code> package with Vite. The commands are for JavaScript; use the <code>typescript</code> folder for TypeScript.</p>
+          </div>
+          <p class="card__variants">README: <a href="./bundlers/vite/javascript/README.md">JavaScript</a>, <a href="./bundlers/vite/typescript/README.md">TypeScript</a></p>
+          <code class="card__command">cd bundlers/vite/javascript
+npm install
+npm run dev</code>
+        </li>
+        <li class="card">
+          <div class="card__link">
+            <h3>webpack</h3>
+            <p>Bundle the <code>theoplayer</code> package with webpack. The commands are for JavaScript; use the <code>typescript</code> folder for TypeScript.</p>
+          </div>
+          <p class="card__variants">README: <a href="./bundlers/webpack/javascript/README.md">JavaScript</a>, <a href="./bundlers/webpack/typescript/README.md">TypeScript</a></p>
+          <code class="card__command">cd bundlers/webpack/javascript
+npm install
+npm run build
+npm run serve</code>
+        </li>
+        <li class="card">
+          <div class="card__link">
+            <h3>Rollup</h3>
+            <p>Bundle the <code>theoplayer</code> package with Rollup. The commands are for JavaScript; use the <code>typescript</code> folder for TypeScript.</p>
+          </div>
+          <p class="card__variants">README: <a href="./bundlers/rollup/javascript/README.md">JavaScript</a>, <a href="./bundlers/rollup/typescript/README.md">TypeScript</a></p>
+          <code class="card__command">cd bundlers/rollup/javascript
+npm install
+npm run build
+npm run serve</code>
+        </li>
+        <li class="card">
+          <div class="card__link">
+            <h3>Parcel</h3>
+            <p>Bundle the <code>theoplayer</code> package with Parcel. The commands are for JavaScript; use the <code>typescript</code> folder for TypeScript.</p>
+          </div>
+          <p class="card__variants">README: <a href="./bundlers/parcel/javascript/README.md">JavaScript</a>, <a href="./bundlers/parcel/typescript/README.md">TypeScript</a></p>
+          <code class="card__command">cd bundlers/parcel/javascript
+npm install
+npm run build
+npm run serve</code>
+        </li>
+      </ul>
+    </section>
 
-        <h3>UI</h3>
-        <ul id="uiSamples">
-          <li><a href="./reference-apps/ui-adding-buttons/index.html">UI - Adding buttons</a></li>
-          <li><a href="./reference-apps/ui-align-timeline-in-middle/index.html">UI - Align timeline in the middle</a></li>
-          <li><a href="./reference-apps/ui-change-big-play-button/index.html">UI - Change the big Play button</a></li>
-          <li><a href="./reference-apps/ui-control-bar-always-visible/index.html">UI - Control bar always visible</a></li>
-          <li><a href="./reference-apps/ui-keyboard-hotkeys/index.html">UI - Keyboard hotkeys</a></li>
-          <li><a href="./reference-apps/ui-language-localization/index.html">UI - Language localization</a></li>
-          <li><a href="./reference-apps/ui-quality-selector-and-labels/index.html">UI - Quality selector and labels</a></li>
-          <li><a href="./reference-apps/ui-remove-an-element/index.html">UI - Remove an element</a></li>
-          <li><a href="./reference-apps/ui-skinning/index.html">UI - Skinning</a></li>
-          <li><a href="./reference-apps/ui-visual-cues-midroll-ads/index.html">UI - Visual cues midroll ads</a></li>
-        </ul>
+    <section id="frameworks">
+      <h2>Frameworks</h2>
+      <p class="section__intro">Each framework sample is a separate npm project with its own dev server. Run the commands in a terminal; the README lists the URL to open.</p>
+      <ul class="cards">
+        <li class="card">
+          <a class="card__link" href="./frameworks/react/README.md">
+            <h3>React</h3>
+            <p>A React 19 component built with Vite.</p>
+          </a>
+          <code class="card__command">cd frameworks/react
+npm install
+npm run dev</code>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./frameworks/nextjs/README.md">
+            <h3>Next.js</h3>
+            <p>A Next.js App Router page that renders the player on the client only.</p>
+          </a>
+          <code class="card__command">cd frameworks/nextjs
+npm install
+npm run dev</code>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./frameworks/angular/README.md">
+            <h3>Angular</h3>
+            <p>A standalone Angular component.</p>
+          </a>
+          <code class="card__command">cd frameworks/angular
+npm install
+npm run dev</code>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./frameworks/vue/README.md">
+            <h3>Vue</h3>
+            <p>A Vue 3 component built with Vite.</p>
+          </a>
+          <code class="card__command">cd frameworks/vue
+npm install
+npm run dev</code>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./frameworks/nuxt/README.md">
+            <h3>Nuxt</h3>
+            <p>A Nuxt 4 component rendered inside <code>&lt;ClientOnly&gt;</code>.</p>
+          </a>
+          <code class="card__command">cd frameworks/nuxt
+npm install
+npm run dev</code>
+        </li>
+      </ul>
+    </section>
 
-        <h3>Misc player features</h3>
-        <ul id="miscFeaturesSample">
-          <li><a href="./reference-apps/up-next/index.html">Up Next</a></li>
+    <section id="smart-tv">
+      <h2>Smart TV</h2>
+      <p class="section__intro">Build the app here, then install it on a TV or emulator as described in its README.</p>
+      <ul class="cards">
+        <li class="card">
+          <a class="card__link" href="./smart-tv/webos/README.md">
+            <h3>LG webOS</h3>
+            <p>A minimal app and an app with a remote-control UI, packaged with the webOS CLI.</p>
+          </a>
+          <p class="card__variants">Variant: <a href="./smart-tv/webos/example-with-ui/README.md">example with UI</a></p>
+          <code class="card__command">cd smart-tv/webos
+npm install
+npm run build</code>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./smart-tv/tizen/README.md">
+            <h3>Samsung Tizen</h3>
+            <p>A minimal app and an app with a remote-control UI, built with Tizen Studio.</p>
+          </a>
+          <p class="card__variants">Variants: <a href="./smart-tv/tizen/minimum-example/README.md">minimum example</a>, <a href="./smart-tv/tizen/example-with-ui/README.md">example with UI</a></p>
+          <code class="card__command">cd smart-tv/tizen
+npm install
+npm run build</code>
+        </li>
+        <li class="card">
+          <a class="card__link" href="./smart-tv/lightning/README.md">
+            <h3>Lightning</h3>
+            <p>A Lightning app with a source list and play/pause controls.</p>
+          </a>
+          <code class="card__command">cd smart-tv/lightning
+npm install
+npm run build
+npm run serve</code>
+        </li>
+      </ul>
+    </section>
+    </main>
 
-          <li><a href="./reference-apps/visibility-api/index.html">Visibility API</a></li>
-        </ul>
-
-        <h3>Other</h3>
-        <ul id="otherSamples">
-          <li><a href="./reference-apps/utility/index.html">Utility</a></li>
-        </ul>
-
+    <footer class="footer">
+      <a href="https://optiview.dolby.com/docs/theoplayer/">OptiView Player documentation</a>
+      <a href="https://portal.theoplayer.com">THEOportal</a>
+      <a href="https://github.com/THEOplayer/license-and-disclaimer">License</a>
+      <p>Copyright © Dolby Laboratories, Inc.</p>
+    </footer>
   </body>
 </html>

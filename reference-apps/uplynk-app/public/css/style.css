@@ -16,8 +16,9 @@ body {
   max-width: 30%;
 }
 
-.theo-logo {
-  min-width: 30%;
+.optiview-logo {
+  max-width: 60%;
+  height: 40px;
 }
 
 .custom-theo-container {

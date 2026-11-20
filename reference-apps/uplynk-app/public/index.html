@@ -13,25 +13,33 @@
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
         integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
         crossorigin="anonymous"></script>
-    <script src="//cdn.theoplayer.com/dash/theoplayer/THEOplayer.js" type="text/javascript"></script>
+    <script src="vendor/theoplayer/THEOplayer.js" type="text/javascript"></script>
     <script src="js/dist.js" type="text/javascript"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-material-design.min.css">
-    <link rel="stylesheet" href="//cdn.theoplayer.com/dash/theoplayer/ui.css" />
+    <link rel="stylesheet" href="vendor/theoplayer/ui.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/all.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
-    <link rel="shortcut icon" href="https://www.theoplayer.com/hubfs/THEO_Player_Apr_2016_File/Images/favicon.ico">
+    <link rel="icon" href="img/favicon.ico">
     <title>Uplynk App</title>
 </head>
 
 <body>
     <div class="container-fluid h-100 flex-column bg-dark">
+        <div class="row">
+            <div class="col p-0">
+                <div class="alert alert-warning m-0 rounded-0" role="alert">
+                    <strong>License required:</strong> Uplynk playback needs an OptiView Player license with the Uplynk feature.
+                    Set <code>license</code> in <code>src/player.js</code> and run <code>npm run build</code> again.
+                    Get a license on <a class="alert-link" href="https://portal.theoplayer.com">THEOportal</a>.
+                </div>
+            </div>
+        </div>
         <div class="row top-bar">
             <div class="col-lg-9 p-3 border-right border-bottom border-gray shadow-sm bg-light">
-                <img class="mr-md-auto theo-logo"
-                    src="https://demo.theoplayer.com/hubfs/THEO_Player_Apr_2016_File/Images/navbar-brand.svg?t=1541693004713"
-                    alt="THEOplayer" title="THEOplayer">
+                <img class="mr-md-auto optiview-logo" src="img/dolby-optiview-black.svg"
+                    alt="Dolby OptiView" title="Dolby OptiView">
             </div>
             <div class="col-lg-3 p-3 border-right border-bottom border-gray shadow-sm bg-white" id="uplynk-logo">
             </div>
@@ -70,7 +78,7 @@
     </div>
     <script>
         $(document).ready(function () {
-            var app = new App();
+            const app = new App();
             app.init();
             $('body').bootstrapMaterialDesign();
         });

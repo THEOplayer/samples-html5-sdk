@@ -1,0 +1,4 @@
+{
+  "reporters":  ["parcel-reporter-static-files-copy", "..."],
+  "extends": ["@parcel/config-default"]
+}

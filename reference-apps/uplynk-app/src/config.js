@@ -1,4 +1,4 @@
-export let appConfig = appConfig || {
+export const appConfig = window.appConfig || {
     language: 'en',
     tabs: [
         {
