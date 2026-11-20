@@ -58,7 +58,7 @@ export class ExampleUI {
         document.removeEventListener('keydown', this.keyPress);
 
         this._player.removeEventListener('sourcechange', this.reset);
-        this._player.addEventListener('destroy', this.unload);
+        this._player.removeEventListener('destroy', this.unload);
     };
 
     private readonly reset = (): void => {

@@ -137,6 +137,6 @@ export class UIManager {
         this.player.removeEventListener(['seeked', 'playing', 'canplay'], this.stopSpinner);
         this.player.removeEventListener(['play', 'pause'], this.updateUI);
         this.player.removeEventListener('sourcechange', this.reset);
-        this.player.addEventListener('destroy', this.unload);
+        this.player.removeEventListener('destroy', this.unload);
     };
 }
